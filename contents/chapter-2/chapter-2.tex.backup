@@ -1,0 +1,13 @@
+\chapter{Tinjauan Pustaka dan Dasar Teori}
+
+
+\section{Tinjauan Pustaka}
+\subsection{Apakah Pola Deteksi Duplikat (CDP) dapat Disalin}
+CDP dinilai dapat digunakan untuk mendeteksi pemalsuan, sehingga akhir-akhir ini mendapatkan banyak perhatian dari akademisi dan industri. Tingkat keamanan CDP dalam mendeteksi serangan pemalsuan yang canggih telah dipelajari secara teoritis dan praktis dalam beberapa penelitian, namun hasilnya masih belum sepenuhnya meyakinkan. Kontribusi utama dari penelitian ini adalah untuk menyajikan kumpulan data CDP secara publik dan berbagai jenis contoh penyerangan terdapat CDP tersebut, sehingga kinerja CDP terhadap beberapa penyerangan dapat diketahui. Set data CDP tersebut terdiri dari lebih dari 27.500 gambar CDP dan merupakan set data CDP terbesar hingga saat ini. Kontribusi selanjutnya adalah meneliti tentang kinerja detektor CDP dalam mendeteksi CDP asli ataupun salinan. Verifikasi dari CDP dapat dilakukan dengan perangkat seluler, tanpa harus menggunakan pemindai khusus, . Dengan dataset dan detektor yang dibuat, peneliti sebelumnya ingin menguji validitas hipotesis bahwa CDP yang dicetak berulang kali akan terdegradasi kualitasnya dan dapat dideteksi sebagai CDP palsu. Kontibusi terakhir dari penelitian ini adalah beberapa metode yang dapat dilakukan untuk meningkatkan performa klasifikasi dari model.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-2/2-cdporivsfake.png}
+	\caption{Contoh dari CDP a\) CDP original hasil \emph{generate} dari program \emph{I} b\) CDP yang telah terdegradasi kualitasnya akibat dari beberapa kali penyetakan dan pemindaian} \emph{\widetilde{I} }
+	\label{Fig:2-cdporivsfake.png}
+\end{figure}
