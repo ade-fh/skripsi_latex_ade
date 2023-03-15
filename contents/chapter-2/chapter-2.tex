@@ -25,7 +25,7 @@ Prinsip dari deteksi CDP palsu dilakukan berdasarkan hilangnya informasi, yang m
 CDP sering dibandingkan dengan kode batang dua dimensi seperti data-matriks karena kemiripan visualnya. Namun, seperti yang diilustrasikan pada Gambar \ref{Fig: 2-datamatrixvscdp}, unit elemen data-matriks jauh lebih besar dibandingkan unit elemen CDP. Oleh karena itu, prinsip kehilangan atau degradasi informasi tidak berdampak pada struktur data-matriks. Sebagai contoh, korelasi antara data-matriks digital \emph{template} hasil \emph{generate} dengan versi rusak P\&S bisa lebih dari $0,9$, sedangkan korelasi antara CDP digital \emph{template} hasil \emph{generate} dengan versi rusak P\&S-nya hanya sekitar $0,45-0,55$ tergantung pada pemindai dan penyetaknya. Oleh karena itu, ukuran dari unit elemen pola CDP, yaitu $uxu$ piksel seperti yang ditampilkan pada Gambar \ref{Fig: 2-datamatrixvscdp}, ukuran pola keseluruhan juga sangat mempengaruhi proses otentikasi dan kemampuan pemalsu dalam mereproduksi pola. Pada praktiknya, ukuran unit elemen pada CDP adalah $1x1$ piksel atau $2x2$ piksel agar bisa memanfaatkan prinsip kehilangan atau degradasi informasi secara maksimal.
 
 \subsubsection{Definisi Teoritis dari Sistem Autentikasi CDP}
-Autentikasi dari CDP terdiri dari dua langkah utama. Langkah pertama adalah langkah registrasi dimana pola dihasilkan kemudian dicetak dengan penyetak untuk menghasilkan CDP asli. Langkah kedua adalah verifikasi CDP, menggunakan sebuah perangkat pemindai yang telah terotentikasi (perangkat selular dengan kamera), CDP dipindai dan dilewatkan ke tes autentikasi (dengan parameter-parameter peminadaian tertentu). Jika tes tersebut positif, item dianggap autentik.
+Autentikasi dari CDP terdiri dari dua langkah utama. Langkah pertama adalah langkah registrasi di mana pola dihasilkan kemudian dicetak dengan penyetak untuk menghasilkan CDP asli. Langkah kedua adalah verifikasi CDP, menggunakan sebuah perangkat pemindai yang telah terotentikasi (perangkat selular dengan kamera), CDP dipindai dan dilewatkan ke tes autentikasi (dengan parameter-parameter peminadaian tertentu). Jika tes tersebut positif, item dianggap autentik.
 
 Upaya penyerangan yang paling sering terjadi oleh pembajak adalah sebagai berikut: Pembajak melakukan pemindaian CDP pada sebuah item menggunakan pemindai beresolusi tinggi, mengestimasi pola asli dari CDP, kemudian mencetak pola yang telah diestimasi menggunakan penyetak beresolusi tinggi. Pada skenario ini $I$ merupakan CDP digital hasil \emph{generate} dari \emph{template}, kemudian $\Pi(I)$ merupakan hasil \emph{generate} CDP \emph{template} yang dicetak, dengan $\Pi(\cdot)$ \emph{noise} yang dihasilkan dalam proses penyetakan menggunakan penyetak yang telah terautentikasi. Selanjutnya, proses autentikasi dapat dirumuskan sebagai uji hipotesis berikut ini:
 
@@ -33,7 +33,7 @@ Upaya penyerangan yang paling sering terjadi oleh pembajak adalah sebagai beriku
 	&\mathcal{H}_{0}:\tilde{I}\sim\Sigma(\Pi(I)),\\ &\mathcal{H}_{1}:\tilde{I}\not\sim\Sigma(\Pi(I)),\nonumber
 \end{align}
 
-dimana $\widetilde{I}$ adalah gambar CDP \emph{grayscale} yang diterima oleh pusat autentikasi. $\widetilde{I}$ dapat berupa CDP asli (i.e. $\Sigma(\Pi(I))$) atau CDP palsu (i.e. $\Sigma(\Pi'(\hat{I}))$). Metriks yang digunakan untuk membandingkan CDP asli dengan palsu adalah koefisien jarak ataupun korelasi \cite{dirik2012copy}.
+\noindent di mana $\widetilde{I}$ adalah gambar CDP \emph{grayscale} yang diterima oleh pusat autentikasi. $\widetilde{I}$ dapat berupa CDP asli (i.e. $\Sigma(\Pi(I))$) atau CDP palsu (i.e. $\Sigma(\Pi'(\hat{I}))$). Metriks yang digunakan untuk membandingkan CDP asli dengan palsu adalah koefisien jarak ataupun korelasi \cite{dirik2012copy}.
 
 \subsubsection{Komponen dari Detektor}
 Hasil menunjukkan bahwa autentikasi menggunakan CDP \emph{raw grayscale} lebih efisien dibandingkan dengan CDP yang telah di-\emph{thresholding} \cite{phan2014document}. Kemudian, secara umum, ada beberapa langkah yang dilakukan untuk melakukan autentikasi CDP, antara lain:
@@ -185,7 +185,7 @@ CDP telah dicoba untuk dicetak menggunakan berbagai variasi \emph{printers}: \em
 CDP sebaiknya tidak dianggap sebagai pesaing untuk perangkat keamanan optik lainnya, namun dijadikan sebagai alternatif yang lebih murah pada kasus-kasus tertentu. Dengan memanfaatkan konsep degradasi gambar dan informasi yang tidak terancam oleh perkembangan perangkat pemindai dan pencetak digital, CDP menjadi alternatif yang paling murah dalam memroteksi dokumen \cite{picard2004digital}, \cite{picard2004towards}, \cite{harwood1998optical}.
 
 \subsection{Lokalisasi Objek dengan Pengenalan Pola}
-Lokalisasi objek adalah proses mengidentifikasi posisi dan orientasi objek atau pola tertentu pada sebuah gambar menggunakan teknik pengolahan citra dan visi komputer. Proses ini melibatkan deteksi objek atau pola dalam gambar serta mengestimasi lokasi dan orientasi yang tepat relatif terhadap kamera \cite{sivic2003video}, \cite{}.
+Lokalisasi objek adalah proses mengidentifikasi posisi dan orientasi objek atau pola tertentu pada sebuah gambar menggunakan teknik pengolahan citra dan visi komputer. Proses ini melibatkan deteksi objek atau pola dalam gambar serta mengestimasi lokasi dan orientasi yang tepat relatif terhadap kamera \cite{sivic2003video}, \cite{liu2016ssd}.
 
 Berbagai teknik telah diusulkan untuk melakukan lokalisasi objek atau gambar dengan pengenalan pola, termasuk deteksi fitur, pencocokan \emph{template}, dan metode berbasis pembelajaran mesin. Teknik-teknik ini telah digunakan dalam berbagai aplikasi, seperti \emph{augmented reality}, robotika, dan pelacakan objek.
 
@@ -197,9 +197,63 @@ ArUco \emph{marker} adalah jenis \emph{marker} fidusial yang biasa digunakan unt
 % \subsection{Ekstraksi Fitur pada Gambar}
 
 \subsection{Koefisien Jarak}
+Koefisien jarak merupakan ukuran atau besaran yang menggambarkan seberapa dekat atau jauh dua objek dalam ruang atau dimensi tertentu. Koefisien jarak dapat digunakan untuk mengukur kesamaan atau perbedaan antara dua objek yang diamati. Ada beberapa koefisien jarak yang sering digunakan, antara lain:
+
+\subsubsection{Koefisien Jarak Euclidean}
+Jarak Euclidean adalah ukuran jarak yang paling umum digunakan dalam matematika dan ilmu komputer untuk mengukur jarak antara dua titik dalam ruang Euclidean n-dimensi. Jarak Euclidean dihitung sebagai akar kuadrat dari jumlah kuadrat perbedaan koordinat antara dua titik.
+Secara formal, jarak Euclidean antara dua vektor $\mathbf{u}$ dan $\mathbf{v}$ dalam ruang Euclidean n-dimensi didefinisikan sebagai:
+
+\begin{equation}
+  d(\mathbf{u},\mathbf{v}) = \sqrt{\sum_{i=1}^{n}(u_i - v_i)^2}
+\end{equation}
+
+\noindent di mana $n$ adalah jumlah dimensi dalam \emph{vector space}, dan $u_i$ dan $v_i$ merepresentasikan komponen ke-$i$ pada vektor.
+
+\subsubsection{Koefisien Jarak Korelasi}
+Koefisien jarak korelasi adalah suatu ukuran kemiripan atau perbedaan antara dua vektor, berdasarkan korelasi antara komponen-komponennya. Nilai dari jarak korelasi dinormalisasi antara 0 dan 1, di mana 0 menunjukkan korelasi positif sempurna sedangkan 1 menunjukkan korelasi negatif sempurna.
+
+Untuk menghitung jarak korelasi antara dua vektor $u$ dan $v$, dapat dituliskan dengan:
+
+\begin{equation}
+	d = 1-\frac{(u-\bar{u})\cdot (v-\bar{v})}{\Vert(u-\bar{u})\Vert_2\Vert(v-\bar{v})\Vert_2}
+\end{equation}
+
+\noindent di mana $d$ adalah jarak korelasi antara $u$ dan $v$, $\bar{v}$ adalah rata-rata elemen dari vektor $v$, dan $x\cdot y$ adalah \emph{dot product} dari $x$ dan $y$. Jarak korelasi sering digunakan dalam algoritma pengelompokan dan klasifikasi untuk mengukur perbedaan antara sampel, terutama ketika vektor memiliki banyak komponen dan data sangat berkorelasi.
+
+\subsubsection{Koefisien Jarak Kosinus}
+Koefisien jarak kosinus adalah sebuah metode untuk mengukur kemiripan antara dua vektor dalam ruang n-dimensi \cite{schutze2008introduction}, \cite{deisenroth2020mathematics}. Metode ini mengukur sudut antara dua vektor dan menghasilkan nilai berkisar antara 0 dan 1, di mana 0 menunjukkan bahwa vektor tersebut saling tegak lurus, sedangkan 1 menunjukkan bahwa vektoor tersebut saling sejajar. Semakin kecil nilai koefisien jarak kosinus, semakin mirip kedua vektor tersebut. Jarak kosinus antara dua vektor $u$ dan $v$ dapat dituliskan sebagai berikut:
+
+\begin{equation}
+	1-\frac{u\cdot v}{\Vert u\Vert_2\Vert v\Vert_2}
+\end{equation}
+
+\noindent di mana $u\cdot v$ adalah hasil \emph{dot product} antara vektor $u$ dan $v$, sedangkan $\Vert u\Vert_2$ dan $\Vert v\Vert_2$ adalah panjang dari vektor $u$ dan $v$.
+
+\subsubsection{Koefisien Jarak Canberra}
+Jarak Canberra adalah salah satu metode mengukur jarak antara dua vektor dalam ruang n-dimensi. Metode ini mengevaluasi perbedaan proporsional antara nilai-nilai pada setiap elemen vektor. Metode ini sering digunakan dalam analisis data untuk mengukur kemiripan antara dua set data numerik \cite{clusteringSumayiaAlAnazi}, \cite{sneath1973numerical}. Secara formal, perhitungan jarak canberra antara dua vektor $u$ dan $v$ adalah:
+
+\begin{equation}
+	d(u,v)=\sum_i\frac{\left | u_i-v_i \right |}{\left | u_i \right |+\left | v_i \right |}
+\end{equation}
 
 \subsection{Transformasi Homografi}
+Transformasi homografi adalah sebuah transformasi geometri pada ruang n-dimensi yang memetakan setiap titik pada bidang ke titik yang sesuai pada bidang lainnya, dengan menerapkan konsep persamaan linier homogen. Transformasi homografi dapat mengubah ukuran, rotasi, dan persepektif dari gambar atau objek pada bidang ruang n-dimensi.
+
+Transformasi homografi biasanya dilakukan dalam ruang koordinat \emph{homogeneous}, yang merupakan ruang n+1 dimensi dengan koordinat homogen yang memungkinkan dilakukannya transformasi perspektif. Dalam ruang koordinat \emph{homogeneous}, sebuah titik pada bidang n-dimensi dinyatakan dalam bentuk vektor homogen (x, y, z, w), di mana x, y, dan z adalah koordinat euclidean, dan w adalah koordinat homogen. Sebuah matriks homografi H juga dinyatakan dalam bentuk matriks homogen:
+
+\begin{equation}
+	\begin{bmatrix}
+		x'\\ 
+		y'\\ 
+		w'
+		\end{bmatrix}=H\begin{bmatrix} 
+		x\\ 
+		y\\ 
+		w
+		\end{bmatrix}
+\end{equation}
 
 \subsection{Pembelajaran Mesin}
+
 
 \section{Analisis Perbandingan Metode}
