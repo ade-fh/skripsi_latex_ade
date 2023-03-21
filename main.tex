@@ -14,6 +14,11 @@
 %% 	  to change the degree
 % \documentclass[<bachelor/master/doctoral>,<bahasa/english>]{thesisdtetiugm}
 \documentclass[bachelor,bahasa]{thesisdtetiugm}
+\usepackage{tabularx}
+\newenvironment{conditions*}
+  {\par\vspace{\abovedisplayskip}\noindent
+   \tabularx{\columnwidth}{>{$}l<{$} @{${}={}$} >{\raggedright\arraybackslash}X}}
+  {\endtabularx\par\vspace{\belowdisplayskip}}
 %======================================
 % Information Input
 %======================================

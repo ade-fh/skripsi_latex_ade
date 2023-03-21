@@ -21,16 +21,35 @@ Alat yang digunakan pada penelitian ini terbagi atas perangkat keras dan perangk
 \end{enumerate}
 
 \subsection{Bahan Tugas akhir}
+\begin{enumerate}
+	\item \emph{Dataset} SQR dengan Dua Level \emph{Grayscale}
+	\item \emph{Dataset} SQR dengan Empat Level \emph{Grayscale}
+\end{enumerate}
 
 Bahan yang digunakan pada penelitian ini terbagi atas perangkat keras dan perangkat lunak yang dengan rincian sebagai berikut:
 
 \section{Metode yang Digunakan}
 
 \subsection{Pembuatan Model SQR Orisinal}
+Model SQR yang coba dikembangkan oleh penulis adalah menempelkan \emph{watermark} di tengah-tengah kode QR biasa. \emph{Watermark} yang ditempelkan merupakan gabungan dari CDP dan juga enam ArUco \emph{markers} untuk membantu lokalisasi objek CDP. CDP yang ditempelkan pada kode QR digunakan untuk autentikasi, apakah SQR tersebut orisinal ataukah palsu. Secara umum, desain dari SQR yang dirancang oleh penulis dapat dilihat pada
 
 \subsubsection{Penentuan Versi Kode QR}
+Setiap versi dari kode QR memiliki kapasitas penyimpanan data yang berbeda, kode QR versi 1 memiliki ukuran $21x21$ modul, sedangkan kode QR versi 40 memiliki ukuran $177x177$ modul. Setiap kenaikan satu versi kode QR, maka akan ada penambahan sebanyak 4 modul, misalkan kode QR versi 1 memiliki jumlah modul $21x21$, maka kode QR versi 2 memiliki jumlah modul $25x25$, kode QR versi 3 memiliki jumlah modul $29x29$, dan seterusnya. Semakin banyak modul yang dimiliki kode QR, semakin banyak juga data yang dapat disimpan.
 
 \subsubsection{Penentuan Level PCT}
+PCT level merupakan ukuran untuk seberapa banyak kode QR akan dirusak untuk ditempeli \emph{watermark}. Karena \emph{watermark} yang didesain berukuran $172x172$ piksel, sedangkan ukuran kode QR dengan \emph{box\_size} 20 dan jumlah modul 29 sesuai dengan jumlah modul kode QR versi 3. Karena \emph{watermark} yang didesain berukuran $172x172$, maka level koreksi kesalahan yang digunakan adalah level H atau sama dengan 30\% koreksi kesalahan yang ditolerir. Jumlah modul yang dapat dirusak atau ditolerir kerusakannya oleh koreksi kesalahan level H adalah:
+
+\begin{align}
+	n &= n_v.b_s\\&=29.20\nonumber\\&=580\nonumber\\di mana:\\n &= Jumlah akhir modul kode QR\\n_v &= Jumlah modul pada versi kode QR v\\b_s &= Ukuran \emph{box size}
+\end{align}
+di mana:
+
+
+
+\begin{conditions*}
+	n & Ukuran piksel kode QR\\
+	n & Ukuran piksel kode QR
+\end{conditions*}
 
 \subsubsection{Penentuan Ukuran SQR yang Dirusak}
 
