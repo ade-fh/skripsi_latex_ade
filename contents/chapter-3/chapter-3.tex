@@ -1,54 +1,50 @@
 \chapter{Metode Penelitian}
+Secara umum, tujuan dari penelitian ini adalah menguji performa dari CDP dengan dua dan empat kuantisasi \emph{grayscale}. Selain itu, penelitian ini juga menguji performa penggunaan enam ArUco \emph{marker} di sekitar CDP dalam membantu proses lokalisasi objek CDP. Dalam prosesnya, metode-metode penelitian yang dirancang dan dilakukan penulis akan dijelaskan pada bab ini.
 
-Bab ini menjelaskan metode atau cara yang digunakan dalam penelitian ini untuk 
-mencapai maksud dan tujuan seperti yang tertulis dalam sub-bab 1.3 [jika diinginkan, kalian dapat menuliskan Kembali tujuan penelitian yang ingin dicapai di sini].
+\section{Alat dan Bahan Tugas Akhir}
 
-\section{Alat dan Bahan Tugas akhir (Opsional)}
+\subsection{Alat Tugas Akhir}
 
-\subsection{Alat Tugas akhir}
-
-
-
-Alat-alat yang digunakan pada tugas akhir ini berupa perangkat keras maupun perangkat lunak sebagai sarana pendukung antara lain. Kemukakan secara detail sesuai dengan kebutuhan tugas akhir dan juga tambahkan spesifikasi minumum sehingga peneliti lain yang hendak melakukan hal yang sama bisa melakukannya :
+Alat yang digunakan pada penelitian ini terbagi atas perangkat keras dan perangkat lunak yang dengan rincian sebagai berikut:
 
 \begin{enumerate}
-	\item \textit{Notebook} dengan spesifikasi minumum sistem operasi Windows 8, \textit{processor} Intel Core i3 2330M CPU @ 2,2 GHz, memori 4GB DDR3, grafis NVIDIA GeForce GT 610 (4GB), hardisk 500GB. Pada tugas akhir ini digunakan Windows 10, Intel Core i7 4570M CPU, Memori 4GB DDR 3, grafis Intel HD4300. 
-	\item \textit{Smartphone} dengan spesifikasi tipe minimum, OS Android OS v4.1.2 (Jelly Bean),CPU Dual-core 800 MHz, GPU Mali-400, Internal 4 GB, 768 MB RAM. Pada tugas akhir ini digunakan ....
-	\item \textit{Game creation platform} versi 3.3.2 untuk Stencyl dan Construct2.
-	\item CORELDRAW X7, Tiled dan GIMP 2
+	\item Laptop Lenovo Legion Y530\\Merupakan perangkat keras utama yang digunakan dalam penelitian. Laptop ini memiliki spesifikasi sebagai berikut: Prosesor Intel I5-8300H, RAM 8 GB DDR4, Kartu Grafis Nvidia Geforce GTX 1050TI (4 GB).
+	\item Python 3.9\\Perangkat lunak yang merupakan bahasa pemrograman utama yang digunakan dalam mengembangkan model SQR dan membuat model untuk melakukan klasifikasi SQR asli dan palsu.
+	\item Microsoft Visual Studio Code\\Merupakan salah satu perangkat lunak editor kode sumber terpopuler dan gratis yang dikembangkan oleh Microsoft. Editor ini memiliki berbagai fitur yang memungkinkan pengguna untuk menulis, mengedit, dan mengelola kode sumber dengan mudah dan efisien. Selain itu, editor ini juga mendukung berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Tampilan antarmuka pengguna VS Code sangat bersih dan dapat disesuaikan, sehingga pengguna dapat mengatur tata letak dan tema yang sesuai dengan preferensi mereka. Selain itu, editor ini juga mendukung berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Fitur-fitur kunci dari VS Code termasuk kemampuan untuk mengeksekusi kode secara langsung dari editor, penyelesaian otomatis kode, refaktoring kode, debugging, pengelolaan paket, dan integrasi dengan sistem kontrol versi seperti Git.
+	\item Jupyter Notebook \emph{Ekstension} \emph{for} VS Code\\Merupakan perangkat lunak ekstensi untuk visual studio code untuk menjalankan jupyter notebook di dalam \emph{environment} visual studio code.
+	\item Adobe Acrobat DC\\Merupakan perangkat lunak yang digunakan sebagai pembaca dan pengedit fail PDF. Perangkat lunak ini banyak penulis gunakan untuk mengubah ukuran \emph{batch} QR menjadi ukuran standar percetakan.
+	\item Adobe Photoshop 2022\\Merupakan perangkat lunak yang digunakan sebagai editor gambar. Perangkat lunak ini penulis gunakan dalam penelitian untuk mengubah fail PNG hasil \emph{generate batch} QR dari kode menjadi PDF. 
+	\item \emph{Smartphone} Realme GT Neo 3T\\Perangkat keras yang digunakan sebagai pemindai SQR dalam pembuatan \emph{dataset} SQR asli dan palsu. \emph{Smartphone} ini memiliki spesifikasi sebagai berikut: \emph{Chipset} Qualcomm SM8250-AC Snapdragon 870 5G, sistem operasi Android 12, kamera utama dengan resolusi 64 MP, f/1.8, 25mm.
+	\item \emph{Printer} Xerox Versant\\Perangkat keras yang digunakan sebagai pencetak utama \emph{dataset} SQR asli dan palsu. \emph{Printer} ini merupakan \emph{printer} berspesifikasi tinggi yang banyak digunakan dalam industri percetakn.
+	\item Boks\\Boks digunakan sebagai \emph{environment} yang digunakan untuk menstandarisasi hasil pemotretan atau pemindaian \emph{dataset} SQR menggunakan kamera \emph{smartphone}.
+	\item Gunting\\Gunting digunakan untuk memotong \emph{dataset} SQR yang nantinya akan dipotret.
 \end{enumerate}
 
 \subsection{Bahan Tugas akhir}
 
-Bahan tugas akhir adalah segala sesuatu yang bersifat fisik atau digital yang digunakan untuk kebutuhan tugas akhir. Bahan tugas akhir dapat berupa:
-
-\begin{enumerate}
-	\item Bahan habis pakai. Bahan yang digunakan untuk tugas akhir. Sebagai contoh 
-	mungkin dibutuhkan kertas transparansi, baterai, atau yang lain 
-	\item Bahan yang berupa data atau informasi yang menjadi dataset tugas akhir. Dataset tugas akhir dapat berupa:
-\end{enumerate}
-\begin{itemize}
-	\item Dataset pihak lain yang diperoleh dengan izin atau dalam lisensi yang diizinkan untuk digunakan secara langsung 
-	\item Dataset pihak pertama yang disusun sendiri melalui quisioner, observasi, atau interview 
-	\item Dokumen panduan yang mengacu pada standar, hasil tugas akhir, atau artikel yang disitasi dan digunakan.
-\end{itemize}
-
+Bahan yang digunakan pada penelitian ini terbagi atas perangkat keras dan perangkat lunak yang dengan rincian sebagai berikut:
 
 \section{Metode yang Digunakan}
 
-Bagian ini membahas metode atau cara yang akan digunakan dalam penelitian, tahapan 
-penerapan metode, dan desain penelitian (misalnya apakah penelitian akan menggunakan 
-eksperimen di Laboratorium atau di lapangan, misalkan saja penelitian biomedis atau 
-penelitian alat ukur hama yang dapat dilakukan di laboratorium ataupun di lapangan, atau menggunakan metode survei (misalnya untuk teknologi Informasi), studi kasus, atau analisis dengan perangkat lunak (ETAP, LTSpice, dst), atau \textit{prototyping} (pembuatan perangkat keras).
+\subsection{Pembuatan Model SQR Orisinal}
 
-Bagian ini juga membahas bagaimana data [akan] dianalisis, apakah dengan membandingkan keluaran beberapa alat ukur, membandingkan dengan standar atau bagaimana.
+\subsubsection{Penentuan Versi Kode QR}
+
+\subsubsection{Penentuan Level PCT}
+
+\subsubsection{Penentuan Ukuran SQR yang Dirusak}
+
+\subsubsection{Pembuatan CDP}
+
+\subsubsection{Pembuatan ArUco \emph{Marker} di Sekitar CDP}
+
+\subsubsection{Peletakan \emph{Watetermark} di Kode QR}
+
+\subsection{Pembuatan}
+
+\subsection{Pengujian Ukuran ArUco \emph{Marker}}
 
 \section{Alur Tugas Akhir}
 
 Menguraikan prosedur yang akan digunakan dan jadwal atau alur penyelesaian setiap 
 tahap. Alur penelian ini dapat disajikan dalam bentuk diagram. Diagram dapat disusun dengan aturan yang baik semisal menggunakan \textit{flowchart}. Aturan dan tutorial pembuatan \textit{flowchart} dapat dilihat di \textcolor{blue}{http://ugm.id/flowcharttutorial}. Setelah menggambarkannya, penulis wajib menjelaskan langkah-langkah setiap alur tugas akhir dalam sub bab tersendiri sesuai dengan kebutuhan.
-
-\section{Etika, Masalah, dan Keterbatasan Penelitian (Opsional))}
-
-Bagian ini membahas pertimbangan etis penelitian dan [potensi] masalah serta
-keterbatasannya. Jika menyangkut penelitian dengan makhluk hidup, maka dibutuhkan adanya \textit{ethical clearance}, di bagian ini hal itu akan dibahas. Demikian juga tentang keterbatasan ataupun masalah yang akan timbul.
