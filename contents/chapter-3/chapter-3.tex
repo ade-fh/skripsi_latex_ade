@@ -1,5 +1,7 @@
 \chapter{Metode Penelitian}
-Secara umum, tujuan dari penelitian ini adalah menguji performa dari CDP dengan dua dan empat kuantisasi \emph{grayscale}. Selain itu, penelitian ini juga menguji performa penggunaan enam ArUco \emph{marker} di sekitar CDP dalam membantu proses lokalisasi objek CDP. Dalam prosesnya, metode-metode penelitian yang dirancang dan dilakukan penulis akan dijelaskan pada bab ini.
+Secara umum, tujuan dari penelitian ini adalah menguji performa dari CDP dengan dua dan empat kuantisasi \emph{grayscale}. Selain itu, penelitian ini juga
+menguji performa penggunaan enam ArUco \emph{marker} di sekitar CDP dalam membantu proses lokalisasi objek CDP. Dalam prosesnya, metode-metode penelitian yang
+dirancang dan dilakukan penulis akan dijelaskan pada bab ini.
 
 \section{Alat dan Bahan Tugas Akhir}
 
@@ -8,15 +10,26 @@ Secara umum, tujuan dari penelitian ini adalah menguji performa dari CDP dengan 
 Alat yang digunakan pada penelitian ini terbagi atas perangkat keras dan perangkat lunak yang dengan rincian sebagai berikut:
 
 \begin{enumerate}
-	\item Laptop Lenovo Legion Y530\\Merupakan perangkat keras utama yang digunakan dalam penelitian. Laptop ini memiliki spesifikasi sebagai berikut: Prosesor Intel I5-8300H, RAM 8 GB DDR4, Kartu Grafis Nvidia Geforce GTX 1050TI (4 GB).
-	\item Python 3.9\\Perangkat lunak yang merupakan bahasa pemrograman utama yang digunakan dalam mengembangkan model SQR dan membuat model untuk melakukan klasifikasi SQR asli dan palsu.
-	\item Microsoft Visual Studio Code\\Merupakan salah satu perangkat lunak editor kode sumber terpopuler dan gratis yang dikembangkan oleh Microsoft. Editor ini memiliki berbagai fitur yang memungkinkan pengguna untuk menulis, mengedit, dan mengelola kode sumber dengan mudah dan efisien. Selain itu, editor ini juga mendukung berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Tampilan antarmuka pengguna VS Code sangat bersih dan dapat disesuaikan, sehingga pengguna dapat mengatur tata letak dan tema yang sesuai dengan preferensi mereka. Selain itu, editor ini juga mendukung berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Fitur-fitur kunci dari VS Code termasuk kemampuan untuk mengeksekusi kode secara langsung dari editor, penyelesaian otomatis kode, refaktoring kode, debugging, pengelolaan paket, dan integrasi dengan sistem kontrol versi seperti Git.
-	\item Jupyter Notebook \emph{Ekstension} \emph{for} VS Code\\Merupakan perangkat lunak ekstensi untuk visual studio code untuk menjalankan jupyter notebook di dalam \emph{environment} visual studio code.
-	\item Adobe Acrobat DC\\Merupakan perangkat lunak yang digunakan sebagai pembaca dan pengedit fail PDF. Perangkat lunak ini banyak penulis gunakan untuk mengubah ukuran \emph{batch} QR menjadi ukuran standar percetakan.
-	\item Adobe Photoshop 2022\\Merupakan perangkat lunak yang digunakan sebagai editor gambar. Perangkat lunak ini penulis gunakan dalam penelitian untuk mengubah fail PNG hasil \emph{generate batch} QR dari kode menjadi PDF. 
+	\item Laptop Lenovo Legion Y530\\Merupakan perangkat keras utama yang digunakan dalam penelitian. Laptop ini memiliki spesifikasi sebagai berikut: Prosesor Intel
+	      I5-8300H, RAM 8 GB DDR4, Kartu Grafis Nvidia Geforce GTX 1050TI (4 GB).
+	\item Python 3.9\\Perangkat lunak yang merupakan bahasa pemrograman utama yang digunakan dalam mengembangkan model SQR dan membuat model untuk melakukan klasifikasi
+	      SQR asli dan palsu.
+	\item Microsoft Visual Studio Code\\Merupakan salah satu perangkat lunak editor kode sumber terpopuler dan gratis yang dikembangkan oleh Microsoft. Editor ini
+	      memiliki berbagai fitur yang memungkinkan pengguna untuk menulis, mengedit, dan mengelola kode sumber dengan mudah dan efisien. Selain itu, editor ini juga
+	      mendukung berbagai bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Tampilan antarmuka pengguna VS Code sangat bersih dan
+	      dapat disesuaikan, sehingga pengguna dapat mengatur tata letak dan tema yang sesuai dengan preferensi mereka. Selain itu, editor ini juga mendukung berbagai
+	      bahasa pemrograman, termasuk JavaScript, Python, Java, C++, dan masih banyak lagi. Fitur-fitur kunci dari VS Code termasuk kemampuan untuk mengeksekusi kode
+	      secara langsung dari editor, penyelesaian otomatis kode, refaktoring kode, debugging, pengelolaan paket, dan integrasi dengan sistem kontrol versi seperti Git.
+	\item Jupyter Notebook \emph{Ekstension} \emph{for} VS Code\\Merupakan perangkat lunak ekstensi untuk visual studio code untuk menjalankan jupyter notebook di dalam
+	      \emph{environment} visual studio code.
+	\item Adobe Acrobat DC\\Merupakan perangkat lunak yang digunakan sebagai pembaca dan pengedit fail PDF. Perangkat lunak ini banyak penulis gunakan untuk mengubah
+	      ukuran \emph{batch} QR menjadi ukuran standar percetakan.
+	\item Adobe Photoshop 2022\\Merupakan perangkat lunak yang digunakan sebagai editor gambar. Perangkat lunak ini penulis gunakan dalam penelitian untuk mengubah fail
+	      PNG hasil \emph{generate batch} QR dari kode menjadi PDF.
 	\item \emph{Smartphone} Realme GT Neo 3T\\Perangkat keras yang digunakan sebagai pemindai SQR dalam pembuatan \emph{dataset} SQR asli dan palsu. \emph{Smartphone} ini memiliki spesifikasi sebagai berikut: \emph{Chipset} Qualcomm SM8250-AC Snapdragon 870 5G, sistem operasi Android 12, kamera utama dengan resolusi 64 MP, f/1.8, 25mm.
 	\item \emph{Printer} Xerox Versant\\Perangkat keras yang digunakan sebagai pencetak utama \emph{dataset} SQR asli dan palsu. \emph{Printer} ini merupakan \emph{printer} berspesifikasi tinggi yang banyak digunakan dalam industri percetakn.
-	\item Boks\\Boks digunakan sebagai \emph{environment} yang digunakan untuk menstandarisasi hasil pemotretan atau pemindaian \emph{dataset} SQR menggunakan kamera \emph{smartphone}.
+	\item Boks\\Boks digunakan sebagai \emph{environment} yang digunakan untuk menstandarisasi hasil pemotretan atau pemindaian \emph{dataset} SQR menggunakan kamera
+	      \emph{smartphone}.
 	\item Gunting\\Gunting digunakan untuk memotong \emph{dataset} SQR yang nantinya akan dipotret.
 \end{enumerate}
 
@@ -31,20 +44,26 @@ Bahan yang digunakan pada penelitian ini terbagi atas perangkat keras dan perang
 \section{Metode yang Digunakan}
 
 \subsection{Pembuatan Model SQR Orisinal}
-Model SQR yang coba dikembangkan oleh penulis adalah menempelkan \emph{watermark} di tengah-tengah kode QR biasa. \emph{Watermark} yang ditempelkan merupakan gabungan dari CDP dan juga enam ArUco \emph{markers} untuk membantu lokalisasi objek CDP. CDP yang ditempelkan pada kode QR digunakan untuk autentikasi, apakah SQR tersebut orisinal ataukah palsu. Secara umum, desain dari SQR yang dirancang oleh penulis dapat dilihat pada
+Model SQR yang coba dikembangkan oleh penulis adalah menempelkan \emph{watermark} di tengah-tengah kode QR biasa. \emph{Watermark} yang ditempelkan merupakan
+gabungan dari CDP dan juga enam ArUco \emph{markers} untuk membantu lokalisasi objek CDP. CDP yang ditempelkan pada kode QR digunakan untuk autentikasi, apakah
+SQR tersebut orisinal ataukah palsu. Secara umum, desain dari SQR yang dirancang oleh penulis dapat dilihat pada
 
 \subsubsection{Penentuan Versi Kode QR}
-Setiap versi dari kode QR memiliki kapasitas penyimpanan data yang berbeda, kode QR versi 1 memiliki ukuran $21x21$ modul, sedangkan kode QR versi 40 memiliki ukuran $177x177$ modul. Setiap kenaikan satu versi kode QR, maka akan ada penambahan sebanyak 4 modul, misalkan kode QR versi 1 memiliki jumlah modul $21x21$, maka kode QR versi 2 memiliki jumlah modul $25x25$, kode QR versi 3 memiliki jumlah modul $29x29$, dan seterusnya. Semakin banyak modul yang dimiliki kode QR, semakin banyak juga data yang dapat disimpan.
+Setiap versi dari kode QR memiliki kapasitas penyimpanan data yang berbeda, kode QR versi 1 memiliki ukuran $21x21$ modul, sedangkan kode QR versi 40 memiliki
+ukuran $177x177$ modul. Setiap kenaikan satu versi kode QR, maka akan ada penambahan sebanyak 4 modul, misalkan kode QR versi 1 memiliki jumlah modul $21x21$,
+maka kode QR versi 2 memiliki jumlah modul $25x25$, kode QR versi 3 memiliki jumlah modul $29x29$, dan seterusnya. Semakin banyak modul yang dimiliki kode QR,
+semakin banyak juga data yang dapat disimpan.
 
 \subsubsection{Penentuan Level PCT}
-PCT level merupakan ukuran untuk seberapa banyak kode QR akan dirusak untuk ditempeli \emph{watermark}. Karena \emph{watermark} yang didesain berukuran $172x172$ piksel, sedangkan ukuran kode QR dengan \emph{box\_size} 20 dan jumlah modul 29 sesuai dengan jumlah modul kode QR versi 3. Karena \emph{watermark} yang didesain berukuran $172x172$, maka level koreksi kesalahan yang digunakan adalah level H atau sama dengan 30\% koreksi kesalahan yang ditolerir. Jumlah modul yang dapat dirusak atau ditolerir kerusakannya oleh koreksi kesalahan level H adalah:
+PCT level merupakan ukuran untuk seberapa banyak kode QR akan dirusak untuk ditempeli \emph{watermark}. Karena \emph{watermark} yang didesain berukuran
+$172x172$ piksel, sedangkan ukuran kode QR dengan \emph{box\_size} 20 dan jumlah modul 29 sesuai dengan jumlah modul kode QR versi 3. Karena \emph{watermark}
+yang didesain berukuran $172x172$, maka level koreksi kesalahan yang digunakan adalah level H atau sama dengan 30\% koreksi kesalahan yang ditolerir. Jumlah
+modul yang dapat dirusak atau ditolerir kerusakannya oleh koreksi kesalahan level H adalah:
 
 \begin{align}
-	n &= n_v.b_s\\&=29.20\nonumber\\&=580\nonumber\\di mana:\\n &= Jumlah akhir modul kode QR\\n_v &= Jumlah modul pada versi kode QR v\\b_s &= Ukuran \emph{box size}
+	n & = n_v.b_s \\&=29.20\nonumber\\&=580\nonumber\\di mana:\\n &= Jumlah akhir modul kode QR\\n_v &= Jumlah modul pada versi kode QR v\\b_s &= Ukuran \emph{box size}
 \end{align}
 di mana:
-
-
 
 \begin{conditions*}
 	n & Ukuran piksel kode QR\\
@@ -65,5 +84,7 @@ di mana:
 
 \section{Alur Tugas Akhir}
 
-Menguraikan prosedur yang akan digunakan dan jadwal atau alur penyelesaian setiap 
-tahap. Alur penelian ini dapat disajikan dalam bentuk diagram. Diagram dapat disusun dengan aturan yang baik semisal menggunakan \textit{flowchart}. Aturan dan tutorial pembuatan \textit{flowchart} dapat dilihat di \textcolor{blue}{http://ugm.id/flowcharttutorial}. Setelah menggambarkannya, penulis wajib menjelaskan langkah-langkah setiap alur tugas akhir dalam sub bab tersendiri sesuai dengan kebutuhan.
+Menguraikan prosedur yang akan digunakan dan jadwal atau alur penyelesaian setiap tahap. Alur penelian ini dapat disajikan dalam bentuk diagram. Diagram dapat
+disusun dengan aturan yang baik semisal menggunakan \textit{flowchart}. Aturan dan tutorial pembuatan \textit{flowchart} dapat dilihat di
+\textcolor{blue}{http://ugm.id/flowcharttutorial}. Setelah menggambarkannya, penulis wajib menjelaskan langkah-langkah setiap alur tugas akhir dalam sub bab
+tersendiri sesuai dengan kebutuhan.
