@@ -1,46 +1,92 @@
 \chapter{Pendahuluan}
 
-
 \section{Latar Belakang}
-Pembajakan produk atau yang dikenal juga sebagai tindakan pemalsuan, merupakan suatu tindakan ilegal yang dilakukan dengan tujuan memperoleh keuntungan dengan cara meniru atau menyalin produk asli yang sudah dipatenkan atau memiliki hak cipta. Pembajakan produk semakin marak di era digital dan globalisasi, seiring dengan perkembangan teknologi. Di era digital, pembajakan produk semakin mudah dilakukan dengan memanfaatkan internet dan teknologi digital. Sementara itu, globalisasi mempermudah transportasi dan distribusi produk palsu dari satu negara ke negara lain. Pembajakan produk juga menyebabkan kerugian ekonomi yang signifikan bagi produsen dan pemilik hak merek, serta dapat membahayakan keselamatan konsumen. Hal ini terjadi karena pembajakan produk dapat merusak citra perusahaan, mengurangi pendapatan, serta merugikan konsumen yang membeli produk palsu yang seringkali berkualitas rendah dan dapat membahayakan diri secara langsung. \cite{BASCAP2016}
+Pembajakan produk atau yang dikenal juga sebagai tindakan pemalsuan, merupakan suatu tindakan ilegal yang dilakukan dengan tujuan memperoleh keuntungan dengan
+cara meniru atau menyalin produk asli yang sudah dipatenkan atau memiliki hak cipta. Pembajakan produk semakin marak di era digital dan globalisasi, seiring
+dengan perkembangan teknologi. Di era digital, pembajakan produk semakin mudah dilakukan dengan memanfaatkan internet dan teknologi digital. Sementara itu,
+globalisasi mempermudah transportasi dan distribusi produk palsu dari satu negara ke negara lain. Pembajakan produk juga menyebabkan kerugian ekonomi yang
+signifikan bagi produsen dan pemilik hak merek, serta dapat membahayakan keselamatan konsumen. Hal ini terjadi karena pembajakan produk dapat merusak citra
+perusahaan, mengurangi pendapatan, serta merugikan konsumen yang membeli produk palsu yang seringkali berkualitas rendah dan dapat membahayakan diri secara
+langsung. \cite{BASCAP2016}
 
-Teknologi percetakan dan pemindai digital telah mengalami perkembangan yang pesat selama beberapa dekade terakhir. Namun, kemajuan ini tidak hanya digunakan untuk kegiatan positif juga dimanfaatkan oleh pelaku pembajakan untuk memproduksi produk-produk bajakan. Dengan kemampuan teknologi percetakan dan pemindai yang semakin canggih, pembajakan produk menjadi lebih mudah, lebih cepat, dan lebih murah. \cite{HILL2007DIGITAL}
+Teknologi percetakan dan pemindai digital telah mengalami perkembangan yang pesat selama beberapa dekade terakhir. Namun, kemajuan ini tidak hanya digunakan
+untuk kegiatan positif juga dimanfaatkan oleh pelaku pembajakan untuk memproduksi produk-produk bajakan. Dengan kemampuan teknologi percetakan dan pemindai
+yang semakin canggih, pembajakan produk menjadi lebih mudah, lebih cepat, dan lebih murah. \cite{HILL2007DIGITAL}
 
-Printer 2D beresolusi tinggi dan Printer 3D, memungkinkan pembuat produk bajakan untuk membuat produk-produk dengan kualitas hampir sama dengan produk asli. Pemindai 3D juga pembuat produk bajakan untuk menyalin produk asli hingga detail terkecil dengan cepat dan mudah. Selain itu, teknologi digital seperti desain grafis dan software pemodelan juga memudahkan pelaku pembajakan dalam membuat desain dan cetakan produk tanpa harus membeli hak cipta atau paten produk tersebut. \cite{DEPOORTER2013INTELECTUAL}
+Printer 2D beresolusi tinggi dan Printer 3D, memungkinkan pembuat produk bajakan untuk membuat produk-produk dengan kualitas hampir sama dengan produk asli.
+Pemindai 3D juga pembuat produk bajakan untuk menyalin produk asli hingga detail terkecil dengan cepat dan mudah. Selain itu, teknologi digital seperti desain
+grafis dan software pemodelan juga memudahkan pelaku pembajakan dalam membuat desain dan cetakan produk tanpa harus membeli hak cipta atau paten produk
+tersebut. \cite{DEPOORTER2013INTELECTUAL}
 
-Kerugian dari praktik ilegal dan tidak etis ini diperkirakan mencapai \$4,2 triliun per tahun, dan terus meningkat dengan sangat cepat. Beberapa cara yang dapat dilakukan untuk melawan pembajakan, antara lain melalui, komunikasi, pemerintah, hukum, kontak langsung, pelabelan, pemasaran proaktif, dan mempromosikan perlawanan terhadap pembajakan. Oleh karena itu, upaya preventif perlu dilakukan untuk meminimalisir dan melakukan perlawanan terhadap pembajakan produk. \cite{VAN1998OPTICAL}
-
+Kerugian dari praktik ilegal dan tidak etis ini diperkirakan mencapai \$4,2 triliun per tahun, dan terus meningkat dengan sangat cepat. Beberapa cara yang
+dapat dilakukan untuk melawan pembajakan, antara lain melalui, komunikasi, pemerintah, hukum, kontak langsung, pelabelan, pemasaran proaktif, dan mempromosikan
+perlawanan terhadap pembajakan. Oleh karena itu, upaya preventif perlu dilakukan untuk meminimalisir dan melakukan perlawanan terhadap pembajakan produk.
+\cite{VAN1998OPTICAL}
 
 \section{Rumusan Masalah}
-Dari masalah yang telah dijelaskan pada bagian latar belakang, yaitu semakin maraknya pembajakan dan pemalsuan produk seiring dengan berkembangnya teknologi perangkat pemindai digital dan juga teknologi percetakan, penulis mencoba untuk menerapkan CDP yang akan digunakan untuk mendeteksi pemalsuan produk. CDP yang didesain penulis dilengkapi dengan delapan marker disekitarnya untuk memudahkan pendeteksian objek CDP.
+Dari masalah yang telah dijelaskan pada bagian latar belakang, yaitu semakin maraknya pembajakan dan pemalsuan produk seiring dengan berkembangnya teknologi
+perangkat pemindai digital dan juga teknologi percetakan, penulis mencoba untuk menerapkan CDP ke dalam SQR yang akan digunakan untuk mendeteksi pemalsuan
+produk. SQR yang didesain penulis dilengkapi dengan \emph{watermark} yang di dalamnya terdapat CDP dan delapan penanda ArUco. \emph{Watermark} tersebut
+nantinya akan digunakan untuk proses autentikasi, membedakan SQR orisinal dan palsu.
 
+\section{Tujuan Penelitian}Tujuan dari penelitian ini adalah:
+\begin{enumerate}
+    \item Membuat model SQR yang dilengkapi \emph{watermark} (CDP dan delapan \emph{marker}) yang dapat diautentikasi oleh model.
+    \item Mengetahui nilai parameter P\&S dalam pembuatan SQR (konfigurasi kamera dan penyetakan).
+    \item Mengetahui hasil deteksi objek CDP dalam SQR menggunakan delapan ArUco \textit{marker} yang diletakkan di sekitar CDP.
+    \item Membuat model untuk melakukan autentikasi SQR orisinal dan palsu.
+    \item Mengetahui karakteristik CDP 2 dan 4 level.
+    \item Mengetahui performa model dalam mengautentikasi CDP dengan dua dan empat kuantisasi \textit{grayscale}.
+    \item Mengetahui efektivitas CDP untuk mendeteksi SQR orisinal dan palsu.
+\end{enumerate}
 
 \section{Batasan Penelitian}
 Beberapa batasan yang penulis gunakan dalam penelitian ini antara lain:
 \begin{enumerate}
-    \item \textit{Printer} yang digunakan untuk mencetak kumpulan data SQR seragam.
-    \item Pemotretan kumpulan data SQR dilakukan dalam kondisi pencahayaan yang baik yang berasal dari \emph{flash} hp.
-    \item Kamera, konfigurasi kamera, sudut dan kondisi pengambilan gambar yang digunakan dalam melakukan pemotretan adalah tetap.
+    \item Objek Penelitian: Pengembangan dan analisis pembuatan SQR dengan \emph{watermark} (CDP 2 dan 4 level disertai delapan penanda ArUco)
+    \item Metode Penelitian: Pengembangan SQR dilakukan dengan eksperimen yang mencakup pembuatan model SQR, pembuatan dataset SQR orisinal dan palsu, serta pembuatan
+          model untuk membedakan SQR orisinal dan palsu. Hasil dari penelitian ini adalah mengetahui apakah SQR yang dilengkapi dengan CDP 2 dan 4 level dapat digunakan
+          oleh model autentikasi untuk mengklasifikasikan SQR orisinal dan palsu.
+    \item Waktu dan Tempat Penelitian:
+          \begin{itemize}
+              \item Waktu penelitian: Agustus 2022 s.d. April 2023
+              \item Tempat penelitian: Ruang rispro, laboratorium informatika, laboratorium jaringan dan komputer, dan rumah penulis.
+          \end{itemize}
+    \item Populasi dan Sampel: Populasi penelitian berupa seluruh \emph{dataset} SQR yang dibuat dan digunakan dalam penelitian. Sampel penelitian berupa sebagian
+          \emph{dataset} SQR yang digunakan untuk penentuan parameter dan pembuatan model klasifikasi biner.
+    \item Variabel: Variabel bebas meliputi \emph{dataset} SQR 2 dan 4 level, sedangkan variabel terikatnya adalah hasil lokalisasi objek CDP, parameter model SQR,
+          parameter P\&S, dan hasil klasifikasi biner model untuk mengklasifikasikan SQR orisinal atau palsu.
+    \item Hipotesis:
+          \begin{itemize}
+              \item CDP akan terdegradasi dari proses P\&S.
+              \item CDP dapat digunakan untuk membedakan SQR orisinal dan palsu melalui proses autentikasi.
+              \item Proses autentikasi untuk mengklasifikasikan SQR orisinal dan palsu dapat dibuat menggunakan AutoML.
+              \item Delapan penanda ArUco yang diletakkan di dalam \emph{watermark} pada SQR dapat membantu melokalisasi objek CDP.
+              \item Kualitas CDP 4 level lebih sulit terdegradasi dibandingkan CDP 2 level.
+          \end{itemize}
+    \item Keterbatasan Penelitian:
+          \begin{itemize}
+              \item \emph{Printer} yang digunakan untuk mencetak \emph{dataset} SQR seragam.
+              \item Pemotretan \emph{dataset} SQR dilakukan dalam kondisi pencahayaan yang baik, berasal dari \emph{flash smartphone}.
+              \item Kamera, konfigurasi kamera, sudut dan kondisi pemotretan \emph{dataset} adalah tetap.
+          \end{itemize}
+          % \item \textit{Printer} yang digunakan untuk mencetak kumpulan data SQR seragam.
+          % \item Pemotretan kumpulan data SQR dilakukan dalam kondisi pencahayaan yang baik yang berasal dari \emph{flash} hp.
+          % \item Kamera, konfigurasi kamera, sudut dan kondisi pengambilan gambar yang digunakan dalam melakukan pemotretan adalah tetap.
 \end{enumerate}
-
-
-\section{Tujuan Penelitian}Tujuan dari penelitian ini adalah:
-\begin{enumerate}
-    \item Mengukur nilai akurasi beberapa algoritme pembelajaran mesin dalam mendeteksi CDP asli dan palsu dalam SQR.
-    \item Mengukur performa yang didapatakan dalam pembuatan CDP dengan dua dan empat kuantisasi \textit{grayscale}.
-    \item Mengetahui hasil deteksi objek CDP dalam SQR menggunakan delapan ArUco \textit{marker} yang diletakkan di sekitar CDP.
-\end{enumerate}
-
 
 \section{Manfaat Penelitian}
-Dengan dilakukannya penelitian ini, pengembang SQR dua dimensi dapat menggunakan algoritme pembelajaran mesin dan jumlah kuantisasi grayscale yang memiliki akurasi klasifikasi biner terbaik. Selain itu, peletakan ArUco marker diharapkan mampu mendeteksi CDP dalam SQR yang nantinya akan diambil fiturnya dengan lebih cepat dan akurat. Bagi peneliti, penelitian ini dapat menambah wawasan, ilmu dan pengetahuan dalam pembuatan tulisan ilmiah, khususnya pada topik keamanan digital, pengolahan citra gambar, dan pembelajaran mesin. Bagi pelaku bisnis, penerapan SQR dapat membantu mereka dalam melindungi produk mereka dari pembajakan.
-
+Dengan dilakukannya penelitian ini, pengembang SQR dua dimensi dapat menggunakan model SQR dan model autentikasi yang memiliki hasil klasifikasi biner terbaik
+(dapat membedakan SQR orisinal dan palsu). Selain itu, peletakan ArUco marker diharapkan mampu mendeteksi CDP dalam SQR yang nantinya akan diambil fiturnya
+dengan lebih cepat dan akurat. Bagi peneliti, penelitian ini dapat menambah wawasan, ilmu dan pengetahuan dalam pembuatan tulisan ilmiah, khususnya pada topik
+keamanan digital, pengolahan citra gambar, dan pembelajaran mesin. Bagi pelaku bisnis, penerapan SQR dapat membantu mereka dalam melindungi produk mereka dari
+pembajakan.
 
 \section{Sistematika Penulisan}
 \noindent
 \textbf{BAB I : PENDAHULUAN}
 
-Pada bab ini dijelaskan latar belakang, rumusan masalah, batasan, tujuan, manfaat penelitian, dan sistematika penulisan.\\
+Pada bab ini dijelaskan latar belakang, rumusan masalah, tujuan penelitian, batasan penelitian, manfaat penelitian, dan sistematika penulisan.\\
 
 \noindent
 \textbf{BAB II : TINJAUAN PUSTAKA DAN LANDASAN TEORI}
@@ -50,7 +96,8 @@ Pada bab ini dijelaskan teori-teori dan penelitian terdahulu yang digunakan seba
 \noindent
 \textbf{BAB III : METODOLOGI PENELITIAN}
 
-Pada bab ini dijelaskan metode yang digunakan dalam penelitian meliputi langkah kerja, pertanyaan penilitian, alat dan bahan, serta tahapan dan alur penelitian.\\
+Pada bab ini dijelaskan metode yang digunakan dalam penelitian meliputi langkah kerja, pertanyaan penilitian, alat dan bahan, serta tahapan dan alur
+penelitian.\\
 
 \noindent
 \textbf{BAB IV : HASIL DAN PEMBAHASAN}
@@ -61,4 +108,3 @@ Pada bab ini dijelaskan hasil penelitian dan pembahasannya.\\
 \textbf{BAB V : KESIMPULAN DAN SARAN}
 
 Pada bab ini ditulis kesimpulan akhir dari penelitian dan saran untuk pengembangan penelitian selanjutnya.\\
-

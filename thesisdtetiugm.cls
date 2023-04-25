@@ -60,6 +60,7 @@
 %======================================
 \LoadClass[12pt]{report}  % this class is based on the report class
 \usepackage{geometry}% easy layouting
+\usepackage{graphicx}% easy layouting
 %\usepackage{hyperref}% hyperlink
 \usepackage{subcaption} % subfigure
 \usepackage{tocloft}% edit font toc
@@ -176,8 +177,8 @@
 %======================================
 % Author info
 \renewcommand*{\author}[2]{
-	\newcommand{\@authorName}{#1} 
-	\newcommand{\@authorID}{#2}
+	\newcommand{\@authorName}{Ade Firmansyah} 
+	\newcommand{\@authorID}{19/440303/TK/48630}
 }
 % Thesis info
 \renewcommand*{\title}[1]{\renewcommand{\@title}{#1}}
