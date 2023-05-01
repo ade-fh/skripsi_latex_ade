@@ -1,18 +1,334 @@
 \chapter{Hasil dan Pembahasan}
 
-\section{Pembahasan Hasil 1 (Ubah Judul Sesuai dengan Hal yang Hendak dibahas)}
+\section{Hasil Akhir Desain SQR}
 
-Poin pertama adalah membahas tujuan penelitian pertama. 
-Dapat ditambahkan beberapa sub bab jika diperlukan.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-4/4-modelsqrfinal.png}
+	\caption{Hasil akhir desain SQR}
+	\label{Fig: 4-modelsqrfinal}
+\end{figure}
 
-\section{Pembahasan Hasil 2 (Ubah Judul Sesuai dengan Hal yang Hendak dibahas)}
+Hasil akhir dari desain SQR yang penulis buat dapat dilihat pada Gambar \ref{Fig: 4-modelsqrfinal}. Versi kode QR yang digunakan adalah kode QR versi 3, dengan
+29 modul dan 20 \emph{box-size}, sehingga jika dikalikan ukurannya menjadi 580x580 piksel. Selain itu, ditambahkan \emph{padding} berukuran 70 piksel, sehingga
+ukuran total dari SQR adalah 720x720 piksel. \emph{Watermark} berukuran 180x180 piksel diletakkan di tengah-tengah kode QR. Di dalam \emph{watermark} tersebut
+terdapat CDP berukuran 100x100 piksel serta delapan penanda ArUco berukuran 28x28 piksel. Penanda ArUco yang digunakan adalah penanda ArUco dengan tipe 4 modul
+mulai dari id = 0 s.d. id = 7, sehingga lebih mudah dideteksi oleh program karena bentuknya yang relatif lebih sederhana dibandingkan penanda ArUco yang
+memiliki ukuran modul lebih tinggi.
 
-Poin kedua adalah membahas tujuan penelitian kedua. Dapat ditambahkan beberapa 
-sub bab jika diperlukan. Dapat juga diteruskan ke Sub Bab Pembahasan hasil 3 dan 
-seterusnya, jika ada tiga atau lebih tujuan penelitian.
+\section{Hasil Parameter P\&S}
+Hasil parameter yang didapatkan dalam proses P\&S di sini adalah parameter konfigurasi kamera dan jenis kertas maupun tinta yang digunakan untuk mencetak SQR.
+\subsection{Konfigurasi Kamera}
+Dari eksperimen menggunakan \emph{dataset} pengujian parameter, didapatkan hasil akhir konfigurasi kamera yang digunakan dalam pembuatan \emph{dataset} SQR
+orisinal dan palsu, baik 2 level maupun 4 level dapat dilihat pada Tabel \ref{Tab: 4-Parameter Konfigurasi Kamera}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Parameter Konfigurasi Kamera}
+	\vspace{0.5em}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		\textbf{ISO} & \textbf{Shutter Speed} & \textbf{Focus} & \textbf{White Balance} \\ \hline
+		200          & 1/100                  & 0,00           & 4000                   \\ \hline
+	\end{tabular}
+	\label{Tab: 4-Parameter Konfigurasi Kamera}
+\end{table}
+
+\noindent Dengan konfigurasi kamera tersebut, 800 \emph{dataset} CDP dapat dilokalisasi dengan baik dari gambar hasil potretan kamera. Lokalisasi yang digunakan sebagai
+parameter sukses atau tidaknya adalah lokalisasi menggunakan bantuan penanda ArUco.
+
+Untuk kamera yang digunakan penulis dalam penelitian ini adalah perangkat \emph{smartphone} lain, yaitu Iphone XR dengan konfigurasi kamera yang sama. Hasil
+gambar yang dipotret menggunakan Iphone XR dapat dilihat pada Gambar \ref{Fig: 4-hasilfotoiphonexr}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=7.5cm]{contents/chapter-4/4-hasilfotoiphonexr.png}
+	\caption{Hasil akhir desain SQR}
+	\label{Fig: 4-hasilfotoiphonexr}
+\end{figure}
+
+\subsection{Jenis Kertas dan Tinta}
+Jenis kertas dan tinta yang digunakan dalam pencetakan \emph{dataset} yang penulis gunakan adalah kertas bersifat \emph{doff}, sehingga tidak memantulkan
+cahaya dari \emph{flash smarthpone} saat pemotretan berlangsung. Kertas bersifat \emph{doff} yang dapat digunakan seperti \emph{art carton} atau HVS. Opsi lain
+adalah dapat menggunakan kertas dan tinta yang bersifat \emph{glossy}, namun diberikan laminasi \emph{doff} di akhir. Pada Gambar \ref{Fig:
+	4-perbandingantipekertas}, dapat dilihat perbedaan hasil pemotretan menggunakan kertas \emph{doff} dan \emph{glossy}, SQR yang dicetak menggunakan kertas dan
+tinta \emph{glossy} seperti \emph{ivory} akan memantulkan cahaya, SQR yang dicetak menggunakan kertas dan tinta \emph{doff} seperti \emph{art carton} akan
+terjaga kualitasnya karena tidak terkena pantulan cahaya, sedangkan SQR yang dicetak menggunakan kertas dan tinta \emph{glossy} kemudian dilaminasi
+\emph{doff}, hasilnya baik, namun ada sedikit derau gelembung yang disebabkan oleh proses laminasi.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=15cm]{contents/chapter-4/4-perbandingankertas.png}
+	\caption{Perbandingan gambar hasil pemotretan SQR yang dicetak dengan berbagai tipe kertas}
+	\label{Fig: 4-perbandingankertas}
+\end{figure}
+
+\section{Hasil Pendeteksian Penanda ArUco}
+
+\begin{table}[h]
+	\caption{Tabel hasil pendeteksian penanda ArUco dengan berbagai ukuran}
+	\vspace{0.5em}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Ukuran ArUco} & \textbf{Jumlah Sukses Terdeteksi} & \textbf{Faktor Penskalaan Terkecil} \\
+		\hline
+		20                    & 0                                 & -                                   \\
+		22                    & 1                                 & 0.3                                 \\
+		24                    & 4                                 & 1                                   \\
+		26                    & 3                                 & 0.7                                 \\
+		28                    & 5                                 & 1                                   \\
+		30                    & 5                                 & 1                                   \\
+		32                    & 5                                 & 1                                   \\
+		34                    & 5                                 & 1                                   \\ \hline
+	\end{tabular}
+	\label{Tab: 4-tabelhasildeteksiaruco}
+\end{table}
+
+Untuk mendapatkan ukuran penanda ArUco yang optimal, penulis menggunakan data uji sejumlah 40 SQR, yang ukuran penanda ArUco-nya berbeda-beda tiap lima SQR,
+dari ukuran 20 s.d. 34. Hasil yang didapatkan adalah penanda ArUco dengan ukuran 28 s.d. 34 sukses terdeteksi seluruhnya dengan faktor penskalaan 1, seperti
+dapat dilihat pada Tabel \ref{Tab: 4-tabelhasildeteksiaruco}, artinya hasil gambar tidak perlu di-\emph{scaling} untuk mendapatkan hasil deteksi kedelapan
+penanda ArUco. Namun, supaya ukuran penanda ArUco tidak terlalu besar, penulis memilih ukuran 28 dan 30 untuk diuji performanya lebih lanjut. Pengujian
+selanjutnya adalah menggunakan 40 data untuk masing-masing penanda ArUco berukuran 28 dan 30.
+
+\begin{table}[h]
+	\caption{Tabel hasil pendeteksian penanda ArUco dengan berbagai ukuran}
+	\vspace{0.5em}
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Ukuran ArUco} & \textbf{Jumlah Sukses Terdeteksi} & \textbf{Faktor Penskalaan Terkecil} \\
+		\hline
+		28                    & 40                                & 0.8                                 \\
+		30                    & 40                                & 0.9                                 \\ \hline
+	\end{tabular}
+	\label{Tab: 4-tabelhasildeteksiaruco2}
+\end{table}
+
+Hasilnya, seperti dapat dilihat pada Tabel \ref{Tab: 4-tabelhasildeteksiaruco2}, baik penanda ArUco berukuran 28 ataupun 30, semuanya dapat terdeteksi. Karena
+hasilnya sama baik, penulis akhirnya memutuskan untuk menggunakan ukuran penanda ArUco yang lebih kecil untuk menghemat ruang yang digunakan pada
+\emph{watermark} berukuran 180x180 piksel.
+
+\section{Analisis Hasil Lokalisasi CDP}
+Analisis yang dilakukan adalah mencari interpolasi penskalaan yang memberikan hasil paling mirip dengan \emph{template}, kemudian menganalisis perbandingan
+hasil lokalisasi CDP yang menggunakan penanda ArUco (8 titik) dan tanpa menggunakan penanda ArUco (4 titik), dan yang terakhir adalah menganalisis
+karakteristik CDP 2 dan 4 level berdasarkan fitur jarak yang di-\emph{generate}.
+\subsection{Analisis Perbandingan Hasil Lokalisasi CDP Orisinal dengan Berbagai Interpolasi Penskalaan}
+Sebelum membuat \emph{dataset} SQR palsu, penulis melakukan analisis terhadap \emph{dataset} CDP orisinal hasil lokalisasi. Salah satu analisis yang dilakukan
+adalah mencari interpolasi penskalaan yang hasil rata-rata jaraknya dengan \emph{template} paling minimal. Dengan jarak paling kecil, berarti hasil dari
+pengolahan data foto pertama dengan interpolasi penskalaan tersebut paling mirip dengan \emph{template}. Hal tersebut menjadi salah satu langkah penyerangan
+paling sederhana terhadap CDP orisinal. Hasil rata-rata jarak CDP orisinal dengan template dari masing-masing interpolasi penskalaan dan koefisien jarak dapat
+dilihat pada Tabel \ref{Tab: 4-jarakorisinalberbagaiinterpolasi}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil rata-rata jarak CDP orisinal dengan \emph{template} dari berbagai interpolasi penskalaan dan koefisien jarak}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|}
+			\hline
+			\textbf{}               & \textbf{INTER\_NEAREST} & \textbf{INTER\_LINEAR} & \textbf{INTER\_AREA} & \textbf{INTER\_CUBIC} & \textbf{INTER\_LANCZOS4} \\ \hline
+			\textbf{sp\_corr}       & 0.873326                & 0.155786               & 0.218997             & 0.181838              & 0.196923                 \\ \hline
+			\textbf{sp\_cosine}     & 0.527073                & 0.070777               & 0.175079             & 0.102029              & 0.111663                 \\ \hline
+			\textbf{sp\_euclidean}  & 0.740872                & 0.124198               & 0.405362             & 0.199758              & 0.216602                 \\ \hline
+			\textbf{sp\_canberra}   & 0.609805                & 0.135547               & 0.502209             & 0.239031              & 0.246447                 \\ \hline
+			\textbf{his\_corr}      & 0.909714                & 0.701874               & 0.885091             & 0.643678              & 0.456839                 \\ \hline
+			\textbf{his\_cosine}    & 0.963959                & 0.530792               & 0.964218             & 0.539093              & 0.460968                 \\ \hline
+			\textbf{his\_euclidean} & 0.783467                & 0.168896               & 0.784329             & 0.204476              & 0.202323                 \\ \hline
+			\textbf{his\_canberra}  & 0.932897                & 0.647635               & 0.812346             & 0.21488               & 0.176466                 \\ \hline
+			\textbf{dct\_corr}      & 0.450353                & 0.057976               & 0.15739              & 0.084588              & 0.092243                 \\ \hline
+			\textbf{dct\_cosine}    & 0.450166                & 0.057969               & 0.15739              & 0.084576              & 0.092229                 \\ \hline
+			\textbf{dct\_euclidean} & 0.732595                & 0.162275               & 0.416917             & 0.227075              & 0.240786                 \\ \hline
+			\textbf{dct\_canberra}  & 0.74617                 & 0.298455               & 0.373851             & 0.672197              & 0.731204                 \\ \hline
+		\end{tabular}}
+	\label{Tab: 4-jarakorisinalberbagaiinterpolasi}
+\end{table}
+
+\noindent Dari Tabel \ref{Tab: 4-jarakorisinalberbagaiinterpolasi}, terlihat bahwa interpolasi INTER\_LINEAR merupakan interpolasi penskalaan yang memiliki rata-rata jarak paling minimal, sedangkan INTER\_NEAREST memiliki jarak paling besar. Hal ini menunjukkan CDP hasil lokalisasi dengan interpolasi penskalaan INTER\_LINEAR paling mirip dengan \emph{template}.
+
+Untuk hasil perbandingan secara visual hasil lokalisasi CDP menggunakan berbagai interpolasi penskalaan dapat dilihat pada Gambar x. Terlihat secara kasat mata
+bahwa CDP yang dilokalisasi dengan interpolasi penskalaan INTER\_LINEAR memiliki hasil yang lebih mirip dengan \emph{template} dibandingkan dengan yang lain,
+terutama CDP yang dilokalisasi dengan interpolasi penskalaan INTER\_NEAREST. Dari hasil tersebut, penulis memutuskan untuk menggunakan interpolasi penskalaan
+INTER\_LINEAR dalam pembuatan pemrosesan CDP dan pembuatan \emph{dataset} selanjutnya.
+
+\subsection{Analisis Perbandingan Hasil Lokalisasi CDP menggunakan Penanda ArUco dan Tanpa Penanda ArUco}
+Analisis selanjutnya adalah membandingkan hasil lokalisasi CDP menggunakan delapan titik acuan dan empat titik acuan. Delapan titik acuan di sini adalah
+delapan penanda ArUco, sedangkan empat titik adalah keempat titik sudut dari kode QR. Analisis yang dilakukan adalah menggunakan koefisien jarak yang mengukur
+jarak dari CDP hasil lokalisasi dengan \emph{template}. Hasil lokalisasi yang lebih baik adalah yang jaraknya dengan \emph{template} lebih kecil yang berarti
+lebih mirip dengan \emph{template}. Hipotesis awal dari penulis adalah hasil lokalisasi menggunakan 8 titik acuan akan lebih baik daripada 4 titik acuan,
+terlebih SQR dipotret pada kondisi permukaan yang tidak rata atau ada \emph{bending} pada sisi-sisi SQR. Koefisien jarak yang digunakan untuk mengukur
+kemiripan adalah koefisien jarak korelasi, kosinus, dan \emph{euclidean} dari fitur spasial. Pengujian dilakukan pada CDP 2 level dan 4 level, baik orisinal
+maupun palsu. Perbandingan yang dilakukan adalah berdasarkan rata-rata nilai jarak dari grup data.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil perbandingan jarak hasil lokalisasi 8 titik dan 4 titik pada \emph{dataset} CDP orisinal}
+	\vspace{0.5em}
+	\begin{tabular}{|c|cc|cc|}
+		\hline
+		\multirow{2}{*}{}      & \multicolumn{2}{c|}{\textbf{2 Level}} & \multicolumn{2}{c|}{\textbf{4 Level}}                                                            \\ \cline{2-5}
+		                       & \multicolumn{1}{c|}{\textbf{8 titik}} & \textbf{4 titik}                      & \multicolumn{1}{c|}{\textbf{8 titik}} & \textbf{4 titik} \\ \hline
+		\textbf{sp\_corr}      & \multicolumn{1}{c|}{0.313393}         & 0.756336                              & \multicolumn{1}{c|}{0.399373}         & 0.815289         \\ \hline
+		\textbf{sp\_cosine}    & \multicolumn{1}{c|}{0.130594}         & 0.192208                              & \multicolumn{1}{c|}{0.111289}         & 0.13466          \\ \hline
+		\textbf{sp\_euclidean} & \multicolumn{1}{c|}{32282.44975}      & 34116.43373                           & \multicolumn{1}{c|}{27474.21664}      & 28092.46886      \\ \hline
+	\end{tabular}
+	\label{Tab: 4-jaraklokalisasiarucovsnonarucoori}
+\end{table}
+
+Hasil pada data CDP orisinal seperti yang terlihat pada Tabel \ref{Tab: 4-jaraklokalisasiarucovsnonarucoori} menunjukkan bahwa baik untuk 2 maupun 4 level, CDP
+yang dilokalisasi menggunakan delapan penanda ArUco atau 8 titik memiliki hasil jarak yang lebih kecil. Hal ini menunjukkan bahwa pada data CDP orisinal,
+lokalisasi menggunakan 8 titik lebih baik daripada 4 titik dalam hal kemiripannya dengan \emph{template}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil perbandingan jarak hasil lokalisasi 8 titik dan 4 titik pada \emph{dataset} CDP palsu}
+	\vspace{0.5em}
+	\begin{tabular}{|c|cc|cc|}
+		\hline
+		\multirow{2}{*}{}      & \multicolumn{2}{c|}{\textbf{2 Level}} & \multicolumn{2}{c|}{\textbf{4 Level}}                                                            \\ \cline{2-5}
+		                       & \multicolumn{1}{c|}{\textbf{8 titik}} & \textbf{4 titik}                      & \multicolumn{1}{c|}{\textbf{8 titik}} & \textbf{4 titik} \\ \hline
+		\textbf{sp\_corr}      & \multicolumn{1}{c|}{0.503782}         & 0.844003                              & \multicolumn{1}{c|}{0.614719}         & 0.874858         \\ \hline
+		\textbf{sp\_cosine}    & \multicolumn{1}{c|}{0.136464}         & 0.200803                              & \multicolumn{1}{c|}{0.107951}         & 0.138173         \\ \hline
+		\textbf{sp\_euclidean} & \multicolumn{1}{c|}{32895.63262}      & 36769.50531                           & \multicolumn{1}{c|}{27796.77325}      & 29879.82236      \\ \hline
+	\end{tabular}
+	\label{Tab: 4-jaraklokalisasiarucovsnonarucopalsu}
+\end{table}
+
+Hasil yang sama juga didapat pada CDP palsu, CDP yang dilokalisasi menggunakan delapan penanda ArUco atau 8 titik memiliki hasil jarak yang lebih kecil. Hal
+ini menunjukkan bahwa pada data CDP palsu, lokalisasi menggunakan 8 titik lebih baik daripada 4 titik dalam hal kemiripannya dengan \emph{template}. Untuk
+perbandingan visual salah satu hasil lokalisasi CDP menggunakan 4 titik dan 8 titik dapat dilihat pada Gambar \ref{Fig: 4-cdplokalisasi8vs4}. Terlihat bahwa
+hasil lokalisasi CDP menggunakan 4 titik kurang rapi, ada celah kosong di atasnya yang bukan merupakan komponen CDP itu sendiri. Selain itu, hasil lokalisasi
+CDP menggunakan 4 titik terlihat lebih kabur. Hal tersebut dapat disebabkan ada \emph{bending} pada data SQR yang dipotret. Hasil lokalisasi CDP menggunakan 8
+titik terlihat jauh lebih rapi pada perbandingan tersebut.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=12cm]{contents/chapter-4/4-cdplokalisasi8vs4.png}
+	\caption{Perbandingan CDP lokalisasi 4 dengan 8 titik}
+	\label{Fig: 4-cdplokalisasi8vs4}
+\end{figure}
+
+Dari kedua pengujian pada CDP orisinal dan CDP palsu, dapat disimpulkan bahwa lokalisasi CDP menggunakan delapan penanda ArUco menghasilkan hasil lokalisasi
+yang lebih baik dalam hal kemiripannya dengan \emph{template}. Hal tersebut tentunya akan berpengaruh dalam akurasi model yang akan dibuat, karena data CDP
+yang diproses lebih berkualitas.
+
+% \subsection{Perbandingan Hasil CDP \emph{Template}, Orisinal, dan Palsu}
+\subsection{Analisis Signifikansi CDP 2 dan 4 Level}
+Analisis ini digunakan untuk mengetahui apakah ada perbedaan karakteristik yang mencolok antara CDP 2 dan 4 level, baik orisinal maupun palsu, diukur dari
+jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-Test} untuk menguji signifikansi antara data kelompok CDP orisinal 2
+dan 4 level dan juga CDP palsu 2 dan 4 level. Selain itu, dilakukan visualisasi plot distribusi untuk melihat secara visual karakteristik dan perbedaan dari
+kedua data grup berdasarkan jaraknya dengan \emph{template} untuk tiap-tiap koefisien jarak.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil pengujian \emph{T-Test} pada data grup fitur jarak CDP 2 dan 4 level}
+	\vspace{0.5em}
+	\begin{tabular}{|c|cc|cc|}
+		\hline
+		\multirow{2}{*}{}       & \multicolumn{2}{c|}{\textbf{T-statistic}} & \multicolumn{2}{c|}{\textbf{P-value}}                                                           \\ \cline{2-5}
+		                        & \multicolumn{1}{c|}{\textbf{Orisinal}}    & \textbf{Palsu}                        & \multicolumn{1}{c|}{\textbf{Orisinal}} & \textbf{Palsu} \\ \hline
+		\textbf{sp\_corr}       & \multicolumn{1}{c|}{-16.74593578}         & -15.40768328                          & \multicolumn{1}{c|}{5.01E-48}          & 2.42E-42       \\ \hline
+		\textbf{sp\_cosine}     & \multicolumn{1}{c|}{2.664899017}          & 5.606420369                           & \multicolumn{1}{c|}{0.008014430587}    & 3.87E-08       \\ \hline
+		\textbf{sp\_euclidean}  & \multicolumn{1}{c|}{18.68036949}          & 15.92456377                           & \multicolumn{1}{c|}{2.27E-56}          & 1.59E-44       \\ \hline
+		\textbf{sp\_canberra}   & \multicolumn{1}{c|}{13.50242398}          & 17.11405558                           & \multicolumn{1}{c|}{1.81E-34}          & 1.32E-49       \\ \hline
+		\textbf{his\_corr}      & \multicolumn{1}{c|}{34.41859704}          & 22.14600057                           & \multicolumn{1}{c|}{2.31E-121}         & 2.13E-71       \\ \hline
+		\textbf{his\_cosine}    & \multicolumn{1}{c|}{77.32304134}          & 69.16680889                           & \multicolumn{1}{c|}{7.51E-242}         & 6.46E-224      \\ \hline
+		\textbf{his\_euclidean} & \multicolumn{1}{c|}{43.22124079}          & 43.72586915                           & \multicolumn{1}{c|}{2.09E-152}         & 4.60E-154      \\ \hline
+		\textbf{his\_canberra}  & \multicolumn{1}{c|}{132.6975488}          & 88.05263424                           & \multicolumn{1}{c|}{0}                 & 4.52E-263      \\ \hline
+		\textbf{dct\_corr}      & \multicolumn{1}{c|}{4.217806209}          & 6.517366218                           & \multicolumn{1}{c|}{3.06E-05}          & 2.17E-10       \\ \hline
+		\textbf{dct\_cosine}    & \multicolumn{1}{c|}{4.212988658}          & 6.508184428                           & \multicolumn{1}{c|}{3.12E-05}          & 2.29E-10       \\ \hline
+		\textbf{dct\_euclidean} & \multicolumn{1}{c|}{14.04643215}          & 9.689562847                           & \multicolumn{1}{c|}{1.10E-36}          & 4.49E-20       \\ \hline
+		\textbf{dct\_canberra}  & \multicolumn{1}{c|}{-3.436928924}         & 6.862694517                           & \multicolumn{1}{c|}{0.0006503627876}   & 2.60E-11       \\ \hline
+	\end{tabular}
+	\label{Tab: 4-hasilujisignifikansi2vs4level}
+\end{table}
+
+Dari Tabel \ref{Tab: 4-hasilujisignifikansi2vs4level} terlihat bahwa hasilnya adalah signifikan untuk seluruh koefisien jarak, baik pada \emph{dataset} CDP
+orisinal dan palsu. Dua grup dapat dikatakan signifikan perbedaannya apabila memiliki \emph{P-value} < 0,05 (diambil dari nilai \emph{P-value} yang sering
+digunakan). Semakin kecil nilai \emph{P-value}, semakin signifikan perbedaan antara dua grup data. Dari Tabel \ref{Tab: 4-hasilujisignifikansi2vs4level} dapat
+dilihat bahwa koefisien jarak yang memiliki signifikansi tertinggi dalam membedakan kedua data grup adalah \emph{his\_canberra}, \emph{his\_cosine},
+\emph{his\_euclidean}, dan \emph{his\_corr}.
+
+Selain itu, untuk memudahkan melihat signifikansi antara kedua data grup secara visual, penulis melakukan plot distribusi untuk tiap-tiap koefisien jarak.
+Hasilnya dapat dilihat pada Gambar \ref{Fig: 4-ori2levelvsori4level} dan Gambar \ref{Fig: 4-fake2levelvsfake4level}.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{contents/chapter-4/4-ori2levelvsori4level.png}
+	\caption{Plot distribusi koefisien jarak CDP orisinal 2 dan 4 level}
+	\label{Fig: 4-ori2levelvsori4level}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{contents/chapter-4/4-fake2levelvsfake4level.png}
+	\caption{Plot distribusi koefisien jarak CDP palsu 2 dan 4 level}
+	\label{Fig: 4-fake2levelvsfake4level}
+\end{figure}
+
+Dari plot distribusi yang ditunjukkan Gambar \ref{Fig: 4-ori2levelvsori4level} dan Gambar \ref{Fig: 4-fake2levelvsfake4level}, terlihat bahwa fitur histogram
+dapat memisahkan CDP 2 dan 4 level, baik pada CDP orisinal maupun palsu. Hal ini sesuai dengan hasil pengujian statistik \emph{T-Test} dengan empat peringkat
+teratas untuk jarak yang memiliki perbedaan paling signifikan, memisahkan 2 dan 4 level adalah \emph{his\_canberra}, \emph{his\_cosine}, \emph{his\_euclidean},
+dan \emph{his\_corr}. Hasil lain yang diperoleh adalah CDP 4 level memiliki jarak yang lebih dekat dengan \emph{template} dibandingkan CDP 2 level. Hal ini
+menunjukkan bahwa CDP 4 level lebih sulit terdegradasi melalui proses P\&S dibandingkan CDP 2 level. Analisis selanjutnya adalah melihat signifikansi antara
+CDP orisinal dan palsu berdasarkan fitur jaraknya.
+
+\subsection{Analisis Signifikansi CDP Orisinal dan Palsu}
+Analisis ini digunakan untuk mengetahui apakah ada perbedaan karakteristik yang mencolok antara CDP orisinal dan palsu, baik 2 level maupun 4 level, diukur
+dari jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-Test} untuk menguji signifikansi antara data kelompok CDP 2
+level orisinal dan palsu dan juga CDP 4 level orisinal dan palsu. Selain itu, dilakukan visualisasi plot distribusi untuk melihat secara visual karakteristik
+dan perbedaan dari kedua data grup berdasarkan jaraknya dengan \emph{template} untuk tiap-tiap koefisien jarak.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil pengujian \emph{T-Test} pada data grup fitur jarak CDP orisinal dan palsu}
+	\vspace{0.5em}
+	\begin{tabular}{|c|cc|cc|}
+		\hline
+		\multirow{2}{*}{}       & \multicolumn{2}{c|}{\textbf{T-statistic}} & \multicolumn{2}{c|}{\textbf{P-value}}                                                            \\ \cline{2-5}
+		                        & \multicolumn{1}{c|}{\textbf{2 Level}}     & \textbf{4 Level}                      & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level} \\ \hline
+		\textbf{sp\_corr}       & \multicolumn{1}{c|}{-51.27762916}         & -56.5045945                           & \multicolumn{1}{c|}{1.89E-177}        & 3.32E-192        \\ \hline
+		\textbf{sp\_cosine}     & \multicolumn{1}{c|}{-15.74561861}         & -32.33552903                          & \multicolumn{1}{c|}{9.09E-44}         & 2.08E-113        \\ \hline
+		\textbf{sp\_euclidean}  & \multicolumn{1}{c|}{-36.55662279}         & -39.94880432                          & \multicolumn{1}{c|}{2.78E-129}        & 2.43E-141        \\ \hline
+		\textbf{sp\_canberra}   & \multicolumn{1}{c|}{-9.504515059}         & -33.04405424                          & \multicolumn{1}{c|}{1.93E-19}         & 3.86E-116        \\ \hline
+		\textbf{his\_corr}      & \multicolumn{1}{c|}{1.256104582}          & -6.023567812                          & \multicolumn{1}{c|}{0.2098148818}     & 3.89E-09         \\ \hline
+		\textbf{his\_cosine}    & \multicolumn{1}{c|}{-4.028536258}         & -7.780073633                          & \multicolumn{1}{c|}{6.72E-05}         & 6.30E-14         \\ \hline
+		\textbf{his\_euclidean} & \multicolumn{1}{c|}{-0.4124301174}        & -6.648424241                          & \multicolumn{1}{c|}{0.680246255}      & 9.79E-11         \\ \hline
+		\textbf{his\_canberra}  & \multicolumn{1}{c|}{22.49323957}          & -24.5923398                           & \multicolumn{1}{c|}{6.78E-73}         & 7.04E-82         \\ \hline
+		\textbf{dct\_corr}      & \multicolumn{1}{c|}{-13.30195299}         & -29.49347813                          & \multicolumn{1}{c|}{1.17E-33}         & 3.53E-102        \\ \hline
+		\textbf{dct\_cosine}    & \multicolumn{1}{c|}{-13.30425752}         & -29.52209969                          & \multicolumn{1}{c|}{1.14E-33}         & 2.71E-102        \\ \hline
+		\textbf{dct\_euclidean} & \multicolumn{1}{c|}{-22.94680517}         & -29.73154116                          & \multicolumn{1}{c|}{7.57E-75}         & 3.90E-103        \\ \hline
+		\textbf{dct\_canberra}  & \multicolumn{1}{c|}{-39.17245161}         & -55.46708149                          & \multicolumn{1}{c|}{1.23E-138}        & 2.32E-189        \\ \hline
+	\end{tabular}
+	\label{Tab: 4-hasilujisignifikansiorivspalsu}
+\end{table}
+
+Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} terlihat bahwa dengan menggunakan nilai \emph{P-value} =  0,5, pada CDP 2 level, ada 2 fitur jarak yang tidak signifikan antara CDP orisinal dan palsunya, yaitu \emph{his\_corr} dan \emph{his\_euclidean}. Pada CDP 4 level, dengan nilai \emph{P-value} yang sama, seluruh fitur jarak dapat dikatakan signifikan antara CDP orisinal dan palsunya. Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} dapat dilihat bahwa baik CDP 2 dan 4 level, koefisien jarak yang memiliki nilai paling signifikan antara orisinal dan palsu adalah \emph{sp\_corr}, disusul \emph{dct\_canberra}, dan \emph{sp\_euclidean}.
+
+Selain itu, untuk memudahkan melihat signifikansi antara kedua data grup secara visual, penulis melakukan plot distribusi untuk tiap-tiap koefisien jarak.
+Hasilnya dapat dilihat pada Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar \ref{Fig: 4-4levelorivs4levelfake}.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{contents/chapter-4/4-2levelorivs2levelfake.png}
+	\caption{Plot distribusi koefisien jarak CDP 2 level orisinal dan palsu}
+	\label{Fig: 4-2levelorivs2levelfake}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\textwidth]{contents/chapter-4/4-4levelorivs4levelfake.png}
+	\caption{Plot distribusi koefisien jarak CDP 4 level orisinal dan palsu}
+	\label{Fig: 4-4levelorivs4levelfake}
+\end{figure}
+
+Dari plot distribusi yang ditunjukkan Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar \ref{Fig: 4-4levelorivs4levelfake}, terlihat bahwa fitur terbaik yang memisahkan CDP orisinal dan palsu adalah \emph{sp\_corr}. Selain itu, fitur spasial yang lain juga memiliki signifikansi yang tinggi. Selain itu, ada fitur \emph{dct\_canberra} yang juga memiliki signifikansi yang tinggi. Dari analisis fitur jarak yang menunjukkan hasil yang baik, yaitu mayoritas fitur jarak mampu memisahkan CDP orisinal dan palsu, sangat mungkin hasil model klasifikasi biner yang dibuat memiliki tingkat akurasi yang tinggi karena fitur yang digunakan untuk pelatihan sangat berkualitas.
+
+\section{Hasil Pemodelan Klasifikasi Biner}
+\subsection{Fitur Tunggal}
+\subsection{Multi Fitur}
+\subsection{Analisis Perbandingan Hasil Klasifikasi Biner CDP yang Dilokalisasi Menggunakan Penanda ArUco dan Tanpa Penanda ArUco}
 
 \section{Perbandingan Hasil Penelitian dengan Hasil Terdahulu}
 
-Pembahasan penutup dapat menjelaskan mengenai kelebihan hasil pengembangan / 
-penelitian dan kekurangan dibandingkan dengan skripsi atau penelitian terdahulu atau
-perbandingan terhadap produk lain yang ada di pasaran. Penulis dapat menggunakan tabel untuk membandingkan secara gamblang dan menjelaskannya.
+Pembahasan penutup dapat menjelaskan mengenai kelebihan hasil pengembangan / penelitian dan kekurangan dibandingkan dengan skripsi atau penelitian terdahulu
+atau perbandingan terhadap produk lain yang ada di pasaran. Penulis dapat menggunakan tabel untuk membandingkan secara gamblang dan menjelaskannya.

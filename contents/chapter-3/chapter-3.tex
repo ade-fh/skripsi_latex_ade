@@ -48,6 +48,14 @@ Bahan yang digunakan pada penelitian secara garis besar merupakan \emph{dataset}
 	\item \emph{Dataset} SQR untuk Pengujian Parameter\\\emph{Dataset} ini digunakan untuk mencari parameter pembuatan model, pemotretan, dan pencetakan SQR, misalnya ukuran penanda ArUco, ukuran SQR, ukuran CDP, konfigurasi kamera, dan jenis kertas dan tinta yang digunakan untuk mencetak SQR.
 \end{enumerate}
 
+\section{Metode yang Digunakan}
+Penelitian ini termasuk ke dalam penelitian kuantitatatif yang dilakukan dengan eksperimen. Eksperimen dilakukan dalam pembuatan model SQR dan pembuatan model autentikasi secara berulang sampai didapatkan model SQR dan model autentikasi yang memiliki akurasi klasifikasi biner yang tinggi, yang dapat membedakan antara SQR orisinal dan palsu.
+
+Eksperimen yang dilakukan secara berulang bertujuan untuk mecari parameter terbaik dalam pengembangan model SQR, baik parameter dalam pengembangan model SQR itu sendiri ataupun parameter yang digunakan dalam proses P\&S. Parameter yang digunakan dalam pengembangan model SQR antara lain, ukuran dan versi kode QR, level toleransi kesalahan, ukuran \emph{watermark}, ukuran CDP, jumlah, ukuran, dan lokasi penanda ArUco dalam watermark, dan juga metode dalam pembuatan CDP. Untuk parameter dalam proses P\&S antara lain, jenis kertas dan tinta yang digunakan untuk mencetak SQR dan konfigurasi kamera yang digunakan dalam pembuatan \emph{dataset}. Selain itu, dengan penelitian ini, dapat diketahui fitur mana saja yang memiliki pengaruh signifikansi tinggi dalam pembuatan model klasifikasi biner SQR orisinal dan palsu.Dalam melakukan perubahan dan kombinasi pada parameter-parameter tersebut, setiap eksperimen akan menunjukkan hasil yang berbeda dan unik. Hal tersebut menunjukkan bahwa setiap parameter memiliki peran dalam keberhasilan pembuatan SQR.
+
+Dalam melakukan eksperimen, penulis menggunakan Python sebagai bahasa pemrograman utama, pustaka OpenCV dan Pillow untuk pengolahan gambar, pustaka Pandas dan NumPy untuk pengolahan data, pustaka Matplotlib dan Seaborn untuk visualisasi, dan AutoGluon sebagai pustaka AutoML pembuatan model klasifikasi biner.
+
+
 \section{Tahapan Penelitian}
 Penelitian ini diawali dengan melakukan studi literatur penelitian khususnya tentang SQR dan CDP. Selain itu, penulis juga banyak melakukan studi mengenai
 penanda ArUco untuk membantu lokalisasi objek, transformasi homografi, \emph{template matching}, koefisien jarak, uji statistik T-Test untuk menguji
@@ -71,12 +79,16 @@ Setelah model selesai dibuat, selanjutnya adalah melakukan pengujian akurasi mod
 penelitian dinilai memuaskan oleh penulis, tahapan terakhir adalah pembautan laporan hasil penelitian. Secara umum, alur penelitian yang dilakukan oleh penulis
 dapat dilihat pada Gambar \ref{Fig: 3-diagramalirpenelitian}
 
+\clearpage
+
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=4.2cm]{contents/chapter-3/3-garisbesaralurpenelitian.png}
+	\includegraphics[width=5.5cm]{contents/chapter-3/3-garisbesaralurpenelitian.png}
 	\caption{Diagram alir tahapan penelitian}
 	\label{Fig: 3-diagramalirpenelitian}
 \end{figure}
+
+\clearpage
 
 \section{Pembuatan Model SQR}
 \subsection{Penentuan Ukuran dan Versi Kode QR}
@@ -128,14 +140,14 @@ proses P\&S dapat diminimalisir.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7.5cm]{contents/chapter-3/3-aruco4x4.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-aruco4x4.png}
 	\caption{Sampel 50 penanda ArUco dengan ukuran modul 4x4 piksel}
 	\label{Fig: 3-aruco4x4}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=7.5cm]{contents/chapter-3/3-aruco6x6.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-aruco6x6.png}
 	\caption{Sampel 50 penanda ArUco dengan ukuran modul 6x6 piksel}
 	\label{Fig: 3-aruco6x6}
 \end{figure}
@@ -191,7 +203,7 @@ PDF. Langkah-langkah lengkap konfigurasi pencetakan dan ukuran kertas dapat dili
 \noindent Terakhir, untuk jenis kertas dan tinta yang digunakan haruslah bersifat \emph{doff}. Hal ini supaya hasil pemotretan tidak memantulkan cahaya ketika
 menggunakan flash dari kamera.
 
-\subsection{Pemotretan \emph{Batch} SQR Foto Pertama (Orisinal)}
+\subsection{Pemotretan \emph{Dataset} SQR Foto Pertama (Orisinal)}
 
 \subsection{Lokalisasi CDP dari \emph{Raw} Foto Pertama (Orisinal)}
 \subsubsection{Mengganti Nama Fail}
@@ -274,7 +286,7 @@ ditransformasi homografi berdasarkan koordinat dari marker dapat dilihat pada Ga
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm]{contents/chapter-3/3-hasillokalisasi.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-hasillokalisasi.png}
 	\caption{SQR awal dan setelah dilakukan transformasi homografi}
 	\label{Fig: 3-hasillokalisasi}
 \end{figure}
@@ -290,14 +302,14 @@ dalam sebuah folder seperti pada Gambar \ref{Fig: 3-hasildatasetcdp}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm]{contents/chapter-3/3-templatevslokalisasi.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-templatevslokalisasi.png}
 	\caption{Perbandingan CDP \emph{template} dengan CDP hasil lokalisasi foto pertama (orisinal)}
 	\label{Fig: 3-templatevslokalisasi}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm]{contents/chapter-3/3-hasildatasetcdp.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-hasildatasetcdp.png}
 	\caption{Hasil \emph{dataset} CDP foto pertama (orisinal) yang sudah dilokalisasi dan diganti nama failnya}
 	\label{Fig: 3-hasildatasetcdp}
 \end{figure}
@@ -312,16 +324,19 @@ sesuai dengan format \emph{dataset} CDP. Selanjutnya adalah men-\emph{generate} 
 diolah menjadi tiga fitur, yaitu DCT, histogram, dan spasial. Kemudian akan dihitung jaraknya menggunakan koefisien jarak korelasi, kosinus, \emph{euclidean},
 dan \emph{canberra} untuk tiap-tiap fitur. Untuk tiap perulangan (tiap pembacaan fail) hasil fitur jarak, data, jenis interpolasi, dan level (2 atau 4 level)
 akan di-\emph{append} ke dalam sebuah \emph{list}. Setelah perulangan selesai, \emph{list} tersebut akan diubah menjadi sebuah \emph{dataframe},
-di-\emph{sorting} berdasarkan jenis interpolasi dan datanya, lalu ditambahkan kolom label (orisinal atau palsu). Setelah \emph{datagrame} siap, selanjutnya
-adalah mengekspor \emph{datagrame} tersebut menjadi sebuah fail csv. Untuk hasil akhir \emph{dataframe} sebelum diekspor menjadi fail csv dapat dilihat pada
+di-\emph{sorting} berdasarkan jenis interpolasi dan datanya, lalu ditambahkan kolom label (orisinal atau palsu). Setelah \emph{dataframe} siap, selanjutnya
+adalah mengekspor \emph{dataframe} tersebut menjadi sebuah fail csv. Untuk hasil akhir \emph{dataframe} sebelum diekspor menjadi fail csv dapat dilihat pada
 Gambar \ref{Fig: 3-dataframefitur}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=13cm]{contents/chapter-3/3-dataframefitur.png}
+	\includegraphics[width=10cm]{contents/chapter-3/3-dataframefitur.png}
 	\caption{\emph{Dataframe} fitur jarak \emph{dataset} foto pertama (orisinal)}
 	\label{Fig: 3-dataframefitur}
 \end{figure}
+
+\subsection{Analisis \emph{Dataset} CDP Foto Pertama (Orisinal)}
+Setelah seluruh \emph{dataset} CDP foto pertama (orisinal) sudah siap, selanjutnya adalah melakukan analisis menggunakan \emph{dataframe} fitur jaraknya. Hal pertama yang dianalisis apakah ada perbedaan signifikan antara jarak CDP orisinal dengan \emph{template} untuk CDP 2 dan 4 level. Hal ini untuk menjawab hipotesis apakah benar kualitas CDP 4 level akan lebih sulit terdegradasi dibandingkan CDP 2 level. Analisis selanjutnya adalah mengetahui perbedaan rata-rata jarak dari berbagai interpolasi penskalaan yang digunakan untuk melokalisasi CDP. Dari hasil tersebut, nantinya akan dibuat CDP palsu menggunakan interpolasi penskalaan yang hasil jaraknya paling kecil antara foto pertama (orisinal) dengan \emph{template}. Hal ini dimaksudkan untuk membuat CDP palsu yang semirip mungkin dengan CDP asli. Uji signifikansi dilakukan menggunakan metode \emph{T-Test}, sedangkan untuk mencari rata-rata jarak dari data grup tiap interpolasi penskalaan, penulis menggunakan fitur \emph{describe} yang telah disediakan oleh pustaka Pandas.
 
 \section{Pembuatan dan Pengolahan \emph{Dataset} SQR Foto Kedua (Palsu)}
 \subsection{Pembuatan Model SQR Foto Kedua (Palsu)}
@@ -336,7 +351,7 @@ disesuaikan menjadi A3+ sesuai standar percetakan.
 \subsection{Pencetakan \emph{Batch} SQR Foto Kedua (Palsu)}
 Proses persiapan pencetakan juga sama dengan persiapan pencetakan \emph{batch} SQR foto pertama (orisinal) pada 3.3.2, hasil \emph{generate} yang ukurannya masih piksel, diubah menjadi mm dengan ukuran kertas A3+ menggunakan perangkat lunak Adobe Photoshop. Kertas yang digunakan untuk mencetak juga sama, yaitu yang bersifat \emph{doff} dan tidak memantulkan cahaya. \emph{Printer} yang digunakan untuk mencetak haruslah sama, hal ini untuk memastikan tidak adanya perbedaan kualitas akibat perbedaan perangkat \emph{printer}.
 
-\subsection{Pemotretan \emph{Batch} SQR Foto Kedua (Palsu)}
+\subsection{Pemotretan \emph{Dataset} SQR Foto Kedua (Palsu)}
 
 \subsection{Lokalisasi CDP dari \emph{Raw} Foto Kedua (Palsu)}
 Proses lokalisasi CDP foto kedua (palsu) sama persis dengan proses lokalisasi CDP foto pertama (orisinal) pada 3.3.4. Perbedaanya adalah penamaan fail keluaran, yaitu dengan format CDP\_\{interpolasi\}\_\{data\}\_FAKE.
@@ -347,87 +362,8 @@ Proses ini juga sama seperti yang dilakukan pada pembuatan fitur jarak orisinal 
 \section{Pembuatan dan Pengujian Model Klasifikasi SQR Orisinal dan Palsu}
 Model yang dibangun merupakan model klasifikasi biner, untuk mengklasifikasikan apakah SQR tersebut orisinal atau palsu. Pembuatan model menggunakan pustaka AutoML dari AutoGluon. AutoGluon dipilih karena dapat melakukan pemrosesan fitur otomatis dan memberikan peringkat \emph{leaderboard} untuk model-model yang digunakan, sehingga penulis dapat dengan mudah memilih model dengan akurasi klasifikasi biner tertinggi.
 
-\subsection{Pemodelan Klasifikasi Biner menggunakan AutoGluon}
+\subsection{Pembuatan Model Klasifikasi Biner menggunakan AutoGluon}
 Penulis menggunakan pustaka AutoML dari AutoGluon dalam pembuatan model klasifikasi biner SQR orisinal dan palsu. Sebelum memasukkan data ke model, perlu dilakukan pemisahan antara X dan y, X merupakan kolom fitur sedangkan y merupakan kolom label. Kolom fitur yang dipilih adalah fitur jarak yang berjumlah 12 kolom. Kolom label adalah kolom bernilai ORI atau FAKE. Setelah dilakukan pemisahan X dan y, selanjutnya adalah memisahkan X\_train, X\_test, y\_train, dan y\_test. Perbandingan data latih dan data uji adalah 7:3. Setelah itu, data yang sudah dipisah dimasukkan ke dalam model AutoGluon. AutoGluon dapat secara otomatis menampilkan \emph{leaderboard} untuk model-model yang digunakan.
-
-\section{Metode yang Digunakan}
-
-\subsection{Pembuatan Model SQR Orisinal}
-Model SQR yang coba dikembangkan oleh penulis adalah menempelkan \emph{watermark} di tengah-tengah kode QR biasa. \emph{Watermark} yang ditempelkan merupakan
-gabungan dari CDP dan juga enam ArUco \emph{markers} untuk membantu lokalisasi objek CDP. CDP yang ditempelkan pada kode QR digunakan untuk autentikasi, apakah
-SQR tersebut orisinal ataukah palsu. Secara umum, desain dari SQR yang dirancang oleh penulis dapat dilihat pada
-
-\subsubsection{Penentuan Versi Kode QR}
-Setiap versi dari kode QR memiliki kapasitas penyimpanan data yang berbeda, kode QR versi 1 memiliki ukuran $21x21$ modul, sedangkan kode QR versi 40 memiliki
-ukuran $177x177$ modul. Setiap kenaikan satu versi kode QR, maka akan ada penambahan sebanyak 4 modul, misalkan kode QR versi 1 memiliki jumlah modul $21x21$,
-maka kode QR versi 2 memiliki jumlah modul $25x25$, kode QR versi 3 memiliki jumlah modul $29x29$, dan seterusnya. Semakin banyak modul yang dimiliki kode QR,
-semakin banyak juga data yang dapat disimpan. Karena data yang digunakan dalam pengujian yang dilakukan adalah data berformat $DATA_160_{x}LEVEL_ARC30$, di
-mana $x$ adalah kuantisasi level (2 dan 4), maka kode QR versi 3 dengan kapasitas maksimal menyimpan 35 karakter alfanumerik saat menggunakan level koreksi
-kesalahan H sudah cukup untuk menyimpan data tes.
-
-\subsubsection{Penentuan Level Koreksi Kesalahan}
-PCT level merupakan ukuran untuk seberapa banyak kode QR akan dirusak untuk ditempeli \emph{watermark}. Karena \emph{watermark} yang didesain berukuran
-$172x172$ piksel, sedangkan ukuran kode QR dengan \emph{box\_size} 20 dan jumlah modul 29 sesuai dengan jumlah modul kode QR versi 3. Karena \emph{watermark}
-yang didesain berukuran $172x172$, maka level koreksi kesalahan yang digunakan adalah level H atau sama dengan 30\% koreksi kesalahan yang ditolerir. Jumlah
-modul yang dapat dirusak atau ditolerir kerusakannya oleh koreksi kesalahan level H adalah:
-
-\begin{align}
-	n & = n_v.b_s \\&=29.20\nonumber\\&=580\nonumber\\di mana:\\n &= Jumlah akhir modul kode QR\\n_v &= Jumlah modul pada versi kode QR v\\b_s &= Ukuran \emph{box size}
-\end{align}
-di mana:
-
-\begin{conditions*}
-	n & Ukuran piksel kode QR\\
-	n & Ukuran piksel kode QR
-\end{conditions*}
-
-\subsubsection{Pembuatan CDP}
-CDP yang akan dibuat di sini menggunakan ukuran $100x100$ piksel, mengacu pada ukuran yang digunakan peneliti sebelumnya \cite{PICARDCANCOPYDETECTIONPATTERN}.
-Dengan ukuran $100x100$ diharapkan degradasi informasi yang dihasilkan lebih besar dari proses P\&S, sehingga model pembelajaran mesin dapat melakukan
-klasifikasi dengan baik. CDP di-\emph{generate} secara random menggunakan sebuah \emph{seed} yang nilainya adalah gabungan dari data dengan secret. \emph{Seed}
-ini digunakan untuk memastikan CDP dapat di-\emph{generate} dari perangkat yang berbeda, baik untuk melakukan pencetakan ataupun verifikasi. Secara umum, alur
-pembuatan CDP adalah sebagai berikut:
-
-\subsubsection{Pembuatan ArUco \emph{Marker} di Sekitar CDP} Setelah CDP berukuran $100x100$ piksel di-\emph{generate}, selanjutnya adalah meletakkan \emph{marker} di sekitarnya. Caranya adalah dengan
-memberikan \emph{padding} atau ruang kosong di sekitar CDP berukuran 40 piksel. Setelah itu, keenam \emph{marker} di letakkan di tengah-tengah ruang kosong
-tersebut. \emph{Marker} dengan id paling kecil diletakkan di pojok kiri atas, kemudian selanjutnya di letakkan di kanannya, hingga \emph{marker} dengan id
-terakhir diletakkan di pojok kiri bawah. ArUco \emph{marker} yang digunakan sendiri berukuran $30x30$ piksel. Ukuran tersebut didapatkan dari hasil percobaan
-oleh penulis, menguji beberapa ukuran \emph{marker} dari $20x20$ piksel sampai $30x30$ piksel. Hal ini digunakan sebagai acuan lokasi untuk transformasi
-homografi, seadainya nanti SQR yang difoto posisinya diputar-putar. Gambaran akhir CDP yang telah dilengkapi enam ArUco \emph{marker} dapat dilihat pada
-\ref{Fig: 3-cdpdenganaruco}
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=5cm]{contents/chapter-3/3-cdpdenganaruco.png}
-	\caption{SQR diharapkan dapat mendeteksi kode QR palsu pada saat diautentikasi oleh pengguna \cite{picard2021counterfeit}}
-	\label{Fig: 3-cdpdenganaruco}
-\end{figure}
-
-\subsubsection{Peletakan \emph{Watetermark} di Kode QR}
-
-\subsubsection{Pembuatan \emph{Batch} SQR Orisinal}
-
-\subsubsection{Pencetakan dan Pemotretan \emph{Dataset} SQR Orisinal}
-
-\subsection{Pengujian Ukuran ArUco \emph{Marker}}
-
-\subsection{Mengukur \emph{Distance} CDP1 dengan CDPT}
-
-\subsection{Uji Statistik Hasil Pengukuran \emph{Distance}}
-
-\subsection{Pembuatan Model SQR Palsu}
-
-\subsubsection{Mengganti Nama dari Hasil Foto SQR Berdasarkan dengan Data SQR}
-
-\subsection{Membuat Templat SQR Palsu Berdasarkan Data Nama Foto}
-
-\subsubsection{Melokalisasi CDP Foto Pertama dan Menempelkannya ke SQR Palsu}
-
-\subsubsection{Menyimpan SQR Palsu ke Dalam Sebuah Fail}
-
-\subsubsection{Membuat \emph{Batch} SQR Palsu}
-
-\subsubsection{Model Klasifikasi SQR Orisinal dan Palsu}
 
 \section{Alur Tugas Akhir}
 
