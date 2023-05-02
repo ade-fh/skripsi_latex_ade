@@ -302,7 +302,11 @@ dan perbedaan dari kedua data grup berdasarkan jaraknya dengan \emph{template} u
 	\label{Tab: 4-hasilujisignifikansiorivspalsu}
 \end{table}
 
-Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} terlihat bahwa dengan menggunakan nilai \emph{P-value} =  0,5, pada CDP 2 level, ada 2 fitur jarak yang tidak signifikan antara CDP orisinal dan palsunya, yaitu \emph{his\_corr} dan \emph{his\_euclidean}. Pada CDP 4 level, dengan nilai \emph{P-value} yang sama, seluruh fitur jarak dapat dikatakan signifikan antara CDP orisinal dan palsunya. Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} dapat dilihat bahwa baik CDP 2 dan 4 level, koefisien jarak yang memiliki nilai paling signifikan antara orisinal dan palsu adalah \emph{sp\_corr}, disusul \emph{dct\_canberra}, dan \emph{sp\_euclidean}.
+Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} terlihat bahwa dengan menggunakan nilai \emph{P-value} = 0,5, pada CDP 2 level, ada 2 fitur jarak yang
+tidak signifikan antara CDP orisinal dan palsunya, yaitu \emph{his\_corr} dan \emph{his\_euclidean}. Pada CDP 4 level, dengan nilai \emph{P-value} yang sama,
+seluruh fitur jarak dapat dikatakan signifikan antara CDP orisinal dan palsunya. Dari Tabel \ref{Tab: 4-hasilujisignifikansiorivspalsu} dapat dilihat bahwa
+baik CDP 2 dan 4 level, koefisien jarak yang memiliki nilai paling signifikan antara orisinal dan palsu adalah \emph{sp\_corr}, disusul \emph{dct\_canberra},
+dan \emph{sp\_euclidean}.
 
 Selain itu, untuk memudahkan melihat signifikansi antara kedua data grup secara visual, penulis melakukan plot distribusi untuk tiap-tiap koefisien jarak.
 Hasilnya dapat dilihat pada Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar \ref{Fig: 4-4levelorivs4levelfake}.
@@ -321,12 +325,176 @@ Hasilnya dapat dilihat pada Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar
 	\label{Fig: 4-4levelorivs4levelfake}
 \end{figure}
 
-Dari plot distribusi yang ditunjukkan Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar \ref{Fig: 4-4levelorivs4levelfake}, terlihat bahwa fitur terbaik yang memisahkan CDP orisinal dan palsu adalah \emph{sp\_corr}. Selain itu, fitur spasial yang lain juga memiliki signifikansi yang tinggi. Selain itu, ada fitur \emph{dct\_canberra} yang juga memiliki signifikansi yang tinggi. Dari analisis fitur jarak yang menunjukkan hasil yang baik, yaitu mayoritas fitur jarak mampu memisahkan CDP orisinal dan palsu, sangat mungkin hasil model klasifikasi biner yang dibuat memiliki tingkat akurasi yang tinggi karena fitur yang digunakan untuk pelatihan sangat berkualitas.
+Dari plot distribusi yang ditunjukkan Gambar \ref{Fig: 4-2levelorivs2levelfake} dan Gambar \ref{Fig: 4-4levelorivs4levelfake}, terlihat bahwa fitur terbaik
+yang memisahkan CDP orisinal dan palsu adalah \emph{sp\_corr}. Selain itu, fitur spasial yang lain juga memiliki signifikansi yang tinggi. Selain itu, ada
+fitur \emph{dct\_canberra} yang juga memiliki signifikansi yang tinggi. Dari analisis fitur jarak yang menunjukkan hasil yang baik, yaitu mayoritas fitur jarak
+mampu memisahkan CDP orisinal dan palsu, sangat mungkin hasil model klasifikasi biner yang dibuat memiliki tingkat akurasi yang tinggi karena fitur yang
+digunakan untuk pelatihan sangat berkualitas.
 
 \section{Hasil Pemodelan Klasifikasi Biner}
+Pemodelan dilakukan menggunakan dua metode, pertama menggunakan fitur tunggal dari tiap-tiap koefisien jarak, kedua menggunakan multifitur seluruh fitur
+koefisien jarak. Kemudian akan diuji juga perbandingan akurasi model dalam mengautentikasi SQR orisinal dan palsu dari \emph{dataset} CDP yang dilokalisasi
+menggunakan penanda ArUco (8 titik) dan tanpa menggunakan penanda ArUco (4 titik).
 \subsection{Fitur Tunggal}
+Untuk menguji performa fitur dalam model, penulis menggunakan semua fitur koefisien jarak satu per satu, baik fitur spasial, histogram, ataupun dct. Model
+dibuat dengan AutoGluon dengan memilih model dengan akurasi tertinggi pada data tes. Hasil akurasi klasifikasi biner oleh model dalam mengklasifikasikan SQR
+orisinal atau palsu dapat dilihat pada Tabel \ref{Tab: 4-hasilfiturtunggal}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil akurasi model klasifikasi biner menggunakan fitur tunggal}
+	\vspace{0.5em}
+	\begin{tabular}{|c|cc|}
+		\hline
+		\multicolumn{1}{|l|}{}                   & \multicolumn{2}{c|}{\textbf{Akurasi}}                                                            \\ \cline{2-3}
+		\multicolumn{1}{|l|}{\multirow{-2}{*}{}} & \multicolumn{1}{c|}{\textbf{2 Level}}                     & \textbf{4 Level}                     \\ \hline
+		\textbf{sp\_corr}                        & \multicolumn{1}{c|}{\cellcolor[HTML]{34FF34}1}            & \cellcolor[HTML]{34FF34}1            \\ \hline
+		\textbf{sp\_cosine}                      & \multicolumn{1}{c|}{0.825}                                & \cellcolor[HTML]{34FF34}0.9416666667 \\ \hline
+		\textbf{sp\_euclidean}                   & \multicolumn{1}{c|}{0.9583333333}                         & \cellcolor[HTML]{34FF34}0.9833333333 \\ \hline
+		\textbf{sp\_canberra}                    & \multicolumn{1}{c|}{0.875}                                & \cellcolor[HTML]{34FF34}0.9583333333 \\ \hline
+		\textbf{his\_corr}                       & \multicolumn{1}{c|}{\cellcolor[HTML]{34FF34}0.7333333333} & 0.575                                \\ \hline
+		\textbf{his\_cosine}                     & \multicolumn{1}{c|}{\cellcolor[HTML]{34FF34}0.75}         & 0.6916666667                         \\ \hline
+		\textbf{his\_euclidean}                  & \multicolumn{1}{c|}{\cellcolor[HTML]{34FF34}0.6916666667} & \cellcolor[HTML]{34FF34}0.6916666667 \\ \hline
+		\textbf{his\_canberra}                   & \multicolumn{1}{c|}{\cellcolor[HTML]{34FF34}0.9166666667} & 0.9083333333                         \\ \hline
+		\textbf{dct\_corr}                       & \multicolumn{1}{c|}{0.8}                                  & \cellcolor[HTML]{34FF34}0.9416666667 \\ \hline
+		\textbf{dct\_cosine}                     & \multicolumn{1}{c|}{0.7916666667}                         & \cellcolor[HTML]{34FF34}0.9416666667 \\ \hline
+		\textbf{dct\_euclidean}                  & \multicolumn{1}{c|}{0.8583333333}                         & \cellcolor[HTML]{34FF34}0.9416666667 \\ \hline
+		\textbf{dct\_canberra}                   & \multicolumn{1}{c|}{0.975}                                & \cellcolor[HTML]{34FF34}1            \\ \hline
+	\end{tabular}
+	\label{Tab: 4-hasilfiturtunggal}
+\end{table}
+
+Dari hasil yang terlihat pada Tabel \ref{Tab: 4-hasilfiturtunggal}, terlihat bahwa fitur \emph{sp\_corr} menjadi fitur terbaik dalam pembuatan model
+menggunakan fitur tunggal dengan akurasi 1. Selain itu, pada \emph{dataset} CDP 4 level, fitur \emph{dct\_canberra} juga menghasilkan model dengan akurasi 1.
+Secara mayoritas, akurasi model yang didapatkan oleh \emph{dataset} CDP 4 level lebih baik dari CDP 2 level. CDP 4 level unggul pada 7 fitur sedangkan CDP 2
+level hanya unggul pada 3 fitur. Pada \emph{dataset} CDP 2 level, fitur tunggal yang menghasilkan model dengan akurasi > 0,9 hanya 4 sedangkan pada
+\emph{dataset} CDP 4 level, fitur tunggal yang menghasilkan model dengan akurasi > 0,9 ada 9 fitur.
+
+Selanjutnya dapat dilihat pada Tabel \ref{Tab: 4-confusionmatrixfiturtunggal} \emph{confusion matrix} untuk mengetahui \emph{true negative}, \emph{false
+	positive}, \emph{false negative}, dan \emph{true positive} dari hasil prediksi model.
+
+% Please add the following required packages to your document preamble:
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil \emph{confusion matrix} prediksi model klasifikasi biner menggunakan fitur tunggal}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{|c|cc|cc|cc|cc|}
+			\hline
+			\multirow{2}{*}{\textbf{}} & \multicolumn{2}{c|}{\textbf{TN}}      & \multicolumn{2}{c|}{\textbf{FP}} & \multicolumn{2}{c|}{\textbf{FN}}      & \multicolumn{2}{c|}{\textbf{TP}}                                                                                                                       \\ \cline{2-9}
+			                           & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level}                 & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level}                 & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level} & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level} \\ \hline
+			\textbf{sp\_corr}          & \multicolumn{1}{c|}{60}               & 60                               & \multicolumn{1}{c|}{0}                & 0                                & \multicolumn{1}{c|}{0}                & 0                & \multicolumn{1}{c|}{60}               & 60               \\ \hline
+			\textbf{sp\_cosine}        & \multicolumn{1}{c|}{55}               & 57                               & \multicolumn{1}{c|}{5}                & 3                                & \multicolumn{1}{c|}{16}               & 4                & \multicolumn{1}{c|}{44}               & 56               \\ \hline
+			\textbf{sp\_euclidean}     & \multicolumn{1}{c|}{57}               & 60                               & \multicolumn{1}{c|}{3}                & 0                                & \multicolumn{1}{c|}{2}                & 2                & \multicolumn{1}{c|}{58}               & 58               \\ \hline
+			\textbf{sp\_canberra}      & \multicolumn{1}{c|}{52}               & 60                               & \multicolumn{1}{c|}{8}                & 0                                & \multicolumn{1}{c|}{7}                & 5                & \multicolumn{1}{c|}{53}               & 55               \\ \hline
+			\textbf{his\_corr}         & \multicolumn{1}{c|}{50}               & 32                               & \multicolumn{1}{c|}{10}               & 28                               & \multicolumn{1}{c|}{22}               & 23               & \multicolumn{1}{c|}{38}               & 37               \\ \hline
+			\textbf{his\_cosine}       & \multicolumn{1}{c|}{52}               & 47                               & \multicolumn{1}{c|}{8}                & 13                               & \multicolumn{1}{c|}{22}               & 24               & \multicolumn{1}{c|}{38}               & 36               \\ \hline
+			\textbf{his\_euclidean}    & \multicolumn{1}{c|}{57}               & 54                               & \multicolumn{1}{c|}{3}                & 6                                & \multicolumn{1}{c|}{34}               & 31               & \multicolumn{1}{c|}{26}               & 29               \\ \hline
+			\textbf{his\_canberra}     & \multicolumn{1}{c|}{59}               & 58                               & \multicolumn{1}{c|}{1}                & 2                                & \multicolumn{1}{c|}{9}                & 9                & \multicolumn{1}{c|}{51}               & 51               \\ \hline
+			\textbf{dct\_corr}         & \multicolumn{1}{c|}{51}               & 57                               & \multicolumn{1}{c|}{9}                & 3                                & \multicolumn{1}{c|}{15}               & 4                & \multicolumn{1}{c|}{45}               & 56               \\ \hline
+			\textbf{dct\_cosine}       & \multicolumn{1}{c|}{49}               & 57                               & \multicolumn{1}{c|}{11}               & 3                                & \multicolumn{1}{c|}{14}               & 4                & \multicolumn{1}{c|}{46}               & 56               \\ \hline
+			\textbf{dct\_euclidean}    & \multicolumn{1}{c|}{49}               & 55                               & \multicolumn{1}{c|}{11}               & 5                                & \multicolumn{1}{c|}{6}                & 2                & \multicolumn{1}{c|}{54}               & 58               \\ \hline
+			\textbf{dct\_canberra}     & \multicolumn{1}{c|}{60}               & 60                               & \multicolumn{1}{c|}{0}                & 0                                & \multicolumn{1}{c|}{3}                & 0                & \multicolumn{1}{c|}{57}               & 60               \\ \hline
+		\end{tabular}}
+	\label{Tab: 4-confusionmatrixfiturtunggal}
+\end{table}
+
 \subsection{Multi Fitur}
-\subsection{Analisis Perbandingan Hasil Klasifikasi Biner CDP yang Dilokalisasi Menggunakan Penanda ArUco dan Tanpa Penanda ArUco}
+Setelah melakukan pembuatan model menggunakan fitur tunggal, selanjutnya adalah mencoba pembuatan model menggunakan multi fitur, yaitu seluruh fitur koefisien
+jarak. Dengan penggunaan multi fitur, diharapkan dapat meningkatkan akurasi klasifikasi oleh model. Hasil pembuatan model menggunakan multi fitur pada
+\emph{dataset} CDP 2 level dapat dilihat pada Tabel \ref{Tab: 4-hasilmodel2level}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil pembuatan model multi fitur pada \emph{dataset} CDP 2 level}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{cccccc}
+			\hline
+			\multicolumn{1}{|c|}{\textbf{Model}} & \multicolumn{1}{c|}{\textbf{score\_test}} & \multicolumn{1}{c|}{\textbf{score\_val}} & \multicolumn{1}{c|}{\textbf{pred\_time\_test}} & \multicolumn{1}{c|}{\textbf{pred\_time\_val}} & \multicolumn{1}{c|}{\textbf{fit\_time}} \\ \hline
+			\multicolumn{1}{|c|}{LightGBM}       & \multicolumn{1}{c|}{1}                    & \multicolumn{1}{c|}{1}                   & \multicolumn{1}{c|}{0.0005340576172}           & \multicolumn{1}{c|}{0.0007388591766}          & \multicolumn{1}{c|}{0.2411730289}       \\ \hline
+			\multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}                      & \multicolumn{1}{l}{}                     & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                          & \multicolumn{1}{l}{}
+		\end{tabular}}
+	\label{Tab: 4-hasilmodel2level}
+\end{table}
+
+\noindent Pada pembuatan model multi fitur menggunakan \emph{dataset} CDP 2 level, hasil akurasi yang diperoleh sangat baik, yaitu 1, baik pada data tes maupun data validasi. Model LightGBM sendiri dipilih berdasarkan urutan pertama dari \emph{leaderboard} yang dikeluarkan oleh AutoGluon yang diurutkan berdasarkan akurasi model pada data tes dan data validasi serta waktu pembuatan model. Untuk hasil pembuatan model menggunakan multi fitur pada \emph{dataset} CDP 4 level dapat dilihat pada Tabel \ref{Tab: 4-hasilmodel4level}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Hasil pembuatan model multi fitur pada \emph{dataset} CDP 4 level}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{cccccc}
+			\hline
+			\multicolumn{1}{|c|}{\textbf{Model}} & \multicolumn{1}{c|}{\textbf{score\_test}} & \multicolumn{1}{c|}{\textbf{score\_val}} & \multicolumn{1}{c|}{\textbf{pred\_time\_test}} & \multicolumn{1}{c|}{\textbf{pred\_time\_val}} & \multicolumn{1}{c|}{\textbf{fit\_time}} \\ \hline
+			\multicolumn{1}{|c|}{XGBoost}        & \multicolumn{1}{c|}{1}                    & \multicolumn{1}{c|}{1}                   & \multicolumn{1}{c|}{0.003994226456}            & \multicolumn{1}{c|}{0.001306056976}           & \multicolumn{1}{c|}{0.07218408585}      \\ \hline
+			\multicolumn{1}{l}{}                 & \multicolumn{1}{l}{}                      & \multicolumn{1}{l}{}                     & \multicolumn{1}{l}{}                           & \multicolumn{1}{l}{}                          & \multicolumn{1}{l}{}
+		\end{tabular}}
+	\label{Tab: 4-hasilmodel4level}
+\end{table}
+
+Dari kedua \emph{dataset}, baik 2 level maupun 4 level, model klasifikasi biner mampu mendapatkan akurasi sempurna, dengan model LightGBM pada CDP 2 level dan
+XGBoost pada CDP 4 level. Selain itu, model AutoGluon juga mencoba beberapa model lain yang telah diurutkan menjadi sebuah \emph{leaderboard}. Hal ini dapat
+memudahkan pengembang model untuk memilih model terbaik dalam kasus yang mereka selesaikan. Untuk perbandingan hasil \emph{leaderboard} model antara CDP 2 dan
+4 level dapat dilihat pada Tabel \ref{Tab: 4-perbandinganleaderboard2vs4level}.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Perbandingan \emph{leaderboard} model CDP 2 dan 4 level}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{|cc|cc|cc|}
+			\hline
+			\multicolumn{2}{|c|}{\textbf{Model}}       & \multicolumn{2}{c|}{\textbf{score\_test}} & \multicolumn{2}{c|}{\textbf{score\_val}}                                                                               \\ \hline
+			\multicolumn{1}{|c|}{\textbf{2 Level}}     & \textbf{4 Level}                          & \multicolumn{1}{c|}{\textbf{2 Level}}    & \textbf{4 Level} & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level} \\ \hline
+			\multicolumn{1}{|c|}{LightGBM}             & XGBoost                                   & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{LightGBMLarge}        & CatBoost                                  & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{LightGBMXT}           & WeightedEnsemble\_L2                      & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{CatBoost}             & NeuralNetTorch                            & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{WeightedEnsemble\_L2} & KNeighborsDist                            & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{KNeighborsDist}       & NeuralNetFastAI                           & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{XGBoost}              & KNeighborsUnif                            & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{NeuralNetTorch}       & ExtraTreesEntr                            & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{KNeighborsUnif}       & ExtraTreesGini                            & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{ExtraTreesEntr}       & RandomForestEntr                          & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{ExtraTreesGini}       & RandomForestGini                          & \multicolumn{1}{c|}{1}                   & 1                & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{RandomForestEntr}     & LightGBMXT                                & \multicolumn{1}{c|}{0.9916666667}        & 0.9916666667     & \multicolumn{1}{c|}{1}                & 1                \\ \hline
+			\multicolumn{1}{|c|}{RandomForestGini}     & LightGBMLarge                             & \multicolumn{1}{c|}{0.9916666667}        & 0.9833333333     & \multicolumn{1}{c|}{1}                & 0.9821428571     \\ \hline
+			\multicolumn{1}{|c|}{NeuralNetFastAI}      & LightGBM                                  & \multicolumn{1}{c|}{0.975}               & 0.9833333333     & \multicolumn{1}{c|}{1}                & 0.9821428571     \\ \hline
+		\end{tabular}}
+	\label{Tab: 4-perbandinganleaderboard2vs4level}
+\end{table}
+
+\subsection{Analisis Perbandingan Akurasi Model pada CDP yang Dilokalisasi Menggunakan Penanda ArUco dan Tanpa Penanda ArUco}
+Untuk mengetahui efektivitas penggunaan ArUco, terutama pada hasil akurasi autentikasinya, penulis membandingkan penggunaan multi fitur dalam pembuatan model
+yang dibandingkan. Perbandingannya adalah antara CDP yang dilokalisasi menggunakan penanda ArUco (8 titik) dan CDP yang dilokalisasi tanpa menggunakan penanda
+ArUco (4 titik). Perbandingan pertama yang dilakukan adalah antara CDP 2 dan 4 level yang dilokalisasi tanpa menggunakan penanda ArUco.
+
+\begin{table}[!ht]
+	\centering
+	\caption{Perbandingan \emph{leaderboard} model CDP 2 dan 4 level pada \emph{dataset} CDP yang dilokalisasi tanpa penanda ArUco}
+	\vspace{0.5em}
+	\resizebox{\textwidth}{!}{\begin{tabular}{|cc|cc|cc|}
+			\hline
+			\multicolumn{2}{|c|}{\textbf{Model}}       & \multicolumn{2}{c|}{\textbf{score\_test}} & \multicolumn{2}{c|}{\textbf{score\_val}}                                                                               \\ \hline
+			\multicolumn{1}{|c|}{\textbf{2 Level}}     & \textbf{4 Level}                          & \multicolumn{1}{c|}{\textbf{2 Level}}    & \textbf{4 Level} & \multicolumn{1}{c|}{\textbf{2 Level}} & \textbf{4 Level} \\ \hline
+			\multicolumn{1}{|c|}{NeuralNetFastAI}      & NeuralNetFastAI                           & \multicolumn{1}{c|}{0.9666666667}        & 0.9833333333     & \multicolumn{1}{c|}{0.9821428571}     & 1                \\ \hline
+			\multicolumn{1}{|c|}{WeightedEnsemble\_L2} & WeightedEnsemble\_L2                      & \multicolumn{1}{c|}{0.9666666667}        & 0.9833333333     & \multicolumn{1}{c|}{0.9821428571}     & 1                \\ \hline
+			\multicolumn{1}{|c|}{NeuralNetTorch}       & NeuralNetTorch                            & \multicolumn{1}{c|}{0.9583333333}        & 0.9666666667     & \multicolumn{1}{c|}{0.9821428571}     & 0.9285714286     \\ \hline
+			\multicolumn{1}{|c|}{ExtraTreesGini}       & LightGBMLarge                             & \multicolumn{1}{c|}{0.9583333333}        & 0.9583333333     & \multicolumn{1}{c|}{0.9642857143}     & 0.9285714286     \\ \hline
+			\multicolumn{1}{|c|}{ExtraTreesEntr}       & RandomForestEntr                          & \multicolumn{1}{c|}{0.9583333333}        & 0.9416666667     & \multicolumn{1}{c|}{0.9464285714}     & 0.9107142857     \\ \hline
+			\multicolumn{1}{|c|}{KNeighborsDist}       & RandomForestGini                          & \multicolumn{1}{c|}{0.925}               & 0.9333333333     & \multicolumn{1}{c|}{0.9285714286}     & 0.9107142857     \\ \hline
+			\multicolumn{1}{|c|}{KNeighborsUnif}       & ExtraTreesEntr                            & \multicolumn{1}{c|}{0.925}               & 0.9333333333     & \multicolumn{1}{c|}{0.9107142857}     & 0.8928571429     \\ \hline
+			\multicolumn{1}{|c|}{LightGBM}             & LightGBMXT                                & \multicolumn{1}{c|}{0.9166666667}        & 0.9166666667     & \multicolumn{1}{c|}{0.9642857143}     & 0.9285714286     \\ \hline
+			\multicolumn{1}{|c|}{CatBoost}             & CatBoost                                  & \multicolumn{1}{c|}{0.9083333333}        & 0.9166666667     & \multicolumn{1}{c|}{0.9642857143}     & 0.9285714286     \\ \hline
+			\multicolumn{1}{|c|}{RandomForestGini}     & KNeighborsDist                            & \multicolumn{1}{c|}{0.9083333333}        & 0.9166666667     & \multicolumn{1}{c|}{0.9464285714}     & 0.9107142857     \\ \hline
+			\multicolumn{1}{|c|}{RandomForestEntr}     & ExtraTreesGini                            & \multicolumn{1}{c|}{0.9083333333}        & 0.9166666667     & \multicolumn{1}{c|}{0.9464285714}     & 0.9107142857     \\ \hline
+			\multicolumn{1}{|c|}{LightGBMLarge}        & XGBoost                                   & \multicolumn{1}{c|}{0.9}                 & 0.9083333333     & \multicolumn{1}{c|}{0.9464285714}     & 0.875            \\ \hline
+			\multicolumn{1}{|c|}{XGBoost}              & KNeighborsUnif                            & \multicolumn{1}{c|}{0.8833333333}        & 0.9              & \multicolumn{1}{c|}{0.9642857143}     & 0.9285714286     \\ \hline
+			\multicolumn{1}{|c|}{LightGBMXT}           & LightGBM                                  & \multicolumn{1}{c|}{0.8583333333}        & 0.9              & \multicolumn{1}{c|}{0.9464285714}     & 0.9285714286     \\ \hline
+		\end{tabular}}
+	\label{Tab: 4-perbandinganleaderboard2vs4leveltanpaaruco}
+\end{table}
+
+Dari Tabel \ref{Tab: 4-perbandinganleaderboard2vs4leveltanpaaruco} dapat dilihat bahwa hasil akurasi model pada data tes tertinggi yang diperoleh pada \emph{dataset} CDP yang dilokalisasi tanpa menggunakan penanda ArUco adalah 0,967 pada CDP 2 level dan 0,983 pada CDP 4 level. Pada data validasi skor tertinggi yang diperoleh adalah 0,982 pada CDP 2 level dan 1 pada CDP 4 level. Dari hasil ini didapatkan bahwa hasil lokalisasi CDP menggunakan penanda ArUco (8 titik) lebih baik dengan yang tanpa menggunakan penanda ArUco (4 titik), baik dari kemiripinnya dengan \emph{template} ataupun dari akurasi klasifikasi biner oleh model. Selain itu, pada \emph{dataset} yang kurang baik (CDP hasil lokalisasi 4 titik), CDP 4 level memiliki hasil akurasi yang lebih baik dibandingkan CDP 2 level. Hal tersebut menjawab hipotesis yang dituliskan penulis di awal, yaitu lokalisasi CDP menggunakan penanda ArUco (8 titik) lebih baik daripada tanpa penanda ArUco (4 titik) dan CDP dengan 4 level \emph{grayscale} lebih baik untuk digunakan dalam mengautentikasi SQR. Kedua hipotesis tersebut terbukti benar dari hasil penelitian yang didapatkan.
 
 \section{Perbandingan Hasil Penelitian dengan Hasil Terdahulu}
 
