@@ -10,9 +10,9 @@
 \end{figure}
 
 Hasil akhir dari desain SQR yang penulis buat dapat dilihat pada Gambar \ref{Fig: 4-modelsqrfinal}. Versi kode QR yang digunakan adalah kode QR versi 3, dengan
-29 modul dan 20 \emph{box-size}, sehingga jika dikalikan ukurannya menjadi 580x580 piksel. Selain itu, ditambahkan \emph{padding} berukuran 70 piksel, sehingga
-ukuran total dari SQR adalah 720x720 piksel. \emph{Watermark} berukuran 180x180 piksel diletakkan di tengah-tengah kode QR. Di dalam \emph{watermark} tersebut
-terdapat CDP berukuran 100x100 piksel serta delapan penanda ArUco berukuran 28x28 piksel. Penanda ArUco yang digunakan adalah penanda ArUco dengan tipe 4 modul
+29 modul dan 20 \emph{box-size}, sehingga jika dikalikan ukurannya menjadi 580 x 580 piksel. Selain itu, ditambahkan \emph{padding} berukuran 70 piksel, sehingga
+ukuran total dari SQR adalah 720 x 720 piksel. \emph{Watermark} berukuran 180x180 piksel diletakkan di tengah-tengah kode QR. Di dalam \emph{watermark} tersebut
+terdapat CDP berukuran 100 x 100 piksel serta delapan penanda ArUco berukuran 28 x 28 piksel. Penanda ArUco yang digunakan adalah penanda ArUco dengan tipe 4 modul
 mulai dari id = 0 s.d. id = 7, sehingga lebih mudah dideteksi oleh program karena bentuknya yang relatif lebih sederhana dibandingkan penanda ArUco yang
 memiliki ukuran modul lebih tinggi.
 
@@ -43,7 +43,7 @@ gambar yang dipotret menggunakan Iphone XR dapat dilihat pada Gambar \ref{Fig: 4
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=7.5cm]{contents/chapter-4/4-hasilfotoiphonexr.png}
-	\caption{Hasil akhir desain SQR}
+	\caption{Hasil pemotretan SQR menggunakan perangkat Iphone XR}
 	\label{Fig: 4-hasilfotoiphonexr}
 \end{figure}
 
@@ -214,13 +214,13 @@ yang diproses lebih berkualitas.
 % \subsection{Perbandingan Hasil CDP \emph{Template}, Orisinal, dan Palsu}
 \subsection{Analisis Signifikansi CDP 2 dan 4 Level}
 Analisis ini digunakan untuk mengetahui apakah ada perbedaan karakteristik yang mencolok antara CDP 2 dan 4 level, baik orisinal maupun palsu, diukur dari
-jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-Test} untuk menguji signifikansi antara data kelompok CDP orisinal 2
+jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-test} untuk menguji signifikansi antara data kelompok CDP orisinal 2
 dan 4 level dan juga CDP palsu 2 dan 4 level. Selain itu, dilakukan visualisasi plot distribusi untuk melihat secara visual karakteristik dan perbedaan dari
 kedua data grup berdasarkan jaraknya dengan \emph{template} untuk tiap-tiap koefisien jarak.
 
 \begin{table}[!ht]
 	\centering
-	\caption{Hasil pengujian \emph{T-Test} pada data grup fitur jarak CDP 2 dan 4 level}
+	\caption{Hasil pengujian \emph{T-test} pada data grup fitur jarak CDP 2 dan 4 level}
 	\vspace{0.5em}
 	\begin{tabular}{|c|cc|cc|}
 		\hline
@@ -266,7 +266,7 @@ Hasilnya dapat dilihat pada Gambar \ref{Fig: 4-ori2levelvsori4level} dan Gambar 
 \end{figure}
 
 Dari plot distribusi yang ditunjukkan Gambar \ref{Fig: 4-ori2levelvsori4level} dan Gambar \ref{Fig: 4-fake2levelvsfake4level}, terlihat bahwa fitur histogram
-dapat memisahkan CDP 2 dan 4 level, baik pada CDP orisinal maupun palsu. Hal ini sesuai dengan hasil pengujian statistik \emph{T-Test} dengan empat peringkat
+dapat memisahkan CDP 2 dan 4 level, baik pada CDP orisinal maupun palsu. Hal ini sesuai dengan hasil pengujian statistik \emph{T-test} dengan empat peringkat
 teratas untuk jarak yang memiliki perbedaan paling signifikan, memisahkan 2 dan 4 level adalah \emph{his\_canberra}, \emph{his\_cosine}, \emph{his\_euclidean},
 dan \emph{his\_corr}. Hasil lain yang diperoleh adalah CDP 4 level memiliki jarak yang lebih dekat dengan \emph{template} dibandingkan CDP 2 level. Hal ini
 menunjukkan bahwa CDP 4 level lebih sulit terdegradasi melalui proses P\&S dibandingkan CDP 2 level. Analisis selanjutnya adalah melihat signifikansi antara
@@ -274,13 +274,13 @@ CDP orisinal dan palsu berdasarkan fitur jaraknya.
 
 \subsection{Analisis Signifikansi CDP Orisinal dan Palsu}
 Analisis ini digunakan untuk mengetahui apakah ada perbedaan karakteristik yang mencolok antara CDP orisinal dan palsu, baik 2 level maupun 4 level, diukur
-dari jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-Test} untuk menguji signifikansi antara data kelompok CDP 2
+dari jaraknya dengan \emph{template}. Analisis dilakukan dengan melakukan uji statistik \emph{T-test} untuk menguji signifikansi antara data kelompok CDP 2
 level orisinal dan palsu dan juga CDP 4 level orisinal dan palsu. Selain itu, dilakukan visualisasi plot distribusi untuk melihat secara visual karakteristik
 dan perbedaan dari kedua data grup berdasarkan jaraknya dengan \emph{template} untuk tiap-tiap koefisien jarak.
 
 \begin{table}[!ht]
 	\centering
-	\caption{Hasil pengujian \emph{T-Test} pada data grup fitur jarak CDP orisinal dan palsu}
+	\caption{Hasil pengujian \emph{T-test} pada data grup fitur jarak CDP orisinal dan palsu}
 	\vspace{0.5em}
 	\begin{tabular}{|c|cc|cc|}
 		\hline
@@ -495,8 +495,3 @@ ArUco (4 titik). Perbandingan pertama yang dilakukan adalah antara CDP 2 dan 4 l
 \end{table}
 
 Dari Tabel \ref{Tab: 4-perbandinganleaderboard2vs4leveltanpaaruco} dapat dilihat bahwa hasil akurasi model pada data tes tertinggi yang diperoleh pada \emph{dataset} CDP yang dilokalisasi tanpa menggunakan penanda ArUco adalah 0,967 pada CDP 2 level dan 0,983 pada CDP 4 level. Pada data validasi skor tertinggi yang diperoleh adalah 0,982 pada CDP 2 level dan 1 pada CDP 4 level. Dari hasil ini didapatkan bahwa hasil lokalisasi CDP menggunakan penanda ArUco (8 titik) lebih baik dengan yang tanpa menggunakan penanda ArUco (4 titik), baik dari kemiripinnya dengan \emph{template} ataupun dari akurasi klasifikasi biner oleh model. Selain itu, pada \emph{dataset} yang kurang baik (CDP hasil lokalisasi 4 titik), CDP 4 level memiliki hasil akurasi yang lebih baik dibandingkan CDP 2 level. Hal tersebut menjawab hipotesis yang dituliskan penulis di awal, yaitu lokalisasi CDP menggunakan penanda ArUco (8 titik) lebih baik daripada tanpa penanda ArUco (4 titik) dan CDP dengan 4 level \emph{grayscale} lebih baik untuk digunakan dalam mengautentikasi SQR. Kedua hipotesis tersebut terbukti benar dari hasil penelitian yang didapatkan.
-
-\section{Perbandingan Hasil Penelitian dengan Hasil Terdahulu}
-
-Pembahasan penutup dapat menjelaskan mengenai kelebihan hasil pengembangan / penelitian dan kekurangan dibandingkan dengan skripsi atau penelitian terdahulu
-atau perbandingan terhadap produk lain yang ada di pasaran. Penulis dapat menggunakan tabel untuk membandingkan secara gamblang dan menjelaskannya.

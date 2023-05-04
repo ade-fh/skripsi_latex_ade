@@ -1,5 +1,17 @@
-Intisari ditulis menggunakan bahasa Indonesia dengan jarak antar baris 1 spasi dan maksimal 1 halaman. Intisari sekurang-kurangnya berisi tentang latar belakang dan tujuan penelitian, metodologi yang digunakan, hasil penelitian, kesimpulan dan implikasi, dan Kata kunci yang berhubungan dengan penelitian.
+Pembajakan produk atau yang dikenal juga sebagai tindakan pemalsuan, merupakan suatu tindakan ilegal yang dilakukan dengan tujuan memperoleh keuntungan dengan
+cara meniru atau menyalin produk asli yang sudah dipatenkan atau memiliki hak cipta. Pada tahun 2016 perdagangan barang palsu dan bajakan mencapai angka \$509
+miliar (3,3\% dari total perdagangan dunia). Untuk mengatasi permasalahan tersebut, produsen dapat menggunakan \emph{secure QR code} (SQR) yang ditempelkan di
+produk. SQR merupakan kode QR biasa yang dilengkapi \emph{copy detection pattern} (CDP). CDP merupakan sebuah pola matriks yang tahan terhadap penyalinan.
+Melalui proses \emph{print} \& \emph{scan} (P\&S), CDP akan terdegradasi kualitasnya, sehingga dapat dibedakan antara CDP orisinal dan palsu. Penelitian
+sebelumnya yang menggunakan CDP dengan 2 level \emph{grayscale} dapat diautentikasi dengan baik. Namun, dari penelitian lain yang melakukan penyerangan
+terhadap CDP, didapatkan nilai \emph{bit error rate} (BER) CDP hasil estimasi terbaik sebesar 9,91\%. Semakin kecil nilai BER, semakin mirip CDP hasil estimasi
+dengan CDP orisinal. CDP dengan 4 level \emph{grayscale} akan jauh lebih aman karena nilai piksel pada CDP tidak hanya hitam dan putih, melainkan gradasi
+dengan 4 level yang berbeda. Penelitian ini mencoba untuk mengembangkan dan menganalisis SQR dengan 2 dan 4 level CDP. Selain itu, penelitian ini juga
+menambahkan komponen penanda ArUco untuk membantu lokalisasi objek CDP yang nantinya akan dijadikan komponen autentikasi. Penggunaan 8 penanda ArUco bertujuan
+untuk mengatasi masalah lokalisasi objek CDP pada SQR ketika SQR tidak dalam kondisi yang ideal.
 
-Kata Kunci ditulis maksimal 5 kata yang paling berhubungan dengan isi skripsi. Silakan mengacu pada ACM / IEEE \textit{Computing classification} jika Anda adalah mahasiswa Sarjana TI \textcolor{blue}{http://www.acm.org/about/class/} atau mengacu kepada IEEE keywords \textcolor{blue}{http://www.ieee.org/documents/taxonomy\_v101.pdf} jika Anda berasal dari Prodi Sarjana TE.
+Hasilnya, diukur menggunakan koefisien jarak korelasi, kosinus, dan \emph{euclidean} CDP yang dilokalisasi menggunakan penanda ArUco lebih mirip dengan \emph{template}. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 8 penanda ArUco, akurasi autentikasi menggunakan model multi fitur adalah 100\%, baik CDP 2
+maupun 4 level. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 4 titik sudut kode QR, akurasi autentikasinya adalah 0,967 pada CDP 2 level dan 0,981
+pada CDP 4 level. Hal tersebut menunjukkan CDP 4 level dapat diautentikasi lebih baik daripada CDP 2 level.
 
-\noindent{Kata kunci} : Kata kunci 1, Kata kunci 2, Kata kunci 3, Kata kunci 4, Kata kunci 5
+\noindent{Kata kunci} : \emph{Copy Detection Pattern}, \emph{Secure QR Code}, \emph{ArUco Marker}, AutoML, AutoGluon, Anti-Pemalsuan

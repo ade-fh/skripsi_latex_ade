@@ -1,23 +1,476 @@
 \chapter*{LAMPIRAN}
-\section{Isi Lampiran}
-
-Lampiran bersifat opsional bergantung hasil kesepakatan dengan pembimbing 
-dapat berupa:
-
-\begin{enumerate}
-\item Bukti pelaksanaan Kuesioner seperti pertanyaan kuesioner, resume jawaban 
-responden, dan dokumentasi kuesioner. 
-\item Spesifikasi Aplikasi atau Sistem yang dikembangkan meliputi spesifikasi 
-teknis aplikasi, tautan unduh aplikasi, manual penggunaan aplikasi, hingga 
-screenshot aplikasi. 
-\item Cuplikan kode yang sekiranya penting dan ditambahkan. 
-\item Tabel yang terlalu panjang yang masih diperlukan tetapi tidak 
-memungkinkan untuk ditayangkan di bagian utama skripsi.
-\item Gambar-gambar pendukung yang tidak terlalu penting untuk ditampilkan di 
-bagian utama. Akan tetapi, mendukung argumentasi/pengamatan/analisis.
-\item Penurunan rumus-rumus atau pembuktian suatu teorema yang terlalu 
-panjang dan terlalu teknis sehingga Anda berasumsi bahwa pembaca biasa 
-tidak akan menelaah lebih lanjut. Hal ini digunakan untuk memberikan 
-kesempatan bagi pembaca tingkat lanjut untuk melihat proses penurunan 
-rumus-rumus ini.
-\end{enumerate}
+\section{Kode Sumber}
+\subsection{Kode Sumber Utama}
+\begin{lstlisting}[language=Python]
+    import pandas as pd
+    import seaborn as sns
+    import qrcode
+    import numpy as np
+    import math
+    import hashlib
+    import random
+    import cv2
+    from pillow_heif import register_heif_opener
+    import shutil
+    
+    from scipy.stats import ttest_ind
+    from scipy.spatial.distance import pdist
+    from scipy.special import rel_entr
+    from scipy.spatial import distance
+    from scipy.fftpack import dct
+    from scipy.ndimage import gaussian_filter
+    
+    from skimage.feature import match_template
+    from sklearn.preprocessing import MinMaxScaler
+    import matplotlib.pyplot as plt
+    from PIL import Image
+    from cv2 import aruco
+    from pathlib import Path
+    import os
+    
+    SECRET = "rispro"
+    
+    pd.set_option("display.max_rows", 50)
+    pd.set_option("display.max_columns", None)
+    
+    qrDecoder = cv2.QRCodeDetector()
+    aruco_dict = aruco.getPredefinedDictionary(aruco.DICT_4X4_50)
+    parameters = aruco.DetectorParameters_create()
+    register_heif_opener()
+    
+    
+    def minimal_distance(points):
+        min_distance = float("inf")
+        for i in range(len(points)):
+            for j in range(i + 1, len(points)):
+                min_distance = min(min_distance, math.sqrt((points[i][0] - points[j][0]) ** 2 + (points[i][1] - points[j][1]) ** 2))
+        return int(min_distance)
+    
+    
+    def generate_watermark_with_aruco_marker(data: str, quant: int, aruco_size: int, wtm_size: tuple = (100, 100), secret: str = SECRET) -> np.ndarray:
+        s = data + secret
+        # String diencode jadi byte string, dicari hexdigestnya atau nilai hashnya menggunakan algoritma sha1, mengubah output hexdigest string jadi integer 16 bit, lalu mengambil nilai absolutnya (harus positif) lalu disederhanakan menjadi 32 bit integer
+        seed = abs(int(hashlib.sha1(s.encode("utf-8")).hexdigest(), 16)) % 2**32
+        random.seed(seed)
+        np.random.seed(seed)
+    
+        dist = [(i * 255 // (quant - 1)) if (i * 255 // (quant - 1)) <= 255 else 255 for i in range(quant)]  # Membuat distribusi elemen [0, 255]
+        distribution = [[random.randint(1, 3) for j in range(quant)] for i in range(10)]  # Membuat distribusi perbandingan tiap2 elemen kuantisasi sebanyak 10 macam, maksimal perbandingan 1:3 -> [[1, 2], [1, 3], ..., [1,1]]
+        # Repeat the array of values "dist" a random number "random.choice(distribution) -> [1,2]" of times
+        element_distribution = np.repeat(dist, random.choice(distribution))
+        # Membuat array sampling berukuran "size" dengan tiap elemen dapat diulang dari distribusi elemen yang sudah digenerate
+        wtm = np.random.choice(element_distribution, size=wtm_size, replace=True)
+    
+        padding_size = 40
+        wtm_pad = np.pad(wtm, (padding_size), constant_values=255)
+    
+        marker_list = [aruco.drawMarker(aruco_dict, i, aruco_size) for i in range(8)]
+    
+        yloc1 = wtm_pad.shape[0] // 2 - wtm.shape[0] // 2 - padding_size // 2 - aruco_size // 2
+        yloc2 = wtm_pad.shape[0] // 2 - aruco_size // 2
+        yloc3 = wtm_pad.shape[0] // 2 + wtm.shape[0] // 2 + padding_size // 2 - aruco_size // 2
+        xloc1 = wtm_pad.shape[0] // 2 - wtm.shape[0] // 2 - padding_size // 2 - aruco_size // 2
+        xloc2 = wtm_pad.shape[0] // 2 - aruco_size // 2
+        xloc3 = wtm_pad.shape[0] // 2 + wtm.shape[0] // 2 + padding_size // 2 - aruco_size // 2
+    
+        wtm_pad[yloc1 : yloc1 + aruco_size, xloc1 : xloc1 + aruco_size] = marker_list[0]
+        wtm_pad[yloc1 : yloc1 + aruco_size, xloc2 : xloc2 + aruco_size] = marker_list[1]
+        wtm_pad[yloc1 : yloc1 + aruco_size, xloc3 : xloc3 + aruco_size] = marker_list[2]
+        wtm_pad[yloc2 : yloc2 + aruco_size, xloc1 : xloc1 + aruco_size] = marker_list[3]
+        wtm_pad[yloc2 : yloc2 + aruco_size, xloc3 : xloc3 + aruco_size] = marker_list[4]
+        wtm_pad[yloc3 : yloc3 + aruco_size, xloc1 : xloc1 + aruco_size] = marker_list[5]
+        wtm_pad[yloc3 : yloc3 + aruco_size, xloc2 : xloc2 + aruco_size] = marker_list[6]
+        wtm_pad[yloc3 : yloc3 + aruco_size, xloc3 : xloc3 + aruco_size] = marker_list[7]
+    
+        return wtm_pad.astype("uint8"), wtm.astype("uint8")
+    
+    
+    def generate_sqr(data: str, quant: int, aruco_size: int, qr_ver: int = 3, secret: str = SECRET) -> np.ndarray:
+        qr = qrcode.make(data, version=qr_ver, box_size=20, border=3, error_correction=qrcode.constants.ERROR_CORRECT_H)
+        qr = np.asanyarray(qr).astype("uint8") * 255
+        wtm_pad, wtm = generate_watermark_with_aruco_marker(data=data, quant=quant, aruco_size=aruco_size, secret=secret)
+    
+        loc = qr.shape[0] // 2 - wtm_pad.shape[0] // 2
+        qr[loc : loc + wtm_pad.shape[0], loc : loc + wtm_pad.shape[0]] = wtm_pad
+        qr = np.pad(qr, 9, constant_values=255)
+        qr = np.pad(qr, 1, constant_values=0)
+    
+        return qr.astype("uint8"), wtm.astype("uint8")
+    
+    
+    def detect_qr(srcpath, interpolation, result_type: str = "nparray", blur: bool = True, ksize: int = 7):
+        interpolation = eval(f"cv2.{interpolation}")
+        raw_image = np.asanyarray(Image.open(srcpath).convert("L"))
+        if blur:
+            # blurred_raw_image = cv2.medianBlur(raw_image, ksize=ksize)
+            blurred_raw_image = cv2.GaussianBlur(raw_image, (ksize, ksize), 0)
+        yz = int(raw_image.shape[0])
+        xz = int(raw_image.shape[1])
+        scale_factor_list = [i / 10 for i in reversed(range(1, 11))]
+        for scale_factor in scale_factor_list:
+            y = int(yz * scale_factor)
+            x = int(xz * scale_factor)
+            if blur:
+                scaled_blurred_image = cv2.resize(blurred_raw_image, (x, y), interpolation=interpolation)
+                data, points, _ = qrDecoder.detectAndDecode(scaled_blurred_image)
+            else:
+                scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                data, points, _ = qrDecoder.detectAndDecode(scaled_image)
+            try:
+                if len(points[0]) == 4 and data != "":
+                    if blur:
+                        scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                    x = [p[0] for p in points[0]]
+                    y = [p[1] for p in points[0]]
+                    size = minimal_distance(points[0])
+                    src = np.float32([points[0]])
+                    dst = np.float32([[0, 0], [size, 0], [size, size], [0, size]])
+                    H, _ = cv2.findHomography(src, dst)
+                    cropped_qr = cv2.warpPerspective(scaled_image, H, (size, size))
+                    if result_type == "nparray":
+                        return cropped_qr
+                    elif result_type == "string":
+                        return f"QR detection success, with scale factor: {scale_factor}!"
+                    elif result_type == "data":
+                        return data
+                    elif result_type == "cdp":
+                        length = cropped_qr.shape[0]
+                        crop_size = int(length * 100 / 580)
+                        start_pos = int((length - crop_size) / 2)
+                        end_pos = start_pos + crop_size
+                        cdp = cropped_qr[start_pos:end_pos, start_pos:end_pos]
+                        return cdp
+            except:
+                continue
+        if result_type == "nparray":
+            return np.empty((0, 0))
+        elif result_type == "string":
+            return "Failed to detect QR!"
+        elif result_type == "data":
+            return "Data not detected!"
+    
+    
+    def detect_qr2(srcpath, interpolation, result_type: str = "nparray", blur: bool = True, ksize: int = 7):
+        interpolation = eval(f"cv2.{interpolation}")
+        raw_image = np.asanyarray(Image.open(srcpath).convert("L"))
+        if blur:
+            # blurred_raw_image = cv2.medianBlur(raw_image, ksize=ksize)
+            blurred_raw_image = cv2.GaussianBlur(raw_image, (ksize, ksize), 0)
+        yz = int(raw_image.shape[0])
+        xz = int(raw_image.shape[1])
+        scale_factor_list = [i / 10 for i in reversed(range(1, 11))]
+        for scale_factor in scale_factor_list:
+            y = int(yz * scale_factor)
+            x = int(xz * scale_factor)
+            if blur:
+                scaled_blurred_image = cv2.resize(blurred_raw_image, (x, y), interpolation=interpolation)
+                data, points, _ = qrDecoder.detectAndDecode(scaled_blurred_image)
+            else:
+                scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                data, points, _ = qrDecoder.detectAndDecode(scaled_image)
+            try:
+                if len(points[0]) == 4 and data != "":
+                    if blur:
+                        scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                    x = [p[0] for p in points[0]]
+                    y = [p[1] for p in points[0]]
+                    size = minimal_distance(points[0])
+                    src = np.float32([points[0]])
+                    dst = np.float32([[0, 0], [580, 0], [580, 580], [0, 580]])
+                    H, _ = cv2.findHomography(src, dst)
+                    cropped_qr = cv2.warpPerspective(scaled_image, H, (580, 580))
+                    if result_type == "nparray":
+                        return cropped_qr
+                    elif result_type == "string":
+                        return f"QR detection success, with scale factor: {scale_factor}!"
+                    elif result_type == "data":
+                        return data
+                    elif result_type == "cdp":
+                        length = cropped_qr.shape[0]
+                        print(length)
+                        crop_size = 100
+                        start_pos = int((length - crop_size) / 2)
+                        end_pos = start_pos + crop_size
+                        cdp = cropped_qr[start_pos:end_pos, start_pos:end_pos]
+                        return cdp
+            except:
+                continue
+        if result_type == "nparray":
+            return np.empty((0, 0))
+        elif result_type == "string":
+            return "Failed to detect QR!"
+        elif result_type == "data":
+            return "Data not detected!"
+    
+    
+    def detect_aruco(srcpath, interpolation: str, result_type: str = "nparray", blur: bool = True, ksize: int = 5):
+        interpolation = eval(f"cv2.{interpolation}")
+        raw_image = np.asanyarray(Image.open(srcpath).convert("L"))
+        yz = int(raw_image.shape[0])
+        xz = int(raw_image.shape[1])
+        if blur:
+            # blurred_raw_image = cv2.medianBlur(raw_image, ksize=ksize)
+            blurred_raw_image = cv2.GaussianBlur(raw_image, (ksize, ksize), 0)
+        scale_factor_list = [i / 10 for i in reversed(range(1, 11))]
+        for scale_factor in scale_factor_list:
+            y = int(yz * scale_factor)
+            x = int(xz * scale_factor)
+            if blur:
+                scaled_blurred_image = cv2.resize(blurred_raw_image, (x, y), interpolation=interpolation)
+                corners, ids, _ = aruco.detectMarkers(scaled_blurred_image, aruco_dict, parameters=parameters)
+            else:
+                scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                corners, ids, _ = aruco.detectMarkers(scaled_image, aruco_dict, parameters=parameters)
+            try:
+                if len(corners) == 8:
+                    if blur:
+                        scaled_image = cv2.resize(raw_image, (x, y), interpolation=interpolation)
+                    raw_coordinates_dict = {}
+                    index = 0
+                    for id in ids:
+                        raw_coordinates_dict[int(id)] = corners[index]
+                        index += 1
+                    xy_list = []
+                    for i in range(8):
+                        c = raw_coordinates_dict[i][0]
+                        xy_list.append([c[:, 0].mean(), c[:, 1].mean()])
+                    # print(xy_list)
+                    points = [xy_list[i] for i in [0, 2, 5, 7]]
+                    min_dist = minimal_distance(points)
+                    x = min_dist
+                    src = np.float32([xy_list])
+                    dst = np.float32([[0, 0], [x, 0], [2 * x, 0], [0, x], [2 * x, x], [0, 2 * x], [x, 2 * x], [2 * x, 2 * x]])
+                    H, _ = cv2.findHomography(src, dst)
+                    cdp_with_marker = cv2.warpPerspective(scaled_image, H, (min_dist * 2, min_dist * 2))
+                    length = cdp_with_marker.shape[0]
+                    crop_size = int(length * 100 / 140)
+                    start_pos = int((length - crop_size) / 2)
+                    end_pos = start_pos + crop_size
+                    cdp = cdp_with_marker[start_pos:end_pos, start_pos:end_pos]
+                    if result_type == "nparray":
+                        # return cdp_with_marker with 2 times scaled up
+                        # return cv2.resize(
+                        #     cdp, (200, 200), interpolation=cv2.INTER_CUBIC)
+                        return cv2.resize(cdp, (100, 100), interpolation=interpolation)
+                        # return cdp_with_marker
+                    elif result_type == "string":
+                        return f"CDP detection with markers success with scale factor: {scale_factor}!"
+            except:
+                continue
+        if result_type == "nparray":
+            return np.empty((0, 0))
+        elif result_type == "string":
+            return f"CDP Detection with marker failed, corners detected: {len(corners)}!"
+    
+    
+    def generate_original_batch_a3(dstpath, first: int, last: int, quant: int, aruco_size: int = 30):
+        col = []
+        row = []
+        quant = quant
+        first = first
+        last = last
+        aruco_size = aruco_size
+        for i in range(first, last + 1, 1):
+            qr, _ = generate_sqr(data=f"DATA_{i:03}_{quant}LEVEL_NEW", quant=quant, aruco_size=aruco_size)
+            col.append(qr)
+            if i % 5 == 0:
+                row.append(np.hstack(col))
+                col = []
+        result = np.vstack(row)
+        result = result.astype("uint8")
+        result = np.pad(result, ((281, 282), (353, 354)), constant_values=255)  # Y dulu baru X
+        try:
+            os.makedirs(dstpath)
+        except:
+            pass
+        Image.fromarray(result).save(f"{dstpath}DATA_{first:03}_{last:03}_{quant}LEVEL_NEW_ORI.png")
+    
+    
+    def generate_fake(srcpath, dstpath, interpolation, quant: int, ksize: int, blur: bool = False):
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f)]
+        print(filename_list)
+        try:
+            os.makedirs(dstpath)
+        except:
+            pass
+        for i, filename in enumerate(filename_list):
+            data = filename.split(".")[0]
+            qr, wtm = generate_sqr(data=data, quant=quant, aruco_size=30)
+            loc = qr.shape[0] // 2 - 100 // 2
+            print(f"{filename}")
+            try:
+                fake_wtm = detect_aruco(srcpath=f"{srcpath}/{filename}", result_type="nparray", blur=blur, ksize=ksize, interpolation=interpolation)
+                qr[loc : loc + 100, loc : loc + 100] = fake_wtm
+                Image.fromarray(qr).save(f"{dstpath}/{data}_FAKE.png")
+            except:
+                continue
+    
+    
+    def generate_fake_batch_a3(srcpath, dstpath, first: int, last: int, aruco_size: int = 30, quant: int = 2):
+        col = []
+        row = []
+        quant = quant
+        first = first
+        last = last
+        aruco_size = aruco_size
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f)]
+        filename_list.sort()
+        print(filename_list)
+        print(len(filename_list))
+        for i in range(first, last + 1):
+            qr = np.asanyarray(Image.open(f"{srcpath}/{filename_list[i-1]}").convert("L"))
+            print(qr.shape[0])
+            col.append(qr)
+            if i % 5 == 0:
+                row.append(np.hstack(col))
+                col = []
+        result = np.vstack(row)
+        result = result.astype("uint8")
+        result = np.pad(result, ((259, 260), (338, 339)), constant_values=255)  # Y dulu baru X
+        try:
+            os.makedirs(dstpath)
+        except:
+            pass
+        Image.fromarray(result).save(f"{dstpath}DATA_{first:03}_{last:03}_{quant}LEVEL_ARC{aruco_size}_FAKE.png")
+    
+    
+    def batch_detection(srcpath, interpolation, blur: bool, detection_type: str, result_type: str, ksize: int = 7):
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f)]
+        filename_list.sort()
+        print(filename_list)
+        if detection_type == "aruco":
+            for i, filename in enumerate(filename_list):
+                print(i + 1, detect_aruco(srcpath=f"{srcpath}/{filename}", result_type=result_type, blur=blur, ksize=ksize, interpolation=interpolation))
+        elif detection_type == "qr":
+            if result_type == "rename_data":
+                for i, filename in enumerate(filename_list):
+                    data = detect_qr(srcpath=f"{srcpath}/{filename}", result_type="data", blur=blur, ksize=ksize, interpolation=interpolation)
+                    if os.path.exists(srcpath + data + "_" + str(i) + "." + filename.split(".")[1].split("_")[0]):
+                        os.rename(srcpath + filename, srcpath + data + "_" + str(i) + "." + filename.split(".")[1].split("_")[0])
+                    else:
+                        os.rename(srcpath + filename, srcpath + data + "." + filename.split(".")[1].split("_")[0])
+                    print(i + 1, data)
+            elif result_type == "string":
+                for i, filename in enumerate(filename_list):
+                    print(i + 1, detect_qr(srcpath=f"{srcpath}/{filename}", result_type=result_type, interpolation=interpolation))
+    
+    
+    def get_features(data: str, level: str, template: np.ndarray, scanned: np.ndarray, interpolation: str, sz: int = 400):
+        interpolation_class = eval(f"cv2.{interpolation}")
+        tmp_rsz = cv2.resize(template, (int(sz), int(sz)), interpolation=interpolation_class).astype(float)
+        scn_rsz = cv2.resize(scanned, (int(sz), int(sz)), interpolation=interpolation_class).astype(float)
+        # DCT Features
+        do = dct(scn_rsz).ravel()
+        dt = dct(tmp_rsz).ravel()
+    
+        # Histogram Features
+        ho = np.histogram(scn_rsz, bins=range(257))[0] / sz**2
+        ht = np.histogram(tmp_rsz, bins=range(257))[0] / sz**2
+    
+        # Spatial Features
+        scn_rsz = scn_rsz.ravel()
+        tmp_rsz = tmp_rsz.ravel()
+    
+        features = {
+            "interpolation": interpolation,
+            "data": data,
+            "sp_corr": pdist([scn_rsz, tmp_rsz], "correlation")[0],
+            "sp_cosine": pdist([scn_rsz, tmp_rsz], "cosine")[0],
+            "sp_euclidean": pdist([scn_rsz, tmp_rsz], "euclidean")[0],
+            "sp_canberra": pdist([scn_rsz, tmp_rsz], "canberra")[0],
+            "his_corr": pdist([ho, ht], "correlation")[0],
+            "his_cosine": pdist([ho, ht], "cosine")[0],
+            "his_euclidean": pdist([ho, ht], "euclidean")[0],
+            "his_canberra": pdist([ho, ht], "canberra")[0],
+            "dct_corr": pdist([do, dt], "correlation")[0],
+            "dct_cosine": pdist([do, dt], "cosine")[0],
+            "dct_euclidean": pdist([do, dt], "euclidean")[0],
+            "dct_canberra": pdist([do, dt], "canberra")[0],
+            "level": level,
+        }
+    
+        return features
+    
+    
+    def generate_features_csv(srcpath, dstpath, type: str):
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f) and srcpath + "/" + f != f"{srcpath}/.DS_Store"]
+    
+        result = []
+    
+        for i, filename in enumerate(filename_list):
+            # filename_split = filename.split("_")
+    
+            interpolation = "_".join(filename.split(".")[0].split("_")[1:3])
+            data = "_".join(filename.split(".")[0].split("_")[3:7])
+            level = filename.split(".")[0].split("_")[5]
+            print(level)
+            if level == "2LEVEL":
+                _, template = generate_sqr(data=data, quant=2, aruco_size=30)
+            elif level == "4LEVEL":
+                _, template = generate_sqr(data=data, quant=4, aruco_size=30)
+            scanned = np.asanyarray(Image.open(f"{srcpath}/{filename}").convert("L"))
+            features = get_features(data=data, template=template, scanned=scanned, interpolation=interpolation, level=level)
+            result.append(features)
+            print(i, filename)
+    
+        print(len(result))
+        df_features = pd.DataFrame(result)
+        df_features_sorted = df_features.sort_values(by=["interpolation", "data"], ascending=[True, True]).reset_index(drop=True)
+        df_features_sorted["label"] = f"{type}"
+        df_features_sorted.to_csv(f"{dstpath}{type}.csv", index=False)
+    
+    
+    def localize_cdp_from_raw_photo_batch(srcpath, dstpath):
+        RESIZING_INTERPOLATION = ["INTER_NEAREST", "INTER_LINEAR", "INTER_AREA", "INTER_CUBIC", "INTER_LANCZOS4"]
+    
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f) and srcpath + "/" + f != f"{srcpath}/.DS_Store"]
+    
+        try:
+            os.makedirs(dstpath)
+        except:
+            pass
+        for i, filename in enumerate(filename_list):
+            for interpolation in RESIZING_INTERPOLATION:
+                result = detect_aruco(srcpath=f"{srcpath}{filename}", interpolation=interpolation, result_type="nparray")
+                print(i, filename)
+                try:
+                    Image.fromarray(result).save(f"{dstpath}CDP_{interpolation}_{filename.split('.')[0]}.png")
+                except:
+                    continue
+    
+    
+    def localize_cdp_from_raw_photo_batch_inter_linear(srcpath, dstpath):
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f)]
+    
+        try:
+            os.makedirs(dstpath)
+        except:
+            pass
+        for i, filename in enumerate(filename_list):
+            result = detect_aruco(srcpath=f"{srcpath}{filename}", interpolation="INTER_LINEAR", result_type="nparray")
+            print(i, filename)
+            try:
+                Image.fromarray(result).save(f"{dstpath}INTER_LINEAR_{filename.split('.')[0]}.png")
+            except:
+                continue
+    
+    
+    def localize_cdp_from_raw_photo_batch_single(srcpath, dstpath, file_name):
+        RESIZING_INTERPOLATION = ["INTER_NEAREST", "INTER_LINEAR", "INTER_AREA", "INTER_CUBIC", "INTER_LANCZOS4"]
+        for interpolation in RESIZING_INTERPOLATION:
+            result = detect_aruco(srcpath=f"{srcpath}", interpolation=interpolation, result_type="nparray", blur=True, ksize=25)
+            Image.fromarray(result).save(f"{dstpath}{interpolation}_{file_name}.png")
+    
+    
+    def separate_cdp_2level_4level(srcpath, dstpath, level):
+        filename_list = [f for f in os.listdir(srcpath) if os.path.isfile(srcpath + "/" + f) and srcpath + "/" + f != f"{srcpath}/.DS_Store" if f.split("_")[4] == "{level}LEVEL"]
+        print(filename_list)
+        try:
+            os.mkdir(dstpath)
+        except:
+            pass
+        for filename in filename_list:
+            shutil.copy(f"{srcpath}{filename}", f"{dstpath}{filename}")    
+\end{lstlisting}
+% \subsection{Kode Sumber Pengolahan Data}
+% \subsection{Kode Sumber Pembuatan Model}

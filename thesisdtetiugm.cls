@@ -62,7 +62,7 @@
 \usepackage[table]{xcolor}
 \usepackage{geometry}% easy layouting
 \usepackage{graphicx}% easy layouting
-%\usepackage{hyperref}% hyperlink
+\usepackage{hyperref}% hyperlink
 \usepackage{subcaption} % subfigure
 \usepackage{tocloft}% edit font toc
 \usepackage{fancyhdr}% page number
