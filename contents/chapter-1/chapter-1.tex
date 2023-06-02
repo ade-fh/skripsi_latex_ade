@@ -7,38 +7,44 @@ dengan perkembangan teknologi. Di era digital, pembajakan produk semakin mudah d
 globalisasi mempermudah transportasi dan distribusi produk palsu dari satu negara ke negara lain. Pembajakan produk juga menyebabkan kerugian ekonomi yang
 signifikan bagi produsen dan pemilik hak merek, serta dapat membahayakan keselamatan konsumen. Hal ini terjadi karena pembajakan produk dapat merusak citra
 perusahaan, mengurangi pendapatan, serta merugikan konsumen yang membeli produk palsu yang seringkali berkualitas rendah dan dapat membahayakan diri, baik
-secara langsung maupun tidak langsung. \cite{BASCAP2016}
+secara langsung maupun tidak langsung \cite{BASCAP2016}.
 
 Teknologi percetakan dan pemindai digital telah mengalami perkembangan yang pesat selama beberapa dekade terakhir. Namun, kemajuan ini tidak hanya digunakan
 untuk kegiatan positif juga dimanfaatkan oleh pelaku pembajakan untuk memproduksi produk-produk bajakan. Dengan kemampuan teknologi percetakan dan pemindai
-yang semakin canggih, pembajakan produk menjadi lebih mudah, lebih cepat, dan lebih murah. \cite{HILL2007DIGITAL}
+yang semakin canggih, pembajakan produk menjadi lebih mudah, lebih cepat, dan lebih murah \cite{HILL2007DIGITAL}.
 
 Printer 2D beresolusi tinggi dan Printer 3D, memungkinkan pembuat produk bajakan untuk membuat produk-produk dengan kualitas hampir sama dengan produk asli.
 Pemindai 3D juga pembuat produk bajakan untuk menyalin produk asli hingga detail terkecil dengan cepat dan mudah. Selain itu, teknologi digital seperti desain
 grafis dan \emph{software} pemodelan juga memudahkan pelaku pembajakan dalam membuat desain dan cetakan produk tanpa harus membeli hak cipta atau paten produk
-tersebut. \cite{DEPOORTER2013INTELECTUAL}
+tersebut \cite{DEPOORTER2013INTELECTUAL}.
 
 \emph{Copy detection pattern} (CDP) merupakan sebuah matriks pola dengan ukuran tertentu yang peka terhadap salinan yang akan terdegradasi kualitasnya akibat proses \emph{print} \&
 \emph{scan} (P\&S). Jumlah informasi yang hilang atau terdegradasi digunakan untuk membedakan CDP asli atau palsu. CDP ini dapat diimplementasikan ke dalam kode QR.
 Kode QR yang dilengkapi CDP dalam penelitian ini nantinya akan disebut dengan \emph{secure QR code} (SQR). SQR dapat diimplementasikan pada produk untuk
-mengautentikasi keaslian produk. Penelitian sebelumnya menggunakan CDP dengan 2 level \emph{grayscale}. Hasilnya, CDP tersebut dapat digunakan untuk
-mengautentikasi SQR orisinal dan palsu dengan sangat baik. Namun, menurut penulis CDP dengan 2 level \emph{grayscale} mudah untuk disalin karena untuk menyalin
-tiap-tiap piksel dalam CDP, hanya ada 2 variasi yang mungkin, yaitu hitam dan putih.
+mengautentikasi keaslian produk.
 
-Seseorang dapat menyalin CDP asli melalui proses P\&S dan mengestimasi pola aslinya, yaitu \emph{template} atau CDP versi digitalnya. Matriks \emph{bit error
-      rate} (BER) digunakan untuk mengukur signifikansi antara CDP 2 level hasil estimasi dengan CDP 2 level \emph{template}. Dari penelitian sebelumnya yang
-menggunakan CDP dengan 2 level \emph{grayscale} didapatkan nilai BER minimal adalah 19,92\% \cite{PICARDCANCOPYDETECTIONPATTERN}. Penelitian selanjutnya yang
-membuat model estimasi menggunakan parameter yang lebih sedikit mendapatkan nilai BER minimal 9,91\% \cite{penelitianpaksyukron}. Semakin kecil nilai BER, maka
-semakin mungkin sebuah CDP 2 level diestimasi. Dari permasalahan tersebut, penulis mencoba untuk membuat model SQR yang dapat diautentikasi menggunakan CDP 4
-level \emph{grayscale} dan membandingkannya dengan CDP 2 level \emph{grayscale}. SQR yang didesain oleh penulis nantinya akan dilengkapi dengan sebuah
-\emph{watermark} yang didalamnya terdapat CDP dan juga delapan penanda ArUco.
+% Penelitian sebelumnya menggunakan CDP dengan 2 level \emph{grayscale}. Hasilnya, CDP tersebut dapat digunakan untuk
+% mengautentikasi SQR orisinal dan palsu dengan sangat baik. Namun, menurut penulis CDP dengan 2 level \emph{grayscale} mudah untuk disalin karena untuk menyalin
+% tiap-tiap piksel dalam CDP, hanya ada 2 variasi yang mungkin, yaitu hitam dan putih.
+
+% Seseorang dapat menyalin CDP asli melalui proses P\&S dan mengestimasi pola aslinya, yaitu \emph{template} atau CDP versi digitalnya. Matriks \emph{bit error
+%       rate} (BER) digunakan untuk mengukur signifikansi antara CDP 2 level hasil estimasi dengan CDP 2 level \emph{template}. Dari penelitian sebelumnya yang
+% menggunakan CDP dengan 2 level \emph{grayscale} didapatkan nilai BER minimal adalah 19,92\% \cite{PICARDCANCOPYDETECTIONPATTERN}. Penelitian selanjutnya yang
+% membuat model estimasi menggunakan parameter yang lebih sedikit mendapatkan nilai BER minimal 9,91\% \cite{penelitianpaksyukron}. Semakin kecil nilai BER, maka
+% semakin mungkin sebuah CDP 2 level diestimasi. Dari permasalahan tersebut, penulis mencoba untuk membuat model SQR yang dapat diautentikasi menggunakan CDP 4
+% level \emph{grayscale} dan membandingkannya dengan CDP 2 level \emph{grayscale}. SQR yang didesain oleh penulis nantinya akan dilengkapi dengan sebuah
+% \emph{watermark} yang didalamnya terdapat CDP dan juga delapan penanda ArUco.
 
 \section{Rumusan Masalah}
-Dari penelitian sebelumnya tentang penyerangan estimasi terhadap CDP 2 level, didapatkan CDP hasil estimasi memiliki nilai BER 19,92\% dan 9,91\%. Hal tersebut
-menunjukkan menunjukkan bahwa CDP 2 level tidak cukup aman untuk digunakan. Selain itu, lokalisasi CDP menggunakan 4 titik (4 titik sudut kode QR) hasilnya
-kurang baik jika hasil pemotretan kurang ideal (misalnya ada \emph{bending} pada sisi SQR karena SQR ditempelkan pada permukaan tabung). Penelitian ini mencoba
-untuk mengatasi permasalahan tersebut dengan menggunakan CDP 4 level yang secara teoritis lebih sulit untuk direplikasi karena memiliki 4 level gradasi warna
-yang berbeda untuk diestimasi dan juga penggunaan penanda ArUco untuk meningkatkan kualitas lokalisasi CDP pada kondisi yang kurang ideal.
+Dari permasalahan yang didapatkan dari penelitian sebelumnya, yaitu hasil lokalisasi CDP yang kurang baik jika hanya menggunakan 4 titik acuan (4 titik sudut
+kode QR), penulis mencoba menggunakan 8 penanda ArUco \cite{arucoopencv} di sekitar objek CDP untuk meningkatkan kualitas lokalisasi CDP pada kondisi SQR yang kurang ideal
+(misalnya ada lekukan pada sisi SQR karena SQR ditempelkan pada permukaan tabung).
+
+% Dari penelitian sebelumnya tentang penyerangan estimasi terhadap CDP 2 level, didapatkan CDP hasil estimasi memiliki nilai BER 19,92\% dan 9,91\%. Hal tersebut
+% menunjukkan menunjukkan bahwa CDP 2 level tidak cukup aman untuk digunakan. Selain itu, lokalisasi CDP menggunakan 4 titik (4 titik sudut kode QR) hasilnya
+% kurang baik jika hasil pemotretan kurang ideal (misalnya ada \emph{bending} pada sisi SQR karena SQR ditempelkan pada permukaan tabung). Penelitian ini mencoba
+% untuk mengatasi permasalahan tersebut dengan menggunakan CDP 4 level yang secara teoritis lebih sulit untuk direplikasi karena memiliki 4 level gradasi warna
+% yang berbeda untuk diestimasi dan juga penggunaan penanda ArUco untuk meningkatkan kualitas lokalisasi CDP pada kondisi yang kurang ideal.
 % Berdasarkan latar belakang yang sudah dijabarkan di atas, maka rumusan masalah dalam penelitian ini meliputi:
 % \begin{enumerate}
 %       \item Apakah hasil lokalisasi CDP menggunakan 8 penanda ArUco (8 titik) lebih baik daripada tanpa menggunakan penanda ArUco (4 titik sudut QR)?
@@ -46,46 +52,48 @@ yang berbeda untuk diestimasi dan juga penggunaan penanda ArUco untuk meningkatk
 %       \item Apakah CDP 4 level \emph{grayscale} dapat diautentikasi dengan lebih baik oleh model dibandingkan CDP 2 level \emph{grayscale}?
 % \end{enumerate}
 
-\section{Tujuan Penelitian}Tujuan dari penelitian ini adalah:
-\begin{enumerate}
-      % \item Membuat model SQR yang dilengkapi \emph{watermark} yang dapat diautentikasi oleh model.
-      % \item Mengetahui nilai parameter P\&S dalam pembuatan SQR (konfigurasi kamera dan pencetakan).
-      \item Mengetahui efektivitas penggunaan penanda ArUco dalam melokalisasi objek CDP.
-            % \item Membuat model untuk melakukan autentikasi SQR orisinal dan palsu.
-      \item Membandingkan performa model dalam mengautentikasi CDP dengan 2 dan 4 level \emph{grayscale}.
-\end{enumerate}
+\section{Tujuan Penelitian}
+Tujuan dari penelitian ini adalah untuk mengetahui efektivitas penggunaan penanda ArUco di sekitar CDP untuk membantu melokalisasi CDP yang digunakan dalam
+autentikasi SQR orisinal atau palsu.
+% \begin{enumerate}
+%       % \item Membuat model SQR yang dilengkapi \emph{watermark} yang dapat diautentikasi oleh model.
+%       % \item Mengetahui nilai parameter P\&S dalam pembuatan SQR (konfigurasi kamera dan pencetakan).
+%       \item Mengetahui efektivitas penggunaan penanda ArUco dalam melokalisasi objek CDP.
+%             % \item Membuat model untuk melakukan autentikasi SQR orisinal dan palsu.
+%             % \item Membandingkan performa model dalam mengautentikasi CDP dengan 2 dan 4 level \emph{grayscale}.
+% \end{enumerate}
 
 \section{Batasan Penelitian}
 Beberapa batasan yang penulis gunakan dalam penelitian ini antara lain:
 \begin{enumerate}
-      \item Objek Penelitian: Pengembangan dan analisis pembuatan SQR dengan CDP 2 dan 4 level.
-      \item Metode Penelitian: Pengembangan SQR dilakukan dengan eksperimen yang mencakup verifikasi parameter pembuatan model SQR, pembuatan \emph{dataset} SQR orisinal
-            dan palsu, serta pembuatan model untuk mengautentikasi SQR. Hasil dari penelitian ini adalah mengetahui efektivitas penanda ArUco dalam melokalisasi objek CDP
-            dan mengetahui apakah CDP dengan 4 level \emph{grayscale} lebih baik dari CDP 2 level \emph{grayscale} dari segi akurasi klasifikasi oleh model. Hasil tersebut
-            diperoleh dari analisis data yang didapatkan melalui eksperimen.
+      \item Objek Penelitian: Analisis penggunaan penanda ArUco untuk melokalisasi objek CDP yang digunakan untuk autentikasi SQR orisinal atau palsu.
+      \item Metode Penelitian: Analisis dilakukan dengan eksperimen yang mencakup verifikasi parameter pembuatan model SQR, pembuatan \emph{dataset} SQR orisinal dan
+            palsu, serta pembuatan model untuk mengautentikasi SQR. Hasil dari penelitian ini adalah mengetahui efektivitas penanda ArUco dalam melokalisasi objek CDP.
+            Hasil tersebut diperoleh dari analisis data yang didapatkan melalui eksperimen.
       \item Waktu dan Tempat Penelitian:
             \begin{itemize}
                   \item Waktu penelitian: Agustus 2022 s.d. April 2023
                   \item Tempat penelitian: Ruang rispro, laboratorium informatika, laboratorium jaringan dan komputer, dan rumah penulis.
             \end{itemize}
-      \item Populasi dan Sampel: Populasi adalah seluruh \emph{dataset} SQR 2 dan 4 level. Sampel penelitian adalah \emph{dataset} SQR yang dibuat dan digunakan oleh
-            penulis dalam penelitian.
+      \item Populasi dan Sampel: Populasi adalah seluruh \emph{dataset} SQR yang ada. Sampel penelitian adalah \emph{dataset} SQR yang dibuat dan digunakan oleh penulis
+            dalam penelitian.
             % Populasi penelitian berupa seluruh \emph{dataset} SQR yang dibuat dan digunakan dalam penelitian. Sampel penelitian berupa sebagian
-            \emph{dataset} SQR yang digunakan untuk penentuan parameter dan pembuatan model klasifikasi biner.
-      \item Variabel: Variabel bebas meliputi \emph{dataset} SQR 2 dan 4 level, variabel kontrolnya adalah \emph{environment} yang digunakan dalam pemotretan
-            \emph{dataset}, sedangkan variabel terikatnya adalah hasil lokalisasi CDP dan hasil klasifikasi oleh model (SQR orisinal atau palsu).
+            % \emph{dataset} SQR yang digunakan untuk penentuan parameter dan pembuatan model klasifikasi biner.
+      \item Variabel: Variabel bebas meliputi \emph{dataset} SQR yang dibuat oleh penulis, variabel kontrolnya adalah \emph{environment} dan parameter yang digunakan dalam
+            pemotretan \emph{dataset}, sedangkan variabel terikatnya adalah hasil lokalisasi CDP dan hasil klasifikasi biner oleh model autentikasi (SQR orisinal atau
+            palsu).
       \item Hipotesis:
             \begin{itemize}
                   \item Hasil lokalisasi CDP menggunakan delapan penanda ArUco (8 titik) lebih akurat dibandingkan tanpa menggunakan penanda ArUco (4 titik sudut kode QR).
-                  \item CDP dengan 4 level \emph{grayscale} dapat diautentikasi dengan akurasi yang lebih baik dibandingkan CDP dengan 2 level \emph{grayscale}.
+                        % \item CDP dengan 4 level \emph{grayscale} dapat diautentikasi dengan akurasi yang lebih baik dibandingkan CDP dengan 2 level \emph{grayscale}.
             \end{itemize}
       \item Keterbatasan Penelitian:
             \begin{itemize}
                   \item \emph{Printer} yang digunakan untuk mencetak \emph{dataset} SQR seragam.
                   \item Pemotretan \emph{dataset} SQR dilakukan dalam kondisi pencahayaan yang baik, berasal dari \emph{flash smartphone}.
                   \item Kamera, konfigurasi kamera, sudut dan kondisi pemotretan \emph{dataset} adalah tetap (menggunakan bantuan boks, sehingga jarak objek dengan kamera tetap).
-                  \item Parameter yang digunakan untuk menilai efektivitas CDP 2 dan 4 level pada SQR adalah sebatas akurasi klasifikasi biner oleh model. Selain itu, diasumsikan
-                        bahwa CDP dengan 4 level \emph{grayscale} lebih sulit diestimasi oleh penyerang.
+                        % \item Parameter yang digunakan untuk menilai efektivitas CDP 2 dan 4 level pada SQR adalah sebatas akurasi klasifikasi biner oleh model. Selain itu, diasumsikan
+                        %       bahwa CDP dengan 4 level \emph{grayscale} lebih sulit diestimasi oleh penyerang.
                   \item Penggunaan penanda ArUco memiliki kelemahan, yaitu model deteksi akan sulit mendeteksi penanda ArUco jika ukurannya sangat kecil.
             \end{itemize}
             % \item \textit{Printer} yang digunakan untuk mencetak kumpulan data SQR seragam.
@@ -95,8 +103,8 @@ Beberapa batasan yang penulis gunakan dalam penelitian ini antara lain:
 
 \section{Manfaat Penelitian}
 \begin{itemize}
-      \item Bagi peneliti dan pengembang SQR selanjunya, mereka dapat menggunakan model SQR, parameter P\&S, dan model autentikasi yang memiliki akurasi terbaik
-            (autentikasi CDP orisinal dan palsu).
+      \item Bagi peneliti dan pengembang SQR selanjunya, mereka dapat menggunakan model SQR, parameter \emph{print} \& \emph{scan} (P\&S), dan model autentikasi
+            (klasifikasi CDP orisinal dan palsu) yang memiliki akurasi terbaik.
       \item Bagi penulis, penelitian ini dapat menambah wawasan, ilmu dan pengetahuan dalam pembuatan tulisan ilmiah, khususnya pada topik spesifik seperti keamanan
             digial, pengolahan citra gambar, dan pembelajaran mesin.
       \item Bagi pelaku bisnis, penerapan SQR dalam produk dapat mengurangi risiko dan melindungi produk dari pembajakan.

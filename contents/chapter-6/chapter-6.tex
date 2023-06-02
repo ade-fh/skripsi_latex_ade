@@ -2,39 +2,40 @@
 
 \section{Kesimpulan}
 \begin{itemize}
-    \item Model SQR yang dirancang penulis (Kode QR dengan \emph{watermark}) dapat diautentikasi dengan akurasi sempurna 1,0 (pada \emph{dataset} yang dilokalisasi
-          dengan penanda ArUco)
-    \item Selain model SQR, keluaran dari penelitian ini adalah parameter P\&S untuk pembuatan \emph{dataset} SQR.
-    \item Hasil uji signifikansi menggunakan metode \emph{T-test} antara jarak CDP 2 level dan 4 level dengan \emph{template}, baik orisinal maupun palsu, menunjukkan
-          perbedaan signifikan. Dibandingkan dengan CDP 2 level, CDP 4 level orisinal dan palsu memiliki jarak yang lebih dekat dengan \emph{template}.
-    \item Dari uji signifikansi menggunakan metode \emph{T-test}, fitur spasial memisahkan CDP orisnal dan palsu secara distribusi dengan baik. Fitur histogram baik
-          intuk memisahkan CDP 2 dan 4 level. Adapun fitur \emph{dct\_canberra} yang juga baik dalam memisahkan CDP orisinal dengan palsu.
-    \item Dari pengujian pembuatan model menggunakan fitur tunggal pada \emph{dataset} CDP yang dilokalisasi menggunakan penanda ArUco, fitur \emph{sp\_corr} menjadi
-          fitur terbaik yang mendapatkan akurasi sempurna 1. Pada CDP 4 level, fitur \emph{dct\_canberra} juga memiliki akurasi sempurna 1. Pada \emph{dataset} CDP 2
-          level, ada 4 fitur jarak yang memiliki akurasi lebih dari 0,9, sedangkan pada CDP 4 level, ada 9 fitur jarak yang memiliki akurasi lebih dari 0,9.
-    \item Dari pengujian perbandingan akurasi model, didapatkan bahwa CDP yang dilokalisasi menggunakan penanda ArUco (8 titik) lebih baik daripada CDP yang dilokalisasi
-          tanpa menggunakan penanda ArUco (4 titik) dalam hal akurasi autentikasinya. CDP-A dapat diautentikasi dengan skor 1, baik pada CDP 2 level maupun 4 level,
-          sedangkan CDP-B diautentikasi dengan skor 0,967 pada CDP 2 level dan 0,981 pada CDP 4 level. Kecepatan lokalisasi menggunakan delapan penanda ArUco juga jauh
-          lebih cepat dibandingkan menggunakan keempat titik sudut kode QR.
-    \item AutoML dari AutoGluon dapat membuat model autentikasi dengan baik untuk kasus klasifikasi biner CDP orisinal dan palsu, baik untuk CDP 2 maupun 4 level.
+      \item Model SQR yang dirancang penulis (Kode QR dengan \emph{watermark}) dapat diautentikasi dengan akurasi sempurna 100\% (pada \emph{dataset} yang dilokalisasi
+            dengan penanda ArUco)
+      \item Selain model SQR, keluaran dari penelitian ini adalah parameter P\&S untuk pembuatan \emph{dataset} SQR.
+      \item Dari uji signifikansi menggunakan metode \emph{T-test} antara data grup orisinal dengan palsu, pada \emph{dataset} CDP yang dilokalisasi dengan 8 titik
+            memiliki signifikansi tinggi pada seluruh koefisien jaraknya, sedangkan pada \emph{dataset} CDP yang dilokalisasi dengan 4 titik, hasilnya tidak terlalu
+            signifikan, terlihat dari banyaknya \emph{overlap} pada plot distribusinya.
+            %     \item Hasil uji signifikansi menggunakan metode \emph{T-test} antara jarak CDP 2 level dan 4 level dengan \emph{template}, baik orisinal maupun palsu, menunjukkan
+            %           perbedaan signifikan. Dibandingkan dengan CDP 2 level, CDP 4 level orisinal dan palsu memiliki jarak yang lebih dekat dengan \emph{template}.
+            %     \item Dari uji signifikansi menggunakan metode \emph{T-test}, fitur spasial memisahkan CDP orisinal dan palsu secara distribusi dengan baik. Fitur histogram baik
+            %           intuk memisahkan CDP 2 dan 4 level. Adapun fitur \emph{dct\_canberra} yang juga baik dalam memisahkan CDP orisinal dengan palsu.
+      \item Dari pengujian pembuatan model autentikasi menggunakan fitur tunggal pada \emph{dataset} CDP yang dilokalisasi menggunakan 8 titik, fitur \emph{sp\_corr} dan
+            \emph{dct\_canberra} menjadi fitur fitur terbaik yang mendapatkan akurasi sempurna 100\%, sedangkan pada \emph{dataset} CDP yang dilokalisasi menggunakan 4
+            titik, akurasi tertingginya adalah 92,5\% menggunakan fitur \emph{his\_canberra}.
+      \item Dari pengujian pembuaatan model autentikasi menggunakan multi fitur, pada \emph{dataset} CDP yang dilokalisasi menggunakan 8 titik memiliki akurasi tertinggi
+            100\% menggunakan model XGBoost, sedangkan pada \emph{dataset} CDP yang dilokalisasi menggunakan 4 titik, akurasi tertingginya adalah 98,33\%.
+      \item AutoML dari AutoGluon dapat membuat model autentikasi dengan baik untuk kasus klasifikasi biner CDP orisinal dan palsu, baik untuk CDP 2 maupun 4 level.
 \end{itemize}
 
 \section{Saran}
 \begin{itemize}
-    \item Model SQR dan parameter P\&S ini dapat digunakan untuk pembuatan \emph{dataset} berikutnya dengan jumlah yang lebih besar.
-    \item Dibutuhkan pembuatan \emph{dataset} SQR dengan lingkungan pemotretan yang berbeda, semisal dipotret langsung di ruang terbuka dengan berbagai kondisi, namun
-          hasilnya harus tetap baik (fokus dan tidak kabur) dengan menggunakan parameter konfigurasi kamera yang penulis dapatkan.
-    \item Parameter konfigurasi kamera yang telah penulis dapatkan dapat digunakan untuk pengembangan aplikasi \emph{mobile} untuk autentikasi SQR.
-    \item Menurut penulis, CDP dengan 4 level \emph{grayscale} lebih baik untuk diterapkan dalam pengembangan SQR karena secara teoritis lebih sulit untuk direpilkasi.
-          Apabila ukuran CDP adalah 100x100 piksel, untuk mereplikasi secara tepat, diperlukan $4^{10000}$ kombinasi yang harus dicoba. Keamanan juga dapat ditingkatkan
-          dengan mengubah keempat level menjadi dinamis. Saat ini level \emph{grayscale} yang digunakan adalah tetep, yaitu [0, 85, 170, 255]. Level \emph{grayscale}
-          tersebut dapat diubah menjadi dinamis seperti [0, 45, 160, 220], [20, 80, 180, 255], dan seterusnya secara acak. Hal tersebut kemungkinan dapat meningkatkan
-          keamanan dari CDP, namun masih perlu diuji melalui penelitian-penelitian selanjutnya. Alasan lain adalah, pada kondisi data CDP yang kurang baik, dalam hal ini
-          hasil CDP yang dilokalisasi tanpa menggunakan ArUco \emph{marker}, CDP 4 level dapat diautentikasi dengan akurasi yang lebih tinggi daripada CDP 2 level.
-    \item Penelitian tentang penyerangan estimasi CDP 4 level perlu dilakukan untuk mengetahui efekttivitas dan ketahanan CDP 4 level.
-    \item Fitur-fitur yang memiliki akurasi tinggi dalam model fitur tunggal dan memiliki signifikansi distribusi tinggi dalam membedakan CDP orisinal dan palsu seperti
-          \emph{sp\_corr}, \emph{sp\_cosine}, \emph{sp\_euclidean}, \emph{sp\_canberra}, dan \emph{dct\_canberra} dapat dijadikan fitur utama yang digunakan dalam
-          pembuatan model multi fitur.
-    \item Dibutuhkan pustaka untuk pembacaan data kode QR yang lebih cepat dari pustaka yang dimiliki Python (OpenCV), misalnya pustaka pembaca QR \emph{native} dari
-          Java Android.
+      \item Model SQR dan parameter P\&S ini dapat digunakan untuk pembuatan \emph{dataset} berikutnya dengan jumlah yang lebih besar.
+      \item Dibutuhkan pembuatan \emph{dataset} SQR dengan lingkungan pemotretan yang berbeda, semisal dipotret langsung di ruang terbuka dengan berbagai kondisi, namun
+            hasilnya harus tetap baik (fokus dan tidak kabur) dengan menggunakan parameter konfigurasi kamera yang penulis dapatkan.
+      \item Parameter konfigurasi kamera yang telah penulis dapatkan dapat digunakan untuk pengembangan aplikasi \emph{mobile} untuk autentikasi SQR.
+            %     \item Menurut penulis, CDP dengan 4 level \emph{grayscale} lebih baik untuk diterapkan dalam pengembangan SQR karena secara teoritis lebih sulit untuk direpilkasi.
+            %           Apabila ukuran CDP adalah 100x100 piksel, untuk mereplikasi secara tepat, diperlukan $4^{10000}$ kombinasi yang harus dicoba. Keamanan juga dapat ditingkatkan
+            %           dengan mengubah keempat level menjadi dinamis. Saat ini level \emph{grayscale} yang digunakan adalah tetep, yaitu [0, 85, 170, 255]. Level \emph{grayscale}
+            %           tersebut dapat diubah menjadi dinamis seperti [0, 45, 160, 220], [20, 80, 180, 255], dan seterusnya secara acak. Hal tersebut kemungkinan dapat meningkatkan
+            %           keamanan dari CDP, namun masih perlu diuji melalui penelitian-penelitian selanjutnya. Alasan lain adalah, pada kondisi data CDP yang kurang baik, dalam hal ini
+            %           hasil CDP yang dilokalisasi tanpa menggunakan ArUco \emph{marker}, CDP 4 level dapat diautentikasi dengan akurasi yang lebih tinggi daripada CDP 2 level.
+      \item Penelitian tentang penyerangan estimasi CDP 4 level perlu dilakukan untuk mengetahui efektivitas dan ketahanan CDP 4 level.
+      \item Fitur-fitur yang memiliki akurasi tinggi dalam model fitur tunggal dan memiliki signifikansi distribusi tinggi dalam membedakan CDP orisinal dan palsu seperti
+            \emph{sp\_corr}, \emph{sp\_cosine}, \emph{sp\_euclidean}, \emph{sp\_canberra}, dan \emph{dct\_canberra} dapat dijadikan fitur utama yang digunakan dalam
+            pembuatan model autentikasi multi fitur.
+      \item Dibutuhkan pustaka untuk pembacaan data kode QR yang lebih cepat dari pustaka yang dimiliki Python (OpenCV), misalnya pustaka pembaca QR \emph{native} dari
+            Java Android.
 \end{itemize}

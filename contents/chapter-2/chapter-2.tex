@@ -157,7 +157,7 @@ Penelitian ini memberikan solusi atas permasalahan pembajakan produk dengan memb
 \emph{Copy detection patterns} (CDP), yang akan diletakkan pada produk ataupun dokumen. Penelitian ini merupakan salah satu penelitian awal dari
 penelitian-penelitian selanjutnya tentang pengembangan CDP untuk deteksi pembajakan. Permasalahan yang coba dibahas pada penelitian ini adalah apakah mungkin
 untuk membuat dokumen salinan yang sempurna? Untuk menjawab pertanyaan tersebut peneliti melakukan eksperimen untuk mendemonstrasikan kelayakan penerapan CDP
-untuk mengamankan dokumen dari pemalsuan. \cite{picard2004digital}
+untuk mengamankan dokumen dari pemalsuan \cite{picard2004digital}.
 
 \noindent Spesifikasi CDP dan perangkat yang digunakan dalam penelitian adalah sebagai berikut:
 \begin{itemize}
@@ -302,9 +302,9 @@ Berbagai teknik telah diusulkan untuk melakukan lokalisasi objek atau gambar den
 metode berbasis pembelajaran mesin. Teknik-teknik ini telah digunakan dalam berbagai aplikasi, seperti \emph{augmented reality}, robotika, dan pelacakan objek.
 
 \subsection{ArUco \emph{Marker}}
-ArUco \emph{marker} adalah jenis \emph{marker} fidusial yang biasa digunakan untuk estimasi pose kamera dan pelacakan dalam pengolahan citra dan visi komputer. ArUco \emph{marker} terdiri dari kisi-kisi kotak hitam dan putih dengan pola unik yang mudah dideteksi dan dikenali oleh algoritma visi komputer. ArUco \emph{marker} banyak digunakan dalam aplikasi robotika, realitas tambahan, dan pelacakan objek karena kesimpelannya, akurasi deteksi yang tinggi, dan biaya komputasi yang rendah.
+ArUco \emph{marker} adalah jenis \emph{marker} fidusial yang biasa digunakan untuk estimasi pose kamera dan pelacakan dalam pengolahan citra dan visi komputer. ArUco \emph{marker} terdiri dari kisi-kisi kotak hitam dan putih dengan pola unik yang mudah dideteksi dan dikenali oleh algoritma visi komputer. ArUco \emph{marker} banyak digunakan dalam aplikasi robotika, realitas tambahan, dan pelacakan objek karena kesimpelannya, akurasi deteksi yang tinggi, dan biaya komputasi yang rendah \cite{arucoopencv}.
 
-\emph{Marker} fidusial adalah objek berpola yang digunakan ke dalam sebuah gambar atau tempat tertentu untuk memudahkan sistem visi komputer menentukan posisi dan orientasi objek atau \emph{scene} dengan akurasi yang tinggi. \emph{Marker} fidusial biasanya didesain dengan pola atau bentuk yang unik dan mudah dikenali, sehingga dapat dideteksi dan dilacak oleh algoritme pendeteksian objek visi komputer, yang memungkinkan estimase pose dan pelacakan yang akurat. \emph{Marker} fidusial banyak digunakan dalam berbagai aplikasi seperti \emph{augmented reality}, robotika, dan pendeteksian objek.
+\emph{Marker} fidusial adalah objek berpola yang digunakan ke dalam sebuah gambar atau tempat tertentu untuk memudahkan sistem visi komputer menentukan posisi dan orientasi objek atau \emph{scene} dengan akurasi yang tinggi. \emph{Marker} fidusial biasanya didesain dengan pola atau bentuk yang unik dan mudah dikenali, sehingga dapat dideteksi dan dilacak oleh algoritme pendeteksian objek visi komputer, yang memungkinkan estimase pose dan pelacakan yang akurat. \emph{Marker} fidusial banyak digunakan dalam berbagai aplikasi seperti \emph{augmented reality}, robotika, dan pendeteksian objek \cite{arucoopencv}.
 
 % \subsection{Ekstraksi Fitur pada Gambar}
 \subsection{Fitur Spasial pada Citra Gambar}
@@ -410,15 +410,15 @@ DCT (\emph{Discrete Cosine Transform}) adalah transformasi matematis yang diguna
 DCT menghasilkan serangkaian koefisien frekuensi yang merepresentasikan sinyal atau data spasial dalam bentuk domain frekuensi. Dalam domain frekuensi, sinyal
 atau data citra direpresentasikan oleh koefisien-koefisien frekuensi. DCT memanfaatkan sifat alami dari citra dan memungkinkan informasi citra yang relevan
 dikonsentrasikan dalam beberapa koefisien frekuensi teratas, sedangkan koefisien frekuensi yang lain diabaikan atau dikuantisasi dengan rinci. Transformasi ini
-banyak digunakan dalam pengolahan sinyal, pengolahan citra, dan kompresi data, seperti pada format file JPEG dan MP3. \cite{dct}
+banyak digunakan dalam pengolahan sinyal, pengolahan citra, dan kompresi data, seperti pada format file JPEG dan MP3 \cite{dct}.
 
 Dalam aplikasi pengolahan citra, DCT digunakan untuk menghasilkan representasi domain frekuensi dari citra digital. Hal ini memungkinkan penghapusan informasi
-yang tidak penting pada citra. Dalam kompresi audio, DCT digunakan untuk memisahkan sinyal audio menjadi beberapa subband frekuensi. \cite{dct}
+yang tidak penting pada citra. Dalam kompresi audio, DCT digunakan untuk memisahkan sinyal audio menjadi beberapa subband frekuensi \cite{dct}.
 
 DCT juga banyak digunakan pada pembandingan citra dan gambar. Teknik ini dapat digunakan untuk mendeteksi keaslian citra dan \emph{watermarking}. Dalam
 pembandingan citra dan gambar, DCT digunakan untuk memperoleh fitur-fitur citra yang berbeda. Fitur-fitur ini kemudian digunakan untuk menghitung kesamaan
 antara dua citra atau gambar. Dalam aplikasi deteksi keaslian citra, DCT dapat digunakan untuk menghasilkan \emph{signature} unik dari setiap citra asli.
-Sementara dalam \emph{watermarking}, DCT digunakan untuk memasukkan \emph{watermark} atau pesan rahasia ke dalam citra. \cite{dctwatermark}
+Sementara dalam \emph{watermarking}, DCT digunakan untuk memasukkan \emph{watermark} atau pesan rahasia ke dalam citra \cite{dctwatermark}.
 
 Secara umum, persamaan DCT pada citra 2 dimensi (gambar berukuran N x M) didefinisikan dengan \cite{dct}:
 
@@ -498,13 +498,13 @@ y, z, w), di mana x, y, dan z adalah koordinat euclidean, dan w adalah koordinat
 % \end{equation}
 
 \subsection{Uji Statistik \emph{T-test}}
-Uji statistik \emph{T-test} adalah sebuah teknik statistik yang digunakan untuk membandingkan rata-rata dari dua sampel independen. Uji ini menghasilkan nilai \emph{t-statistics} dan \emph{p-value} yang dapat digunakan untuk menentukan apakah perbedaan antara kedua sampel signifikan secara statistik. \cite{kumar}
+Uji statistik \emph{T-test} adalah sebuah teknik statistik yang digunakan untuk membandingkan rata-rata dari dua sampel independen. Uji ini menghasilkan nilai \emph{t-statistics} dan \emph{p-value} yang dapat digunakan untuk menentukan apakah perbedaan antara kedua sampel signifikan secara statistik \cite{kumar}.
 
-\emph{T-statistics} adalah ukuran dari perbedaan rata-rata antara dua sampel, yang dinormalisasi dengan standar deviasi dari kedua sampel. Semakin besar nilai \emph{t-statistics}, semakin signifikan perbedaan antara kedua sampel. \emph{P-value} adalah nilai probabilitas yang diperoleh dari perhitungan statistik, dan menunjukkan seberapa signifikan perbedaan tersebut. Semakin kecil nilai \emph{P-value}, semakin signifikan perbedaan antara kedua sampel. \cite{kumar}
+\emph{T-statistics} adalah ukuran dari perbedaan rata-rata antara dua sampel, yang dinormalisasi dengan standar deviasi dari kedua sampel. Semakin besar nilai \emph{t-statistics}, semakin signifikan perbedaan antara kedua sampel. \emph{P-value} adalah nilai probabilitas yang diperoleh dari perhitungan statistik, dan menunjukkan seberapa signifikan perbedaan tersebut. Semakin kecil nilai \emph{P-value}, semakin signifikan perbedaan antara kedua sampel \cite{kumar}.
 
 Dalam uji statistik \emph{T-test} untuk dua sampel independen, hipotesis nol menyatakan bahwa tidak ada perbedaan yang signifikan antara kedua sampel. Jika
 \emph{P-value} kurang dari alfa (tingkat signifikansi yang telah ditentukan sebelumnya), maka hipotesis nol ditolak dan dapat disimpulkan bahwa terdapat
-perbedaan signifikan antara kedua sampel. \cite{kumar}
+perbedaan signifikan antara kedua sampel \cite{kumar}. 
 
 \noindent Definisi formal dari uji statistik \emph{T-test} dapat dituliskan dengan \cite{kumar}:
 
@@ -528,28 +528,27 @@ atau dikategorikan sebelumnya untuk menemukan pola atau struktur yang terdapat d
 \emph{reward} dan \emph{punishment} untuk melatih model atau algoritma.
 
 Dalam praktiknya, pembelajaran mesin sering digunakan dalam berbagai aplikasi bisnis, seperti analisis data, personalisasi produk, dan deteksi kecurangan.
-Dalam kehidupan sehari-hari, pembelajaran mesin juga diterapkan dalam pengenalan suara, identifikasi gambar, dan pengembangan sistem kendali otomatis. \cite{jordan2015machine}, \cite{Alpaydin2014}, \cite{murphy2012machine}
+Dalam kehidupan sehari-hari, pembelajaran mesin juga diterapkan dalam pengenalan suara, identifikasi gambar, dan pengembangan sistem kendali otomatis \cite{jordan2015machine}, \cite{Alpaydin2014}, \cite{murphy2012machine}.
 
 \subsection{AutoML}
 AutoML (\emph{Automated Machine Learning}) adalah teknologi yang dirancang untuk memudahkan proses pembuatan model pembelajaran mesin secara otomatis. AutoML
 semakin populer karena memungkinkan organisasi dan perusahaan untuk menghasilkan model pembelajaran mesin secara cepat dan efisien, sehingga mempercepat
 inovasi dan pengambilan keputusan dalam bisnis. Namun, AutoML bukanlah solusi yang sempurna dan masih memiliki beberapa tantangan seperti kurangnya
-interpretasi model dan pengurangan fleksibilitas dalam menghasilkan model yang dapat disesuaikan dengan kebutuhan khusus. \cite{manashgoswami_2023},
-\cite{singla_2020}
+interpretasi model dan pengurangan fleksibilitas dalam menghasilkan model yang dapat disesuaikan dengan kebutuhan khusus \cite{manashgoswami_2023},
+\cite{singla_2020}.
 
 AutoML memungkinkan otomatisasi dari beberapa tahapan dalam proses pengembangan model, seperti \emph{pre-processing}, \emph{feature selection},
 \emph{hyperparameter tuning}, dan \emph{model selection}. Tujuan dari AutoML adalah untuk mengurangi waktu dan biaya dalam pengembangan model pembelajaran
-mesin, dan memungkinkan pengguna yang tidak berpengalaman dalam machine learning untuk menghasilkan model yang dapat digunakan dalam berbagai aplikasi.
-\cite{manashgoswami_2023}, \cite{singla_2020}
+mesin, dan memungkinkan pengguna yang tidak berpengalaman dalam machine learning untuk menghasilkan model yang dapat digunakan dalam berbagai aplikasi \cite{manashgoswami_2023}, \cite{singla_2020}.
 
 AutoML dapat menangani berbagai jenis tugas, termasuk klasifikasi, regresi, klastering, dan segmentasi. Selain itu, AutoML juga dapat mengolah berbagai jenis
 data, seperti data tabular, gambar, dan teks. Dalam pengolahan data tabular, AutoML dapat mengidentifikasi tipe data yang berbeda, seperti numerik dan
 kategorikal, dan secara otomatis melakukan pra-pemrosesan data, seperti normalisasi, pengisian nilai yang hilang, dan pemilihan fitur. Sampai saat ini, AutoML
-optimal digunakan pada data berjenis tabular. \cite{manashgoswami_2023}, \cite{singla_2020}
+optimal digunakan pada data berjenis tabular \cite{manashgoswami_2023}, \cite{singla_2020}.
 
 Adapun \emph{framework} AutoML populer yang dikembangkan, baik bersifat \emph{open} ataupun \emph{closed source}, seperti Auto-WEKA, auto-sklearn, GCP-Tables,
 TPOT, H2O, AutoGluon, dan masih banyak lagi. \emph{Framework} AutoMl tersebut sudah banyak digunakan di industri dan terkadang memiliki akurasi yang jauh lebih
-baik dibandingkan model yang dibuat secara manual. \cite{agtabular}
+baik dibandingkan model yang dibuat secara manual \cite{agtabular}.
 
 \subsection{AutoGluon} \label{AutoGluon}
 AutoGluon merupakan \emph{framework} \emph{machine learning} (ML) dan \emph{deep learning} (DL) sumber terbuka yang memungkinkan pengguna untuk membuat model
@@ -559,7 +558,7 @@ dengan teknik \emph{ensembling} beberapa model dan melakukan \emph{stacking} mod
 rangkaian 50 tes permsalahan klasifikasi dan regresi dari Kaggle, AutoGluon lebih cepat, kokoh, dan jauh lebih akurat dari beberapa model AutoML lain yang
 terkenal seperti TPOT, H2O, AutoWEKA, auto-sklearn, dan Google AutoML Tables. Melalui kompetisi Kaggle, AutoGluon bahkan sering mengungguli kompetitornya yang
 merupakan ekspert data \emph{scientist}. Bahkan, pada 2 kompetisi Kaggle populer, AutoGluon mengalahkan 99\% partisipan yang merupakan \emph{data scientist}
-dan juga pengembang model AutoML lain. \cite{agtabular}
+dan juga pengembang model AutoML lain \cite{agtabular}.
 
 AutoGluon menyediakan antarmuka yang mudah digunakan, namun juga menyediakan fleksibilitas yang cukup bagi pengguna. Beberapa fitur utama dari AutoGluon adalah
 sebagai berikut:
@@ -578,7 +577,7 @@ sebagai berikut:
 AutoGluon memiliki performa yang sangat baik apabila dibandingkan AutoML kompetitor seperti H2O, TPOT, GCP-Tables, auto-sklearn, dan Auto-WEKA. Pada Tabel
 \ref{Tab: 2-hasilautogluon}, terlihat bahwa AutoGluon jauh mengungguli kompetitornya. Dari pengujian menggunakan 39 \emph{dataset}, AutoGluon berhasil menjadi
 juara dengan akurasi terbaik pada 23 \emph{dataset}. Rata-rata waktu \emph{training} AutoGluon juga sangat baik dibandingkan kompetitornya, hanya kalah dari
-GCP-Tables. \cite{agtabular}
+GCP-Tables \cite{agtabular}.
 
 \begin{table}[!ht]
 	\centering

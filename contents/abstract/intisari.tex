@@ -2,16 +2,19 @@ Pembajakan produk atau yang dikenal juga sebagai tindakan pemalsuan, merupakan s
 cara meniru atau menyalin produk asli yang sudah dipatenkan atau memiliki hak cipta. Pada tahun 2016 perdagangan barang palsu dan bajakan mencapai angka \$509
 miliar (3,3\% dari total perdagangan dunia). Untuk mengatasi permasalahan tersebut, produsen dapat menggunakan \emph{secure QR code} (SQR) yang ditempelkan di
 produk. SQR merupakan kode QR biasa yang dilengkapi \emph{copy detection pattern} (CDP). CDP merupakan sebuah pola matriks yang tahan terhadap penyalinan.
-Melalui proses \emph{print} \& \emph{scan} (P\&S), CDP akan terdegradasi kualitasnya, sehingga dapat dibedakan antara CDP orisinal dan palsu. Penelitian
-sebelumnya yang menggunakan CDP dengan 2 level \emph{grayscale} dapat diautentikasi dengan baik. Namun, dari penelitian lain yang melakukan penyerangan
-terhadap CDP, didapatkan nilai \emph{bit error rate} (BER) CDP hasil estimasi terbaik sebesar 9,91\%. Semakin kecil nilai BER, semakin mirip CDP hasil estimasi
-dengan CDP orisinal. CDP dengan 4 level \emph{grayscale} akan jauh lebih aman karena nilai piksel pada CDP tidak hanya hitam dan putih, melainkan gradasi
-dengan 4 level yang berbeda. Penelitian ini mencoba untuk mengembangkan dan menganalisis SQR dengan 2 dan 4 level CDP. Selain itu, penelitian ini juga
-menambahkan komponen penanda ArUco untuk membantu lokalisasi objek CDP yang nantinya akan dijadikan komponen autentikasi. Penggunaan 8 penanda ArUco bertujuan
-untuk mengatasi masalah lokalisasi objek CDP pada SQR ketika SQR tidak dalam kondisi yang ideal.
+Melalui proses \emph{print} \& \emph{scan} (P\&S), CDP akan terdegradasi kualitasnya, sehingga dapat dibedakan antara CDP orisinal dan palsu. 
 
-Hasilnya, diukur menggunakan koefisien jarak korelasi, kosinus, dan \emph{euclidean} CDP yang dilokalisasi menggunakan penanda ArUco lebih mirip dengan \emph{template}. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 8 penanda ArUco, akurasi autentikasi menggunakan model multi fitur adalah 100\%, baik CDP 2
-maupun 4 level. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 4 titik sudut kode QR, akurasi autentikasinya adalah 0,967 pada CDP 2 level dan 0,981
-pada CDP 4 level. Hal tersebut menunjukkan CDP 4 level dapat diautentikasi lebih baik daripada CDP 2 level.
+Untuk mendapatkan objek CDP yang digunakan untuk proses autentikasi, dapat digunakan 4 titik sudut kode QR yang nantinya akan ditransformasi dan dipotong tengahnya sebesar ukuran CDP yang telah ditentukan. Hasil lokalisasi menggunakan 4 titik menghasilkan kualitas lokalisasi CDP yang kurang baik apabila SQR dipotret dalam kondisi yang tidak ideal, misalnya ada lekukan pada sisi SQR karena SQR ditempelkan pada permukaan tabung. Penelitian ini mencoba untuk mengatasi permasalahan tersebut dengan menggunakan 8 penanda ArUco di sekitar objek CDP untuk meningkatkan kualitas lokalisasi CDP pada kondisi yang kurang ideal.
+
+% CDP dengan 2 level \emph{grayscale} dapat diautentikasi dengan baik. Namun, dari penelitian lain yang melakukan penyerangan
+% terhadap CDP, didapatkan nilai \emph{bit error rate} (BER) CDP hasil estimasi terbaik sebesar 9,91\%. Semakin kecil nilai BER, semakin mirip CDP hasil estimasi
+% dengan CDP orisinal. CDP dengan 4 level \emph{grayscale} akan jauh lebih aman karena nilai piksel pada CDP tidak hanya hitam dan putih, melainkan gradasi
+% dengan 4 level yang berbeda. Penelitian ini mencoba untuk mengembangkan dan menganalisis SQR dengan 2 dan 4 level CDP. Selain itu, penelitian ini juga
+% menambahkan komponen penanda ArUco untuk membantu lokalisasi objek CDP yang nantinya akan dijadikan komponen autentikasi. Penggunaan 8 penanda ArUco bertujuan
+% untuk mengatasi masalah lokalisasi objek CDP pada SQR ketika SQR tidak dalam kondisi yang ideal.
+
+% Hasilnya, diukur menggunakan koefisien jarak korelasi, kosinus, dan \emph{euclidean} CDP yang dilokalisasi menggunakan penanda ArUco lebih mirip dengan \emph{template}. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 8 penanda ArUco, akurasi autentikasi menggunakan model multi fitur adalah 100\%, baik CDP 2
+% maupun 4 level. Pada \emph{dataset} CDP yang dilokalisasi menggunakan 4 titik sudut kode QR, akurasi autentikasinya adalah 0,967 pada CDP 2 level dan 0,981
+% pada CDP 4 level. Hal tersebut menunjukkan CDP 4 level dapat diautentikasi lebih baik daripada CDP 2 level.
 
 \noindent{Kata kunci} : \emph{Copy Detection Pattern}, \emph{Secure QR Code}, \emph{ArUco Marker}, AutoML, AutoGluon, Anti-Pemalsuan

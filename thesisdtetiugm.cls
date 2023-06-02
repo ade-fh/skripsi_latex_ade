@@ -407,7 +407,7 @@
 				{Telah disetujui dan disahkan}
 				{Has been approved and endorsed}\\
 				\vspace{0.5cm}
-				\iftoggle{lang}{Pada tanggal $\ldots\ldots$}{on $\ldots\ldots$}\\
+				\iftoggle{lang}{Pada tanggal 5 Mei 2023}\\
 				\vfill
 				\begin{center}
 					\resizebox{\textwidth}{!}{\begin{tabular}{ccc}
